@@ -10,7 +10,7 @@ package tiger.direct;
 import java.util.Scanner;
 
 public class Shopping {
-    public static Sections section (Sections sections []){
+    public static Sections section (Sections sections[]){
         int sectionNumber = 0;
         
         System.out.println("Welcome to Tiger Direct.  Please make a selection from our wide array of section to begin shopping");
@@ -18,11 +18,11 @@ public class Shopping {
             System.out.println((i+1) + ". " + sections[i].name);
         }
         sectionNumber = mymethods.Console.getInt("Enter the corresponing number to the section you are visiting: ");
-        return sections[sectionNumber - 1];
+        return sections[sectionNumber];
     }
-    public static SubSections subsection (Sections section, SubSections subsections []){
+    public static SubSections subsection (Sections section, SubSections subsections[]){
         int subsectionNumber = 0;
-        int counter = -1;
+        int counter = 0;
         SubSections inSection[] = new SubSections[subsections.length];
         
         System.out.println("You are currently browsing in " + section.name + " section.");
@@ -34,7 +34,7 @@ public class Shopping {
             }
         }
         subsectionNumber = mymethods.Console.getInt("Enter the corresponing number to the section you are visiting: ");
-    return inSection[subsectionNumber - 1];
+    return inSection[subsectionNumber];
     }
     
     
@@ -43,8 +43,8 @@ public class Shopping {
         String stay = "y";
         Items selectedItem;
         int listNum = 0;
-        int counter = -1;
-        int counter2 = -1;
+        int counter = 0;
+        int counter2 = 0;
         Items currentItem;
         Items inSubsection[] = new Items[itemList.length];
         CartRecord[] inCart = new CartRecord[1000];
@@ -91,12 +91,12 @@ public class Shopping {
                 inCart[counter2] = new CartRecord(inSubsection[listNum].name, inSubsection[listNum].ID,inSubsection[listNum].section, inSubsection[listNum].subsection,inSubsection[listNum].dollarPrice, inSubsection[listNum].centPrice, itemBought);
                 System.out.println("The item has been added to your cart.");
             }
-        System.out.print("Would you like to continue shopping in this section?");
+        System.out.print("Would you like to continue shopping in this subsection?");
         stay = input.nextLine();
         input.nextLine();
         while ((!(stay.trim().toLowerCase().substring(0, 1).equals("y")) || (!(stay.trim().toLowerCase().substring(0, 1).equals("n"))))){
             System.out.println("Please enter either y or n.");
-            System.out.print("Would you like to continue shopping in this section?");
+            System.out.print("Would you like to continue shopping in this subsection?");
             stay = input.nextLine();
             input.nextLine();    
         }    
