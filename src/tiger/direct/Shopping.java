@@ -8,6 +8,7 @@ package tiger.direct;
  * File by: Nigel
  */
 import java.util.Scanner;
+import static tiger.direct.TigerDirect.numItemsInCart;
 
 public class Shopping {
     public static Sections section (Sections sections[]){
@@ -114,6 +115,7 @@ public class Shopping {
         input.nextLine();    
     }    
     
+    numItemsInCart = counter2;
     return backToTop.trim().toLowerCase().substring(0, 1);
     }
 }

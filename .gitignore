@@ -1,5 +1,5 @@
-/myMethods/build/
-/myMethods/dist/
-/myMethods/nbproject/private/
-/build/
-/dist/
+/myMethods/build/*
+/myMethods/dist/*
+/myMethods/nbproject/private/*
+/build/*
+/dist/*

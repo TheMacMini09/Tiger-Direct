@@ -22,6 +22,7 @@ public class TigerDirect {
     public static Sections[] sections = new Sections[100];
     public static SubSections[] subsections = new SubSections[10000];
     public static Keywords[] keywords = new Keywords[1000];
+    public static int numItemsInCart;
     
     public static void main(String[] args) throws IOException {
         //Variable declaration
@@ -36,12 +37,23 @@ public class TigerDirect {
         if(employee == 'y'){
             Employees.Employees();
         }
-        Checkout.checkout(cart, numItems);
+        
+        
+        
+        Checkout.checkout(cart, numItemsInCart);
+        
 //        //When calling the shopping section, while it returns "y", continue
 //        while(contShopping == "y"){
 //            section = Shopping.section(sections);
 //            subsection = Shopping.subsection(section, subsections);
 //            Shopping.itemFinder(items, subsection, descriptions);
 //        }
+        
+        //When calling the shopping section, while it returns "y", continue
+        while(contShopping == "y"){
+            section = Shopping.section(sections);
+            subsection = Shopping.subsection(section, subsections);
+            Shopping.itemFinder(items, subsection, descriptions);
+        }
     }
 }
