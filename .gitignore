@@ -5,3 +5,6 @@ build/*
 dist/*
 *.class
 private.xml
+*.jar
+*.war
+*.ear
