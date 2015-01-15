@@ -50,7 +50,7 @@ public class TigerDirect {
 //        }
         
         //When calling the shopping section, while it returns "y", continue
-        while(contShopping == "y"){
+        while(contShopping.equals("y")){
             section = Shopping.section(sections);
             subsection = Shopping.subsection(section, subsections);
             Shopping.itemFinder(items, subsection, descriptions);
