@@ -40,7 +40,7 @@ public class Shopping {
     
     
     public static String itemFinder (Items itemList [], SubSections subsection, Descriptions descriptions[]){
-        Scanner input = new Scanner(System.in);
+        Scanner user = new Scanner(System.in);
         String stay = "y";
         Items selectedItem;
         int listNum = 0;
@@ -77,13 +77,13 @@ public class Shopping {
                 }
             }
             System.out.print("Are you sure you would like to purchase this product?");
-            buy = input.nextLine();
-            input.nextLine();
+            buy = user.nextLine();
+            user.nextLine();
             while ((!(buy.trim().toLowerCase().substring(0, 1).equals("y")) || (!(buy.trim().toLowerCase().substring(0, 1).equals("n"))))){
                 System.out.println("Please enter either y or n.");
                 System.out.print("Are you sure you would like to purchase this product?");
-                buy = input.nextLine();
-                input.nextLine();
+                buy = user.nextLine();
+                user.nextLine();
             
             }
             if (buy.trim().toLowerCase().substring(0, 1).equals("y")){
@@ -93,26 +93,26 @@ public class Shopping {
                 System.out.println("The item has been added to your cart.");
             }
         System.out.print("Would you like to continue shopping in this subsection?");
-        stay = input.nextLine();
-        input.nextLine();
+        stay = user.nextLine();
+        user.nextLine();
         while ((!(stay.trim().toLowerCase().substring(0, 1).equals("y")) || (!(stay.trim().toLowerCase().substring(0, 1).equals("n"))))){
             System.out.println("Please enter either y or n.");
             System.out.print("Would you like to continue shopping in this subsection?");
-            stay = input.nextLine();
-            input.nextLine();    
+            stay = user.nextLine();
+            user.nextLine();    
         }    
         
         }
    
     System.out.print("Would you like to continue shopping in this section?");
-    backToTop = input.nextLine();
-    input.nextLine();
+    backToTop = user.nextLine();
+    user.nextLine();
         
     while ((!(backToTop.trim().toLowerCase().substring(0, 1).equals("y")) || (!(backToTop.trim().toLowerCase().substring(0, 1).equals("n"))))){
         System.out.println("Please enter either y or n.");
         System.out.print("Would you like to continue shopping in this section?");
-        backToTop = input.nextLine();
-        input.nextLine();    
+        backToTop = user.nextLine();
+        user.nextLine();    
     }    
     
     numItemsInCart = counter2;
