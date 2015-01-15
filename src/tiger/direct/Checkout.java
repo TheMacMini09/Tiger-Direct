@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class Checkout {
     
-    static Scanner input = new Scanner(System.in);
+    static Scanner user = new Scanner(System.in);
     
     public static String company(){
         
@@ -28,7 +28,7 @@ public class Checkout {
         cardChoice = Methods.checkNumber(1, 3);
         
         while (cardChoice == -1){
-            input.nextLine();
+            user.nextLine();
             System.out.print("That was an invalid answer. Please enter another number: ");
             cardChoice = Methods.checkNumber(1, 3);
         }
@@ -57,7 +57,7 @@ public class Checkout {
         
         System.out.print("Please enter the name of the card holder: ");
         
-        name = input.nextLine();
+        name = user.nextLine();
         
         return(name);
     }
@@ -67,13 +67,13 @@ public class Checkout {
         String num;
         System.out.print("Please enter your card number with no spaces: ");
         
-        while (!(input.hasNextBigInteger())){
-            input.nextLine();
+        while (!(user.hasNextBigInteger())){
+            user.nextLine();
             System.out.print("Sorry, that was an invalid card number. Please try again: ");
         }
         
-        num = input.next();
-        input.nextLine();
+        num = user.next();
+        user.nextLine();
         
         return(num);
     }
@@ -122,7 +122,6 @@ public class Checkout {
         num = Methods.checkNumber(100,999);
         
         while(num == -1){
-            input.nextLine();
             System.out.println("That is an invalid security code. It has to be three numbers.");
             System.out.print("Please try again: ");
             num = Methods.checkNumber(100, 999);
@@ -146,7 +145,7 @@ public class Checkout {
             System.out.println("5. Security code: " + code);
             System.out.println("0. Continue");
 
-            System.out.println("If yes, enter the number beside the information you\n would like to edit, or 0 to continue: ");
+            System.out.println("If yes, enter the number beside the information you\nwould like to edit, or 0 to continue: ");
 
             editChoice = Methods.checkNumber(0, 5);
 
@@ -187,7 +186,7 @@ public class Checkout {
         
         System.out.print("Please enter the name of your street: ");
         
-        street = input.nextLine();
+        street = user.nextLine();
         
         return(street);
     }
@@ -198,7 +197,7 @@ public class Checkout {
         
         System.out.print("Please enter the name of your city: ");
         
-        city = input.nextLine();
+        city = user.nextLine();
         
         return(city);
     }
@@ -208,13 +207,15 @@ public class Checkout {
         int choice;
         String province = "";
         
+        System.out.println("Please enter the number corresponding to the province\nin which you live:");
+        
         System.out.println("1. British Columbia\n2. Alberta\n3. Saskatchewan\n4. Manitoba\n5. Ontario\n6. Quebec\n7. New Brunswick\n8. Nova Scotia\n9. Prince Edward Island\n10. Newfoundland and Labrodor\n11. Yukon\n12. North-West Territories\n13. Nunavut");
         
         choice = Methods.checkNumber(1, 13);
 
             while(choice == -1 || choice > 13 || choice < 1){
                 System.out.println("That was an invalid entry. Please try again: ");
-                choice = input.nextInt();
+                choice = user.nextInt();
             }
 
             switch(choice){
@@ -267,6 +268,7 @@ public class Checkout {
         String code = "";
         
         System.out.print("Please enter your postal code: ");
+        code = user.nextLine();
         
         return(code);
     }
