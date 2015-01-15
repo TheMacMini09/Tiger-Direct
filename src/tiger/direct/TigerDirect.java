@@ -36,7 +36,7 @@ public class TigerDirect {
         if(employee == 'y'){
             Employees.Employees();
         }
-        
+        Checkout.checkout(cart, numItems);
 //        //When calling the shopping section, while it returns "y", continue
 //        while(contShopping == "y"){
 //            section = Shopping.section(sections);
