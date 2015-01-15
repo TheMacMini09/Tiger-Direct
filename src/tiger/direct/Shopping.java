@@ -15,7 +15,7 @@ public class Shopping {
         int sectionNumber = 0;
         
         System.out.println("Welcome to Tiger Direct.  Please make a selection from our wide array of section to begin shopping");
-        for (int i=0; i > sections.length; i++){
+        for (int i=0; i < sections.length; i++){
             System.out.println((i+1) + ". " + sections[i].name);
         }
         sectionNumber = mymethods.Console.getInt("Enter the corresponing number to the section you are visiting: ");
