@@ -1,7 +1,7 @@
 /*
  * A joint project between Michael Barker, Max Farfaras, and Nigel Young.
  * Start date: January 6th, 2015
- * Completion date: January ___, 2015
+ * Completion date: January 20, 2015
  */
 package tiger.direct;
 /*
