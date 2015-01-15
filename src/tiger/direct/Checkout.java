@@ -18,26 +18,28 @@ public class Checkout {
     public static String company(){
         
         String card;
-        String cardChoice;
+        int cardChoice;
+        String cardChoiceString;
         
         System.out.println("1. American Express\n2. VISA\n3. Mastercard\n");
         
         System.out.print("Please enter the number corresponding to the card you have: ");
         
-        cardChoice = input.next(); //DO NOT FORGET TO ERROR PROOF THIS
-        while (!(cardChoice.equals("1") || cardChoice.equals("2") || cardChoice.equals("3"))){
+        cardChoice = Methods.checkNumber(1, 3);
+        
+        while (cardChoice == -1){
             input.nextLine();
             System.out.print("That was an invalid answer. Please enter another number: ");
-            cardChoice = input.next();
+            cardChoice = Methods.checkNumber(1, 3);
         }
         
-        input.nextLine();
+        cardChoiceString = "" + cardChoice;
         
-        if (cardChoice.equals("1")){
+        if (cardChoiceString.equals("1")){
             card = "American Express";
         }
         
-        else if (cardChoice.equals("2")){
+        else if (cardChoiceString.equals("2")){
             card = "VISA";
         }
         
