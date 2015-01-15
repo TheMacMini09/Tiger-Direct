@@ -3,7 +3,7 @@ package tiger.direct;
 /**
  *
  * Author: Max Farfaras
- * Date: 7 January 2015
+ * Date: 20 January 2015
  * Description: Checkout including payment info, shipping info, shipping cost, and receipt
  */
 import static tiger.direct.TigerDirect.cart;
