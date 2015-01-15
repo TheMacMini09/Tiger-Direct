@@ -37,11 +37,11 @@ public class TigerDirect {
             Employees.Employees();
         }
         
-        //When calling the shopping section, while it returns "y", continue
-        while(contShopping == "y"){
-            section = Shopping.section(sections);
-            subsection = Shopping.subsection(section, subsections);
-            Shopping.itemFinder(items, subsection, descriptions);
-        }
+//        //When calling the shopping section, while it returns "y", continue
+//        while(contShopping == "y"){
+//            section = Shopping.section(sections);
+//            subsection = Shopping.subsection(section, subsections);
+//            Shopping.itemFinder(items, subsection, descriptions);
+//        }
     }
 }

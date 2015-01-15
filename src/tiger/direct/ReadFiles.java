@@ -68,6 +68,9 @@ public class ReadFiles {
     public static void readKeywords() throws FileNotFoundException{
         //Variable declaration
         int numItems;
+        int numKeywords;
+        int ID;
+        String[] keywordsArray;
         
         Scanner itemScanner = new Scanner(new File("keywords"));
         itemScanner.useDelimiter(";;");
@@ -75,7 +78,13 @@ public class ReadFiles {
         numItems = itemScanner.nextInt();
         itemScanner.nextLine();
         for(int i = 0; i < numItems; i++){
-            keywords[i] = new Keywords(itemScanner.nextInt(), itemScanner.nextInt(), itemScanner.next());
+            ID = itemScanner.nextInt();
+            numKeywords = itemScanner.nextInt();
+            keywordsArray = new String[numKeywords];
+            for(int x = 0; x < numKeywords; x++){
+                keywordsArray[x] = itemScanner.next();
+            }
+            keywords[i] = new Keywords(ID, numKeywords, keywordsArray);
             itemScanner.nextLine();
         }
     }

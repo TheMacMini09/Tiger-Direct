@@ -13,13 +13,10 @@ public class Keywords {
     public int numKeywords;     //Number of keywords in the file
     public String[] keywords;   //String array of keywords, alphabetical
     
-    public Keywords(int i, int n, String k){
+    public Keywords(int i, int n, String[] k){
         this.ID = i;
         this.numKeywords = n;
-        this.keywords = new String[numKeywords];
-        for(int x = 0; x < numKeywords; x++){
-            this.keywords[i] = k;
-        }
+        this.keywords = k;
         Arrays.sort(keywords);
     }
 }

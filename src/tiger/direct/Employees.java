@@ -430,6 +430,7 @@ public class Employees {
         int cent;
         int stock;
         int numItems;
+        int numKeywords = 0;
         char userConf;
         
         System.out.print("Please enter the name of the item: ");
@@ -560,34 +561,40 @@ public class Employees {
                 System.out.print("Invalid! Please enter a short description (less than 100 chars): ");
                 shortDescription = user.nextLine();
             }
-
-            File descriptionsFile = new File("descriptions");
-            Scanner descriptionScanner = new Scanner(descriptionsFile);
-            PrintWriter descriptions = new PrintWriter(descriptionsFile);
             
             ReadFiles.readDescriptions();
+            File descriptionsFile = new File("descriptions");
+            Scanner descriptionScanner = new Scanner(descriptionsFile);
+            PrintWriter descriptionsWriter = new PrintWriter(descriptionsFile);
             
-            descriptions.println((numItems + 1) + ";;");
-            for(int i = 0; i < numItems+1; i++){
-                descriptions.println((numItems + 1) + ";;" + description + ";;" + shortDescription + ";;");
+            descriptionsWriter.println((numItems + 1) + ";;");
+            for(int i = 0; i < numItems; i++){
+                descriptionsWriter.println(descriptions[i].ID + ";;" + descriptions[i].description + ";;" + descriptions[i].shortDescription + ";;");
             }
-            descriptions.println((numItems + 1) + ";;" + description + ";;" + shortDescription + ";;");
-            descriptions.close();
+            descriptionsWriter.println((numItems + 1) + ";;" + description + ";;" + shortDescription + ";;");
+            descriptionsWriter.close();
             
             System.out.print("Please enter the keywords of the item, separated by two semicolons (;;): ");
             keywordsString = user.nextLine();
-
+            
+            ReadFiles.readKeywords();
             File keywordsFile = new File("keywords");
             Scanner keywordScanner = new Scanner(keywordsFile);
             Scanner userKeywordScanner = new Scanner(keywordsString);
-            PrintWriter keywords = new PrintWriter(keywordsFile);
+            PrintWriter keywordsWriter = new PrintWriter(keywordsFile);
             
-            keywords.println((numItems + 1) + ";;");
-            for(int i = 0; i < numItems+1; i++){
-                
+            userKeywordScanner.useDelimiter(";;");
+            while(userKeywordScanner.hasNext()){
+                numKeywords++;
+                userKeywordScanner.next();
             }
-            keywords.println((numItems + 1) + ";;" + keywords + ";;");
-            descriptions.close();
+            
+            keywordsWriter.println((numItems + 1) + ";;");
+            for(int i = 0; i < numItems; i++){
+                keywordsWriter.println(keywords[i].ID + ";;" + keywords[i].numKeywords + ";;" + keywords[i].keywords);
+            }
+            keywordsWriter.println((numItems + 1) + ";;" + numKeywords + ";;" + keywordsString);
+            keywordsWriter.close();
         }
     }
     

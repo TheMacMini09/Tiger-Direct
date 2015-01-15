@@ -1,2 +1,2 @@
 1;;
-1;;Test long description;;Test short;;
+1;;This is a test item's test description.\nDo newlines work?;;This is the short description.;;
