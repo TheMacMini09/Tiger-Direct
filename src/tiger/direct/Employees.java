@@ -17,6 +17,7 @@ import static tiger.direct.TigerDirect.*;
  */
 public class Employees {
     
+    public static int numItems;
     public static int numLogins;
     public static int numSections;
     public static int numSubsections;

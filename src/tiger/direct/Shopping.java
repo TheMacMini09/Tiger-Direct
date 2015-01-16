@@ -7,39 +7,46 @@ package tiger.direct;
 /*
  * File by: Nigel
  */
+import java.util.Arrays;
 import java.util.Scanner;
+import static tiger.direct.Employees.numItems;
+import static tiger.direct.Employees.numSections;
+import static tiger.direct.Employees.numSubsections;
 import static tiger.direct.TigerDirect.numItemsInCart;
+import static tiger.direct.TigerDirect.sections;
+import static tiger.direct.TigerDirect.subsections;
 
 public class Shopping {
-    public static Sections section (Sections sections[]){
+    public static int section (Sections sections[]){
         int sectionNumber = 0;
         
         System.out.println("Welcome to Tiger Direct.  Please make a selection from our wide array of section to begin shopping");
-        for (int i=0; i < sections.length-1; i++){
+        for (int i=0; i < numSections; i++){
             System.out.println((i+1) + ". " + sections[i].name);
         }
         sectionNumber = mymethods.Console.getInt("Enter the corresponing number to the section you are visiting: ");
-        return sections[sectionNumber];
+        return sectionNumber;
     }
-    public static SubSections subsection (Sections section, SubSections subsections[]){
+    public static int subsection (int sectionID){
         int subsectionNumber = 0;
         int counter = 0;
-        SubSections inSection[] = new SubSections[subsections.length];
+        SubSections[] inSection = new SubSections[subsections.length];
+        sectionID--;
         
-        System.out.println("You are currently browsing in " + section.name + " section.");
-        for (int i=0; i > subsections.length; i++){
-            if (subsections[i].sectionID == section.ID){
+        System.out.println("You are currently browsing in " + sections[sectionID].name + ".");
+        for (int i=0; i < numSubsections; i++){
+            if (subsections[i].sectionID == sectionID+1){
                 counter++;
                 System.out.println((i+1) + ". " + subsections[i].name);
                 inSection[counter] = subsections[i];
             }
         }
         subsectionNumber = mymethods.Console.getInt("Enter the corresponing number to the section you are visiting: ");
-    return inSection[subsectionNumber];
+        return subsectionNumber;
     }
     
     
-    public static String itemFinder (Items itemList [], SubSections subsection, Descriptions descriptions[]){
+    public static String itemFinder (Items itemList [], int subsection, Descriptions descriptions[]){
         Scanner user = new Scanner(System.in);
         String stay = "y";
         Items selectedItem;
@@ -53,17 +60,19 @@ public class Shopping {
         int itemBought = 0;
         String backToTop = "";
         
+        subsection--;
+        
         while (stay.equals("y")){
-            System.out.println("This is the list of items in the " + subsection.name + " subsection");
+            System.out.println("This is the list of items in the " + subsections[subsection].name + " subsection.");
 
 
-            for (int i=0; i < itemList.length; i++){
+            for (int i=0; i < numItems; i++){
                 currentItem = itemList[i];
 
-                if (currentItem.subsection == subsection.ID && currentItem.stock > 0){
+                if (itemList[i].subsection == subsections[subsection].ID && itemList[i].stock > 0){
                     counter ++;
-                    System.out.println(counter + 1 + ". " + currentItem.name);
-                    inSubsection[counter] = currentItem;
+                    System.out.println((counter + 1) + ". " + itemList[i].name);
+                    inSubsection[counter] = itemList[i];
                 }
 
             }

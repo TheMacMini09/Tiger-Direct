@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import static tiger.direct.Employees.logins;
+import static tiger.direct.Employees.numItems;
 import static tiger.direct.Employees.numSections;
 import static tiger.direct.Employees.numSubsections;
 import static tiger.direct.TigerDirect.descriptions;
@@ -23,9 +24,6 @@ import static tiger.direct.TigerDirect.subsections;
 public class ReadFiles {
     
     public static void readItems() throws FileNotFoundException{
-        //Variable declaration
-        int numItems;
-        
         Scanner itemScanner = new Scanner(new File("items"));
         itemScanner.useDelimiter(";;");
 
@@ -92,34 +90,26 @@ public class ReadFiles {
     }
     
     public static void readSections() throws FileNotFoundException{
-        //Variable declaration
-        int numItems;
-        
         Scanner itemScanner = new Scanner(new File("sections"));
         itemScanner.useDelimiter(";;");
 
-        numItems = itemScanner.nextInt();
+        numSections = itemScanner.nextInt();
         itemScanner.nextLine();
-        for(int i = 0; i < numItems; i++){
+        for(int i = 0; i < numSections; i++){
             sections[i] = new Sections(itemScanner.nextInt(), itemScanner.next(), itemScanner.next());
             itemScanner.nextLine();
-            numSections++;
         }
     }
     
     public static void readSubsections() throws FileNotFoundException{
-        //Variable declaration
-        int numItems;
-        
         Scanner itemScanner = new Scanner(new File("subsections"));
         itemScanner.useDelimiter(";;");
 
-        numItems = itemScanner.nextInt();
+        numSubsections = itemScanner.nextInt();
         itemScanner.nextLine();
-        for(int i = 0; i < numItems; i++){
+        for(int i = 0; i < numSubsections; i++){
             subsections[i] = new SubSections(itemScanner.nextInt(), itemScanner.next(), itemScanner.next(), itemScanner.nextInt());
             itemScanner.nextLine();
-            numSubsections++;
         }
     }
 }

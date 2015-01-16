@@ -27,8 +27,8 @@ public class TigerDirect {
     public static void main(String[] args) throws IOException {
         //Variable declaration
         char employee; //Whether the user is an employee (y/n)
-        Sections section;
-        SubSections subsection;
+        int section;
+        int subsection;
         String contShopping = "y";
         
         System.out.print("Are you an employee? y/n: ");
@@ -45,7 +45,7 @@ public class TigerDirect {
             ReadFiles.readDescriptions();
             ReadFiles.readItems();
             section = Shopping.section(sections);
-            subsection = Shopping.subsection(section, subsections);
+            subsection = Shopping.subsection(section);
             Shopping.itemFinder(items, subsection, descriptions);
         }
         Checkout.checkout(cart, numItemsInCart);

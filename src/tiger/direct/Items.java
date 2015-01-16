@@ -25,4 +25,13 @@ public class Items {
         this.centPrice = c;
         this.stock = st;
     }
+    public Items(){
+        this.name = "";
+        this.ID = 0;
+        this.section = 0;
+        this.subsection = 0;
+        this.dollarPrice = 0;
+        this.centPrice = 0;
+        this.stock = 0;
+    }
 }
