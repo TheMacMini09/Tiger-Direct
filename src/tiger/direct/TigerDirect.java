@@ -36,6 +36,7 @@ public class TigerDirect {
         
         if(employee == 'y'){
             Employees.Employees();
+            contShopping = "n";
         }
         
         //When calling the shopping section, while it returns "y", continue

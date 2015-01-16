@@ -867,9 +867,10 @@ public class Employees {
                     }
                     if(menuSelection == 1) userSettings(userLevel, userID);
                     else if(menuSelection == 2) changeStock();
+                    else if(menuSelection == 3) exit = true;
                     break;
                 case 2:
-                    System.out.println("Menu:");
+                    System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMenu:");
                     System.out.println(" 1. User settings");
                     System.out.println(" 2. Add item to stock");
                     System.out.println(" 3. Add section/subsection");
@@ -885,9 +886,10 @@ public class Employees {
                     else if(menuSelection == 2) addItem();
                     else if(menuSelection == 3) addSection();
                     else if(menuSelection == 4) changeStock();
+                    else if(menuSelection == 5) exit = true;
                     break;
                 case 3: case 4: case 5: case 6:
-                    System.out.println("Menu:");
+                    System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMenu:");
                     System.out.println(" 1. User settings");
                     System.out.println(" 2. Add item to stock");
                     System.out.println(" 3. Add section/subsection");
@@ -905,6 +907,7 @@ public class Employees {
                     else if(menuSelection == 3) addSection();
                     else if(menuSelection == 4) removeItem();
                     else if(menuSelection == 5) changeStock();
+                    else if(menuSelection == 6) exit = true;
                     break;
             }
         }
