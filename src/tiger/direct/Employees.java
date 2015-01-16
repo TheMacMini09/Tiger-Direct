@@ -779,9 +779,11 @@ public class Employees {
             }
             
             if(sectionID == 0){
+                System.out.println();
                 for(int i = 0; i < numSections; i++){
-                    System.out.println(sections[i].ID + ";;" + sections[i].name + ";;" + sections[i].description + ";;");
+                    System.out.println(sections[i].ID + ". " + sections[i].name + " - " + sections[i].description);
                 }
+                System.out.println();
                 System.out.print("Please enter the ID of the parent section: ");
                 sectionID = Methods.checkNumber(1, numSections);
 
@@ -790,6 +792,8 @@ public class Employees {
                     sectionID = Methods.checkNumber(1, numSections);
                 }
             }
+            
+            System.out.println("Adding subsection to " + sections[sectionID-1].name + ".");
             
             System.out.print("Please enter the desired name for the new subsection: ");
             subsection = user.next();
@@ -807,7 +811,7 @@ public class Employees {
                 user.nextLine();
             }
             
-            System.out.println("Please enter the description for " + subsection + ": ");
+            System.out.print("Please enter the description for " + subsection + ": ");
             description = user.nextLine();
             
             PrintWriter file = new PrintWriter(new File("subsections")); //Also overwrites file.
@@ -817,7 +821,7 @@ public class Employees {
             }
             file.println((numSubsections+1) + ";;" + subsection + ";;" + description + ";;" + sectionID + ";;");
             file.close();
-            System.out.println("Section created.");
+            System.out.println("Subsection created.");
         }
     }
     
@@ -850,7 +854,7 @@ public class Employees {
             
             switch(userLevel){
                 case 1:
-                    System.out.println("Menu:");
+                    System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMenu:");
                     System.out.println(" 1. User settings");
                     System.out.println(" 2. Increase stock of item");
                     System.out.println(" 3. Exit");
