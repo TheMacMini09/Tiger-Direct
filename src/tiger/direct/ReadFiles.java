@@ -9,6 +9,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import static tiger.direct.Employees.logins;
+import static tiger.direct.Employees.numSections;
+import static tiger.direct.Employees.numSubsections;
 import static tiger.direct.TigerDirect.descriptions;
 import static tiger.direct.TigerDirect.items;
 import static tiger.direct.TigerDirect.keywords;
@@ -101,6 +103,7 @@ public class ReadFiles {
         for(int i = 0; i < numItems; i++){
             sections[i] = new Sections(itemScanner.nextInt(), itemScanner.next(), itemScanner.next());
             itemScanner.nextLine();
+            numSections++;
         }
     }
     
@@ -114,8 +117,9 @@ public class ReadFiles {
         numItems = itemScanner.nextInt();
         itemScanner.nextLine();
         for(int i = 0; i < numItems; i++){
-            subsections[i] = new SubSections(itemScanner.nextInt(), itemScanner.nextInt(), itemScanner.next(), itemScanner.next());
+            subsections[i] = new SubSections(itemScanner.nextInt(), itemScanner.next(), itemScanner.next(), itemScanner.nextInt());
             itemScanner.nextLine();
+            numSubsections++;
         }
     }
 }

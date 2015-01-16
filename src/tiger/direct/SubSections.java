@@ -13,7 +13,7 @@ public class SubSections {
     public String name;             //Name of the ID
     public String description;      //Description of the ID
     
-    public SubSections(int i, int si, String n, String d){
+    public SubSections(int i, String n, String d, int si){
         this.ID = i;
         this.sectionID = si;
         this.name = n;

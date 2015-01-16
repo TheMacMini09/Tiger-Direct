@@ -18,6 +18,8 @@ import static tiger.direct.TigerDirect.*;
 public class Employees {
     
     public static int numLogins;
+    public static int numSections;
+    public static int numSubsections;
     static boolean exit = false;
     static EmployeeLogin[] logins;
     
@@ -724,6 +726,101 @@ public class Employees {
         
     }
     
+    public static void addSection() throws IOException {
+        //Variable declaration
+        String section;
+        String subsection;
+        String description;
+        int addChoice;
+        int sectionID;      //Parent of the subsection
+        char userEntry;
+        
+        System.out.print("Would you like to add a section (1) or a subsection (2)? ");
+        addChoice = Methods.checkNumber(1, 2);
+        while(addChoice == -1){
+            System.out.print("Invalid selection! Please enter 1 or 2: ");
+        }
+        
+        if(addChoice == 1){
+            System.out.print("Please enter the desired name for the new section: ");
+            section = user.next();
+            user.nextLine();
+
+            System.out.print("Is " + section + " the intended section name? y/n: ");
+            userEntry = user.next().trim().toLowerCase().charAt(0);
+            user.nextLine();
+            while(userEntry != 'y'){
+                System.out.print("Please enter the desired name for the new section: ");
+                section = user.next();
+                user.nextLine();
+                System.out.print("Is " + section + " the intended section name? y/n: ");
+                userEntry = user.next().trim().toLowerCase().charAt(0);
+                user.nextLine();
+            }
+            
+            System.out.println("Please enter the description for " + section + ": ");
+            description = user.nextLine();
+            
+            PrintWriter file = new PrintWriter(new File("sections")); //Also overwrites file.
+            file.println((numSections + 1) + ";;");
+            for(int i = 0; i < numSections; i++){
+                file.println(sections[i].ID + ";;" + sections[i].name + ";;" + sections[i].description + ";;");
+            }
+            file.println((numSections+1) + ";;" + section + ";;" + description + ";;");
+            file.close();
+            System.out.println("Section created.");
+        } else {
+            System.out.print("Please enter the ID of the parent section (0 to view sections): ");
+            sectionID = Methods.checkNumber(0, numSections);
+            
+            while(sectionID == -1){
+                System.out.print("Invalid selection! Please enter a number between 0 and " + numSections + ": ");
+                sectionID = Methods.checkNumber(0, numSections);
+            }
+            
+            if(sectionID == 0){
+                for(int i = 0; i < numSections; i++){
+                    System.out.println(sections[i].ID + ";;" + sections[i].name + ";;" + sections[i].description + ";;");
+                }
+                System.out.print("Please enter the ID of the parent section: ");
+                sectionID = Methods.checkNumber(1, numSections);
+
+                while(sectionID == -1){
+                    System.out.print("Invalid selection! Please enter a number between 1 and " + numSections + ": ");
+                    sectionID = Methods.checkNumber(1, numSections);
+                }
+            }
+            
+            System.out.print("Please enter the desired name for the new subsection: ");
+            subsection = user.next();
+            user.nextLine();
+
+            System.out.print("Is " + subsection + " the intended subsection name? y/n: ");
+            userEntry = user.next().trim().toLowerCase().charAt(0);
+            user.nextLine();
+            while(userEntry != 'y'){
+                System.out.print("Please enter the desired name for the new subsection: ");
+                subsection = user.next();
+                user.nextLine();
+                System.out.print("Is " + subsection + " the intended subsection name? y/n: ");
+                userEntry = user.next().trim().toLowerCase().charAt(0);
+                user.nextLine();
+            }
+            
+            System.out.println("Please enter the description for " + subsection + ": ");
+            description = user.nextLine();
+            
+            PrintWriter file = new PrintWriter(new File("subsections")); //Also overwrites file.
+            file.println((numSubsections + 1) + ";;");
+            for(int i = 0; i < numSubsections; i++){
+                file.println(subsections[i].ID + ";;" + subsections[i].name + ";;" + subsections[i].description + ";;");
+            }
+            file.println((numSubsections+1) + ";;" + subsection + ";;" + description + ";;" + sectionID + ";;");
+            file.close();
+            System.out.println("Section created.");
+        }
+    }
+    
     static void menu(int userID, int userLevel) throws IOException{
         //Variable declaration
         int menuSelection = 0;
@@ -731,6 +828,12 @@ public class Employees {
         File authentication;
         
         while(!exit){
+            ReadFiles.readDescriptions();
+            ReadFiles.readItems();
+            ReadFiles.readKeywords();
+            ReadFiles.readSections();
+            ReadFiles.readSubsections();
+            
             authentication = new File("authentication");
             Scanner auth = new Scanner(authentication);
             auth.useDelimiter(";;");
@@ -757,25 +860,14 @@ public class Employees {
                         System.out.print("Invalid selection! Please enter a number between 1 and 3: ");
                         menuSelection = Methods.checkNumber(1, 3);
                     }
+                    if(menuSelection == 1) userSettings(userLevel, userID);
+                    else if(menuSelection == 2) changeStock();
                     break;
                 case 2:
                     System.out.println("Menu:");
                     System.out.println(" 1. User settings");
                     System.out.println(" 2. Add item to stock");
-                    System.out.println(" 3. Increase stock of item");
-                    System.out.println(" 4. Exit");
-                    System.out.print("Please enter your choice: ");
-                    menuSelection = Methods.checkNumber(1, 4);
-                    while(menuSelection == -1){
-                        System.out.print("Invalid selection! Please enter a number between 1 and 4: ");
-                        menuSelection = Methods.checkNumber(1, 4);
-                    }
-                    break;
-                case 3: case 4: case 5: case 6:
-                    System.out.println("Menu:");
-                    System.out.println(" 1. User settings");
-                    System.out.println(" 2. Add item to stock");
-                    System.out.println(" 3. Remove item from stock");
+                    System.out.println(" 3. Add section/subsection");
                     System.out.println(" 4. Increase stock of item");
                     System.out.println(" 5. Exit");
                     System.out.print("Please enter your choice: ");
@@ -784,24 +876,30 @@ public class Employees {
                         System.out.print("Invalid selection! Please enter a number between 1 and 5: ");
                         menuSelection = Methods.checkNumber(1, 5);
                     }
+                    if(menuSelection == 1) userSettings(userLevel, userID);
+                    else if(menuSelection == 2) addItem();
+                    else if(menuSelection == 3) addSection();
+                    else if(menuSelection == 4) changeStock();
                     break;
-            }
-            
-            switch(menuSelection){
-                case 1:
-                    userSettings(userLevel, userID);
-                    break;
-                case 2:
-                    addItem();
-                    break;
-                case 3:
-                    removeItem();
-                    break;
-                case 4:
-                    changeStock();
-                    break;
-                case 5:
-                    exit = true;
+                case 3: case 4: case 5: case 6:
+                    System.out.println("Menu:");
+                    System.out.println(" 1. User settings");
+                    System.out.println(" 2. Add item to stock");
+                    System.out.println(" 3. Add section/subsection");
+                    System.out.println(" 4. Remove item from stock");
+                    System.out.println(" 5. Increase stock of item");
+                    System.out.println(" 6. Exit");
+                    System.out.print("Please enter your choice: ");
+                    menuSelection = Methods.checkNumber(1, 6);
+                    while(menuSelection == -1){
+                        System.out.print("Invalid selection! Please enter a number between 1 and 6: ");
+                        menuSelection = Methods.checkNumber(1, 6);
+                    }
+                    if(menuSelection == 1) userSettings(userLevel, userID);
+                    else if(menuSelection == 2) addItem();
+                    else if(menuSelection == 3) addSection();
+                    else if(menuSelection == 4) removeItem();
+                    else if(menuSelection == 5) changeStock();
                     break;
             }
         }
@@ -813,7 +911,7 @@ public class Employees {
         String password;
         int numUsers;
         int menuSelection;
-        int userLevel = 0;      //1: Restocking, 2: Add new items, 3: Remove items, 4: Add users, 5: Remove users, 6: Change usernames/passwords/levels
+        int userLevel = 0;      //1: Restocking, 2: Add new items/sections, 3: Remove items, 4: Add users, 5: Remove users, 6: Change usernames/passwords/levels
         int userID = 0;
         boolean usernameFound = false;
         
