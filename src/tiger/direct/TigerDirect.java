@@ -7,7 +7,7 @@ package tiger.direct;
 import java.util.Scanner;
 import java.io.*;
 /*
- * File by: Michael Barker
+ * File by: Michael Barker, Max Farfaras
  */
 public class TigerDirect {
     
