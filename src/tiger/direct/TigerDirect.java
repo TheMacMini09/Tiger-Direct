@@ -44,7 +44,6 @@ public class TigerDirect {
             subsection = Shopping.subsection(section, subsections);
             Shopping.itemFinder(items, subsection, descriptions);
         }
-        
         Checkout.checkout(cart, numItemsInCart);
     }
 }
