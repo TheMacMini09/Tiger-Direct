@@ -961,7 +961,6 @@ public class Employees {
         if(!usernameFound){
             System.out.println("Invalid username, exiting.");
         } else {
-            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
             menu(userID, userLevel);
         }
     }
