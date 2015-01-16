@@ -18,9 +18,9 @@ public class TigerDirect {
     //use them, `import tiger.direct.TigerDirect;`
     public static CartRecord[] cart = new CartRecord[1000];
     public static Descriptions[] descriptions = new Descriptions[1000];
-    public static Items[] items = new Items[1000];
+    public static Items[] items = new Items[10000];
     public static Sections[] sections = new Sections[100];
-    public static SubSections[] subsections = new SubSections[10000];
+    public static SubSections[] subsections = new SubSections[1000];
     public static Keywords[] keywords = new Keywords[1000];
     public static int numItemsInCart;
     
