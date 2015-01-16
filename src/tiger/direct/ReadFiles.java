@@ -31,6 +31,7 @@ public class ReadFiles {
         itemScanner.nextLine();
         for(int i = 0; i < numItems; i++){
             items[i] = new Items(itemScanner.next(), itemScanner.nextInt(), itemScanner.nextInt(), itemScanner.nextInt(), itemScanner.nextInt(), itemScanner.nextInt(), itemScanner.nextInt());
+            itemScanner.nextLine();
         }
     }
     
@@ -45,6 +46,7 @@ public class ReadFiles {
         itemScanner.nextLine();
         for(int i = 0; i < numLogins; i++){
             logins[i] = new EmployeeLogin(itemScanner.nextInt(), itemScanner.next(), itemScanner.next(), itemScanner.nextInt());
+            itemScanner.nextLine();
         }
     }
     
@@ -59,6 +61,7 @@ public class ReadFiles {
         itemScanner.nextLine();
         for(int i = 0; i < numItems; i++){
             descriptions[i] = new Descriptions(itemScanner.nextInt(), itemScanner.next(), itemScanner.next());
+            itemScanner.nextLine();
         }
     }
     
@@ -82,6 +85,7 @@ public class ReadFiles {
                 keywordsArray[x] = itemScanner.next();
             }
             keywords[i] = new Keywords(ID, numKeywords, keywordsArray);
+            itemScanner.nextLine();
         }
     }
     
@@ -96,6 +100,7 @@ public class ReadFiles {
         itemScanner.nextLine();
         for(int i = 0; i < numItems; i++){
             sections[i] = new Sections(itemScanner.nextInt(), itemScanner.next(), itemScanner.next());
+            itemScanner.nextLine();
         }
     }
     
@@ -110,6 +115,7 @@ public class ReadFiles {
         itemScanner.nextLine();
         for(int i = 0; i < numItems; i++){
             subsections[i] = new SubSections(itemScanner.nextInt(), itemScanner.nextInt(), itemScanner.next(), itemScanner.next());
+            itemScanner.nextLine();
         }
     }
 }
