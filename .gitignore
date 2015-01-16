@@ -3,5 +3,5 @@
 /myMethods/nbproject/private/*
 build/*
 dist/*
-*.class
+**/*.class
 private.xml
