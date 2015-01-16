@@ -7,7 +7,7 @@ package tiger.direct;
 import java.util.Scanner;
 import java.io.*;
 /*
- * File by: Michael Barker
+ * File by: Michael Barker, Max Farfaras
  */
 public class TigerDirect {
     
@@ -18,9 +18,9 @@ public class TigerDirect {
     //use them, `import tiger.direct.TigerDirect;`
     public static CartRecord[] cart = new CartRecord[1000];
     public static Descriptions[] descriptions = new Descriptions[1000];
-    public static Items[] items = new Items[1000];
+    public static Items[] items = new Items[10000];
     public static Sections[] sections = new Sections[100];
-    public static SubSections[] subsections = new SubSections[10000];
+    public static SubSections[] subsections = new SubSections[1000];
     public static Keywords[] keywords = new Keywords[1000];
     public static int numItemsInCart;
     
@@ -40,11 +40,14 @@ public class TigerDirect {
         
         //When calling the shopping section, while it returns "y", continue
         while(contShopping.equals("y")){
+            ReadFiles.readSections();
+            ReadFiles.readSubsections();
+            ReadFiles.readDescriptions();
+            ReadFiles.readItems();
             section = Shopping.section(sections);
             subsection = Shopping.subsection(section, subsections);
             Shopping.itemFinder(items, subsection, descriptions);
         }
-        
         Checkout.checkout(cart, numItemsInCart);
     }
 }
