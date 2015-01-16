@@ -57,7 +57,7 @@ public class Shopping {
             System.out.println("This is the list of items in the " + subsection.name + " subsection");
 
 
-            for (int i=0; i > itemList.length; i++){
+            for (int i=0; i < itemList.length; i++){
                 currentItem = itemList[i];
 
                 if (currentItem.subsection == subsection.ID && currentItem.stock > 0){
