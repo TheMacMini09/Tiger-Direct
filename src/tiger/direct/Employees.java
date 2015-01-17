@@ -24,6 +24,13 @@ public class Employees {
     static boolean exit = false;
     static EmployeeLogin[] logins;
     
+    public static void writeFile(String name, String toWrite) throws FileNotFoundException{
+        PrintWriter file = new PrintWriter(new File(name));
+        
+        file.print(toWrite);
+        file.close();
+    }
+    
     public static boolean checkUsername(String username) {
         for(int i = 0; i < numLogins; i++){
             if(logins[i].username.equals(username)){
@@ -36,6 +43,7 @@ public class Employees {
     public static void changeUsername(int ID) throws IOException {
         //Variable declaration
         String username;
+        String toWrite = "";
         int position = ID-1;
         char correct;
         
@@ -66,22 +74,24 @@ public class Employees {
             correct = user.next().trim().toLowerCase().charAt(0);
             user.nextLine();
         }
-        PrintWriter file = new PrintWriter(new File("authentication"));  //Also overwrites file.
-        file.println(numLogins + ";;");
+        
+        toWrite += (numLogins + ";;" + "\n");
+        
         for(int i = 0; i < numLogins; i++){
             if(i == position){
-                file.println(i+1 + ";;" + username + ";;" + logins[position].password + ";;" + logins[position].level + ";;");
+                toWrite += ((i+1) + ";;" + username + ";;" + logins[position].password + ";;" + logins[position].level + ";;" + "\n");
             } else {
-                file.println(logins[i].ID + ";;" + logins[i].username + ";;" + logins[i].password + ";;" + logins[i].level + ";;");
+                toWrite += (logins[i].ID + ";;" + logins[i].username + ";;" + logins[i].password + ";;" + logins[i].level + ";;" + "\n");
             }
         }
-        file.close();
+        writeFile("authentication", toWrite);
         System.out.println("Username changed.");
     }
     
     public static void changePassword(int ID) throws FileNotFoundException {
         //Variable declaration
         String password;
+        String toWrite = "";
         int position = ID-1;
         char correct;
         
@@ -100,16 +110,15 @@ public class Employees {
             correct = user.next().trim().toLowerCase().charAt(0);
             user.nextLine();
         }
-        PrintWriter file = new PrintWriter(new File("authentication"));  //Also overwrites file.
-        file.println(numLogins + ";;");
+        toWrite += (numLogins + ";;");
         for(int i = 0; i < numLogins; i++){
             if(i == position){
-                file.println(i+1 + ";;" + logins[position].username + ";;" + password + ";;" + logins[position].level + ";;");
+                toWrite += ((i+1) + ";;" + logins[position].username + ";;" + password + ";;" + logins[position].level + ";;");
             } else {
-                file.println(logins[i].ID + ";;" + logins[i].username + ";;" + logins[i].password + ";;" + logins[i].level + ";;");
+                toWrite += (logins[i].ID + ";;" + logins[i].username + ";;" + logins[i].password + ";;" + logins[i].level + ";;");
             }
         }
-        file.close();
+        writeFile("authentication", toWrite);
         System.out.println("Password changed.");
     }
     
@@ -117,6 +126,7 @@ public class Employees {
         //Variable declaration
         String username;
         String password;
+        String toWrite = "";
         int level;
         char userEntry;
         
@@ -180,13 +190,12 @@ public class Employees {
             System.out.print("Is " + level + " the level you desired? y/n: ");
             userEntry = user.next().trim().toLowerCase().charAt(0);
         }
-        PrintWriter file = new PrintWriter(new File("authentication")); //Also overwrites file.
-        file.println((numLogins + 1) + ";;");
+        toWrite += ((numLogins + 1) + ";;");
         for(int i = 0; i < numLogins; i++){
-            file.println(logins[i].ID + ";;" + logins[i].username + ";;" + logins[i].password + ";;" + logins[i].level + ";;");
+            toWrite += (logins[i].ID + ";;" + logins[i].username + ";;" + logins[i].password + ";;" + logins[i].level + ";;");
         }
-        file.println(numLogins+1 + ";;" + username + ";;" + password + ";;" + level + ";;");
-        file.close();
+        toWrite += (numLogins+1 + ";;" + username + ";;" + password + ";;" + level + ";;");
+        writeFile("authentication", toWrite);
         System.out.println("User created.");
     }
     
