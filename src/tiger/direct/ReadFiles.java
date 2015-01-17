@@ -8,8 +8,6 @@ package tiger.direct;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.util.InputMismatchException;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 import static tiger.direct.Employees.logins;
 import static tiger.direct.Employees.numItems;
@@ -83,6 +81,7 @@ public class ReadFiles {
             itemScanner.useDelimiter(";;");
             numLogins = itemScanner.nextInt();
             itemScanner.nextLine();
+            logins = new EmployeeLogin[numLogins];
             for(int i = 0; i < numLogins; i++){
                 logins[i] = new EmployeeLogin(itemScanner.nextInt(), itemScanner.next(), itemScanner.next(), itemScanner.nextInt());
                 itemScanner.nextLine();
