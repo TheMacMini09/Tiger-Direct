@@ -36,19 +36,18 @@ public class TigerDirect {
         
         if(employee == 'y'){
             Employees.Employees();
-            contShopping = "n";
+        } else {
+            //When calling the shopping section, while it returns "y", continue
+            while(contShopping.equals("y")){
+                ReadFiles.readSections();
+                ReadFiles.readSubsections();
+                ReadFiles.readDescriptions();
+                ReadFiles.readItems();
+                section = Shopping.section(sections);
+                subsection = Shopping.subsection(section);
+                Shopping.itemFinder(items, subsection, descriptions);
+            }
+            Checkout.checkout(cart, numItemsInCart);
         }
-        
-        //When calling the shopping section, while it returns "y", continue
-        while(contShopping.equals("y")){
-            ReadFiles.readSections();
-            ReadFiles.readSubsections();
-            ReadFiles.readDescriptions();
-            ReadFiles.readItems();
-            section = Shopping.section(sections);
-            subsection = Shopping.subsection(section);
-            Shopping.itemFinder(items, subsection, descriptions);
-        }
-        Checkout.checkout(cart, numItemsInCart);
     }
 }

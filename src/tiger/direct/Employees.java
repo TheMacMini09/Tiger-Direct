@@ -22,7 +22,15 @@ public class Employees {
     public static int numSections;
     public static int numSubsections;
     static boolean exit = false;
+    static boolean restart = true;
     static EmployeeLogin[] logins;
+    
+    public static void writeFile(String name, String toWrite) throws FileNotFoundException{
+        PrintWriter file = new PrintWriter(new File(name));
+        
+        file.print(toWrite);
+        file.close();
+    }
     
     public static boolean checkUsername(String username) {
         for(int i = 0; i < numLogins; i++){
@@ -36,6 +44,7 @@ public class Employees {
     public static void changeUsername(int ID) throws IOException {
         //Variable declaration
         String username;
+        String toWrite = "";
         int position = ID-1;
         char correct;
         
@@ -66,22 +75,26 @@ public class Employees {
             correct = user.next().trim().toLowerCase().charAt(0);
             user.nextLine();
         }
-        PrintWriter file = new PrintWriter(new File("authentication"));  //Also overwrites file.
-        file.println(numLogins + ";;");
+        
+        toWrite += (numLogins + ";;" + "\n");
+        
         for(int i = 0; i < numLogins; i++){
             if(i == position){
-                file.println(i+1 + ";;" + username + ";;" + logins[position].password + ";;" + logins[position].level + ";;");
+                toWrite += ((i+1) + ";;" + username + ";;" + logins[position].password + ";;" + logins[position].level + ";;" + "\n");
             } else {
-                file.println(logins[i].ID + ";;" + logins[i].username + ";;" + logins[i].password + ";;" + logins[i].level + ";;");
+                toWrite += (logins[i].ID + ";;" + logins[i].username + ";;" + logins[i].password + ";;" + logins[i].level + ";;" + "\n");
             }
         }
-        file.close();
-        System.out.println("Username changed.");
+        writeFile("authentication", toWrite);
+        System.out.println("Username changed. Please log back in.");
+        exit = true;
+        restart = true;
     }
     
     public static void changePassword(int ID) throws FileNotFoundException {
         //Variable declaration
         String password;
+        String toWrite = "";
         int position = ID-1;
         char correct;
         
@@ -100,23 +113,25 @@ public class Employees {
             correct = user.next().trim().toLowerCase().charAt(0);
             user.nextLine();
         }
-        PrintWriter file = new PrintWriter(new File("authentication"));  //Also overwrites file.
-        file.println(numLogins + ";;");
+        toWrite += (numLogins + ";;");
         for(int i = 0; i < numLogins; i++){
             if(i == position){
-                file.println(i+1 + ";;" + logins[position].username + ";;" + password + ";;" + logins[position].level + ";;");
+                toWrite += ((i+1) + ";;" + logins[position].username + ";;" + password + ";;" + logins[position].level + ";;");
             } else {
-                file.println(logins[i].ID + ";;" + logins[i].username + ";;" + logins[i].password + ";;" + logins[i].level + ";;");
+                toWrite += (logins[i].ID + ";;" + logins[i].username + ";;" + logins[i].password + ";;" + logins[i].level + ";;");
             }
         }
-        file.close();
-        System.out.println("Password changed.");
+        writeFile("authentication", toWrite);
+        System.out.println("Password changed. Please log back in.");
+        exit = true;
+        restart = true;
     }
     
     public static void addUser(int userLevel) throws FileNotFoundException{
         //Variable declaration
         String username;
         String password;
+        String toWrite = "";
         int level;
         char userEntry;
         
@@ -180,13 +195,12 @@ public class Employees {
             System.out.print("Is " + level + " the level you desired? y/n: ");
             userEntry = user.next().trim().toLowerCase().charAt(0);
         }
-        PrintWriter file = new PrintWriter(new File("authentication")); //Also overwrites file.
-        file.println((numLogins + 1) + ";;");
+        toWrite += ((numLogins + 1) + ";;");
         for(int i = 0; i < numLogins; i++){
-            file.println(logins[i].ID + ";;" + logins[i].username + ";;" + logins[i].password + ";;" + logins[i].level + ";;");
+            toWrite += (logins[i].ID + ";;" + logins[i].username + ";;" + logins[i].password + ";;" + logins[i].level + ";;");
         }
-        file.println(numLogins+1 + ";;" + username + ";;" + password + ";;" + level + ";;");
-        file.close();
+        toWrite += (numLogins+1 + ";;" + username + ";;" + password + ";;" + level + ";;");
+        writeFile("authentication", toWrite);
         System.out.println("User created.");
     }
     
@@ -226,6 +240,7 @@ public class Employees {
         if(userID == ownID){
             System.out.println(" Please log in as a new user.");
             exit = true;
+            restart = true;
         } else {
             System.out.println();
             exit = false;
@@ -252,7 +267,9 @@ public class Employees {
             }
         }
         file.close();
-        System.out.println("Level changed.");
+        System.out.println("Level changed. Please log back in.");
+        exit = true;
+        restart = true;
     }
     
     public static void userSettings(int userLevel, int userID) throws IOException {
@@ -917,55 +934,39 @@ public class Employees {
         //Variable declaration
         String username;
         String password;
-        int numUsers;
         int menuSelection;
         int userLevel = 0;      //1: Restocking, 2: Add new items/sections, 3: Remove items, 4: Add users, 5: Remove users, 6: Change usernames/passwords/levels
         int userID = 0;
         boolean usernameFound = false;
         
-        //Object declaration
-        File authentication = new File("authentication");
-        Scanner auth = new Scanner(authentication);
-        auth.useDelimiter(";;");
+        while(restart){
+            ReadFiles.readAuthentication();
         
-        numLogins = auth.nextInt();
-        auth.nextLine();
-        logins = new EmployeeLogin[numLogins];
-        numUsers = 0;
-        while(auth.hasNext()){
-            logins[numUsers] = new EmployeeLogin(auth.nextInt(), auth.next(),auth.next(),auth.nextInt());
-            auth.nextLine();
-            numUsers++;
-        }
-        
-//        for(int i = 0; i < logins.length; i++){
-//            System.out.println(logins[i].ID + ". " + logins[i].username + " - " + logins[i].password + " (lvl " + logins[i].level + ")");
-//        }
-        
-        System.out.print("Please enter your username: ");
-        username = user.next();
-        user.nextLine();
-        
-        System.out.print("Please enter your password: ");
-        password = user.next();
-        user.nextLine();
-        
-        for(int i = 0; i < numUsers; i++){
-            if(logins[i].username.equals(username)){
-                usernameFound = true;
-                userID = logins[i].ID;
-                userLevel = logins[i].level;
-                if(!logins[i].password.equals(password)){
-                    System.out.println("Incorrect password, exiting.");
-                    System.exit(0);
+            System.out.print("Please enter your username: ");
+            username = user.next();
+            user.nextLine();
+
+            System.out.print("Please enter your password: ");
+            password = user.next();
+            user.nextLine();
+
+            for(int i = 0; i < numLogins; i++){
+                if(logins[i].username.equals(username)){
+                    usernameFound = true;
+                    userID = logins[i].ID;
+                    userLevel = logins[i].level;
+                    if(!logins[i].password.equals(password)){
+                        System.out.println("Incorrect password, exiting.");
+                        System.exit(0);
+                    }
                 }
             }
-        }
-        
-        if(!usernameFound){
-            System.out.println("Invalid username, exiting.");
-        } else {
-            menu(userID, userLevel);
+
+            if(!usernameFound){
+                System.out.println("Invalid username, exiting.");
+            } else {
+                menu(userID, userLevel);
+            }
         }
     }
 }
