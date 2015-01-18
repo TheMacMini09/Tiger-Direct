@@ -10,3 +10,5 @@ dist/*
 /build/
 /dist/
 **/*.class
+*.bak
+private.xml
