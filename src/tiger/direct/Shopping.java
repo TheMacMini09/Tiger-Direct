@@ -3,10 +3,12 @@
  * Start date: January 6th, 2015
  * Completion date: January 20, 2015
  */
+
 package tiger.direct;
 /*
  * File by: Nigel
  */
+
 import java.util.Arrays;
 import java.util.Scanner;
 import static tiger.direct.Employees.numItems;
