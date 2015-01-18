@@ -23,7 +23,7 @@ public class Shopping {
     
     public static int section (Sections sections[]){
         int sectionNumber = 0;
-        int counter = 1;
+        int counter = 0;
         System.out.println("Welcome to Tiger Direct.  Please make a selection from our wide array of section to begin shopping");
         for (int i=0; i < numSections; i++){
             System.out.println((i+1) + ". " + sections[i].name);
@@ -47,7 +47,7 @@ public class Shopping {
                 inSection[counter] = subsections[i];
             }
         }
-        subsectionNumber = mymethods.Console.getInt("Enter the corresponing number to the subsection you are visiting: ");
+        subsectionNumber = mymethods.Console.getInt("Enter the corresponing number to the subsection you are visiting: ", 1,counter);
         return subsectionNumber;
     }
     
@@ -80,7 +80,7 @@ public class Shopping {
                 }
             }
             
-            listNum = mymethods.Console.getInt("Enter the corresponing number to the item you are selecting: ");
+            listNum = mymethods.Console.getInt("Enter the corresponing number to the item you are selecting: ", 1, counter);
             System.out.println(inSubsection[listNum].name);
             System.out.println("Item ID: " + inSubsection[listNum].ID);
             System.out.println("Price: " + inSubsection[listNum].dollarPrice + "." + inSubsection[listNum].centPrice);
