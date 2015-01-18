@@ -297,9 +297,9 @@ public class ReadFiles {
         try{
             Scanner itemScanner = new Scanner(new File("subsections"));
             itemScanner.useDelimiter(";;");
-            numSections = itemScanner.nextInt();
+            numSubsections = itemScanner.nextInt();
             itemScanner.nextLine();
-            for(int i = 0; i < numSections; i++){
+            for(int i = 0; i < numSubsections; i++){
                 subsections[i] = new SubSections(itemScanner.nextInt(), itemScanner.next(), itemScanner.next(), itemScanner.nextInt());
                 itemScanner.nextLine();
             }
