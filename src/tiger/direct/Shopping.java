@@ -27,6 +27,7 @@ public class Shopping {
         sectionNumber = mymethods.Console.getInt("Enter the corresponing number to the section you are visiting: ");
         return sectionNumber;
     }
+    
     public static int subsection (int sectionID){
         int subsectionNumber = 0;
         int counter = 0;
@@ -44,7 +45,6 @@ public class Shopping {
         subsectionNumber = mymethods.Console.getInt("Enter the corresponing number to the subsection you are visiting: ");
         return subsectionNumber;
     }
-    
     
     public static String itemFinder (Items itemList [], int subsection, Descriptions descriptions[]){
         Scanner user = new Scanner(System.in);
