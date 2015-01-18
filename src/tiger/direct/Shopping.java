@@ -17,10 +17,9 @@ import static tiger.direct.Employees.numSubsections;
 import static tiger.direct.TigerDirect.numItemsInCart;
 import static tiger.direct.TigerDirect.sections;
 import static tiger.direct.TigerDirect.subsections;
+import static tiger.direct.TigerDirect.counter2;
 
 public class Shopping {
-    
-    public static int counter2 = 0;
     
     public static int section (Sections sections[]){
         int sectionNumber = 0;
