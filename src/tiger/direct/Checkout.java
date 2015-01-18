@@ -445,6 +445,10 @@ public class Checkout {
         */
     }
 
+    public static void removeStock(){
+        
+    }
+    
     public static void checkout(CartRecord[] cart, int numItems) throws IOException{
         
         // Variables
@@ -487,5 +491,7 @@ public class Checkout {
         postalCode = shippingPostal();
         
         editShipping(street, city, province, postalCode, numItems, cardType, cardHolder, cardNumber, cardExpiryMonth, cardExpiryYear, cardSecurityCode);
+        
+        removeStock();
     }
 }
