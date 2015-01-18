@@ -98,18 +98,18 @@ public class Shopping {
                 System.out.println("The item has been added to your cart.");
             }
         System.out.print("Would you like to continue shopping in this subsection?");
-        stay = user.nextLine();
-        while (stay.trim().toLowerCase().charAt(0) != 'y' && stay.trim().toLowerCase().charAt(0) != 'n'){
+        stay = user.nextLine().trim().toLowerCase();
+        while (stay.charAt(0) != 'y' && stay.charAt(0) != 'n'){
             System.out.println("Please enter either y or n.");
             System.out.print("Would you like to continue shopping in this subsection?");
-            stay = user.nextLine();
+            stay = user.nextLine().trim().toLowerCase();
         }
     }
    
     System.out.print("Would you like to continue shopping in this section?");
-    backToTop = user.nextLine();
+    backToTop = user.nextLine().trim().toLowerCase();
         
-    while (backToTop.trim().toLowerCase().charAt(0) != 'y' && backToTop.trim().toLowerCase().charAt(0) != 'n'){
+    while (backToTop.charAt(0) != 'y' && backToTop.charAt(0) != 'n'){
         System.out.println("Please enter either y or n.");
         System.out.print("Would you like to continue shopping in this section?");
         backToTop = user.nextLine();
