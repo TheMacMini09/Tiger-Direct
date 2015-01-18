@@ -64,8 +64,7 @@ public class Shopping {
         
         while (stay.equals("y")){
             System.out.println("This is the list of items in the " + subsections[subsection].name + " subsection.");
-
-
+            counter = 0;
             for (int i=0; i < numItems; i++){
                 currentItem = itemList[i];
 
@@ -74,8 +73,8 @@ public class Shopping {
                     System.out.println(counter + ". " + itemList[i].name);
                     inSubsection[counter] = itemList[i];
                 }
-
             }
+            
             listNum = mymethods.Console.getInt("Enter the corresponing number to the item you are selecting: ");
             System.out.println(inSubsection[listNum].name);
             System.out.println("Item ID: " + inSubsection[listNum].ID);
@@ -91,7 +90,6 @@ public class Shopping {
                 System.out.println("Please enter either y or n.");
                 System.out.print("Are you sure you would like to purchase this product?");
                 buy = user.nextLine();
-            
             }
             if (buy.trim().toLowerCase().charAt(0) == 'y'){
                 itemBought = mymethods.Console.getInt("Please enter how many of this item you would like to purchase: ");
@@ -105,8 +103,7 @@ public class Shopping {
             System.out.println("Please enter either y or n.");
             System.out.print("Would you like to continue shopping in this subsection?");
             stay = user.nextLine();
-        }    
-        
+        }
     }
    
     System.out.print("Would you like to continue shopping in this section?");
