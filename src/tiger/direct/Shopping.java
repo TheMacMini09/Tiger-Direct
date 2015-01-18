@@ -87,7 +87,7 @@ public class Shopping {
             }
             System.out.print("Are you sure you would like to purchase this product?");
             buy = user.nextLine();
-            while (buy.trim().toLowerCase().charAt(0) != 'y' || buy.trim().toLowerCase().charAt(0) != 'y'){
+            while (buy.trim().toLowerCase().charAt(0) != 'y' && buy.trim().toLowerCase().charAt(0) != 'n'){
                 System.out.println("Please enter either y or n.");
                 System.out.print("Are you sure you would like to purchase this product?");
                 buy = user.nextLine();
