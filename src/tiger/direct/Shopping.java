@@ -67,7 +67,7 @@ public class Shopping {
         
         subsection--;
         
-        while (stay.equals("y")){
+        while (stay.charAt(0) == 'y'){
             System.out.println("This is the list of items in the " + subsections[subsection].name + " subsection.");
             counter = 0;
             for (int i=0; i < numItems; i++){
