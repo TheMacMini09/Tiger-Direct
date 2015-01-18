@@ -19,6 +19,9 @@ import static tiger.direct.TigerDirect.sections;
 import static tiger.direct.TigerDirect.subsections;
 
 public class Shopping {
+    
+    public static int counter2 = 0;
+    
     public static int section (Sections sections[]){
         int sectionNumber = 0;
         int counter = 1;
@@ -55,7 +58,6 @@ public class Shopping {
         Items selectedItem;
         int listNum = 0;
         int counter = 0;
-        int counter2 = 0;
         Items currentItem;
         Items inSubsection[] = new Items[itemList.length];
         CartRecord[] inCart = new CartRecord[1000];
