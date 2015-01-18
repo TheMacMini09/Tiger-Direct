@@ -93,6 +93,9 @@ public class Shopping {
             }
             if (buy.trim().toLowerCase().charAt(0) == 'y'){
                 itemBought = mymethods.Console.getInt("Please enter how many of this item you would like to purchase: ");
+                while (itemBought > inSubsection[listNum].stock){
+                    itemBought = mymethods.Console.getInt("There is not that many items of that type in stock, please enter a valid number: ");
+                }
                 counter2 ++;
                 inCart[counter2] = new CartRecord(inSubsection[listNum].name, inSubsection[listNum].ID,inSubsection[listNum].section, inSubsection[listNum].subsection,inSubsection[listNum].dollarPrice, inSubsection[listNum].centPrice, itemBought);
                 System.out.println("The item has been added to your cart.");
@@ -111,7 +114,7 @@ public class Shopping {
         
     while (backToTop.charAt(0) != 'y' && backToTop.charAt(0) != 'n'){
         System.out.println("Please enter either y or n.");
-        System.out.print("Would you like to continue shopping in this section?");
+        System.out.print("Would you like to continue shopping");
         backToTop = user.nextLine();
     }    
     
