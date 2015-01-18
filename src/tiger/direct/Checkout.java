@@ -414,6 +414,12 @@ public class Checkout {
         
         order.println("Shipping information:" + "\n" + street + "\n" + city + ", " + province + "\n" + postalCode);
         
+        order.println("\nThank you for shopping at Tiger Direct!\nHave a great day!");
+        
+        
+        
+        
+        /*
         System.out.print("Do you want to print the receipt (1) or email you the receipt (2): ");
         
         receiptChoice = Methods.checkNumber(1, 2);
@@ -436,6 +442,7 @@ public class Checkout {
         System.out.println("At Tiger Direct, we strive for excelence in our services, products, and overall user experience.");
         System.out.println("If you have a chance, please complete our survey for a chance to win a $1,000 gift card!");
         //survey();
+        */
     }
 
     public static void checkout(CartRecord[] cart, int numItems) throws IOException{
