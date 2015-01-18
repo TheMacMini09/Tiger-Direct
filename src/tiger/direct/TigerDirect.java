@@ -45,7 +45,7 @@ public class TigerDirect {
                 ReadFiles.readItems();
                 section = Shopping.section(sections);
                 subsection = Shopping.subsection(section);
-                Shopping.itemFinder(items, subsection, descriptions);
+                contShopping = Shopping.itemFinder(items, subsection, descriptions);
             }
             Checkout.checkout(cart, numItemsInCart);
         }
