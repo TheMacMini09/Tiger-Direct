@@ -87,13 +87,13 @@ public class Shopping {
             }
             System.out.print("Are you sure you would like to purchase this product?");
             buy = user.nextLine();
-            while (stay.trim().toLowerCase().charAt(0) != 'y' || stay.trim().toLowerCase().charAt(0) != 'y'){
+            while (buy.trim().toLowerCase().charAt(0) != 'y' || buy.trim().toLowerCase().charAt(0) != 'y'){
                 System.out.println("Please enter either y or n.");
                 System.out.print("Are you sure you would like to purchase this product?");
                 buy = user.nextLine();
             
             }
-            if (stay.trim().toLowerCase().charAt(0) == 'y'){
+            if (buy.trim().toLowerCase().charAt(0) == 'y'){
                 itemBought = mymethods.Console.getInt("Please enter how many of this item you would like to purchase: ");
                 counter2 ++;
                 inCart[counter2] = new CartRecord(inSubsection[listNum].name, inSubsection[listNum].ID,inSubsection[listNum].section, inSubsection[listNum].subsection,inSubsection[listNum].dollarPrice, inSubsection[listNum].centPrice, itemBought);
@@ -112,7 +112,7 @@ public class Shopping {
     System.out.print("Would you like to continue shopping in this section?");
     backToTop = user.nextLine();
         
-    while (stay.trim().toLowerCase().charAt(0) != 'y' && stay.trim().toLowerCase().charAt(0) != 'n'){
+    while (backToTop.trim().toLowerCase().charAt(0) != 'y' && backToTop.trim().toLowerCase().charAt(0) != 'n'){
         System.out.println("Please enter either y or n.");
         System.out.print("Would you like to continue shopping in this section?");
         backToTop = user.nextLine();
