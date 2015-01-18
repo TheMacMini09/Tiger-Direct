@@ -123,6 +123,7 @@ public class Shopping {
                 }
             addTo = false;
             }
+        numItemsInCart = counter2;
         System.out.print("Would you like to continue shopping in this subsection?");
         stay = user.nextLine().trim().toLowerCase();
         while (stay.charAt(0) != 'y' && stay.charAt(0) != 'n'){
@@ -139,9 +140,7 @@ public class Shopping {
         System.out.println("Please enter either y or n.");
         System.out.print("Would you like to continue shopping: ");
         backToTop = user.nextLine();
-    }    
-    
-    numItemsInCart = counter2;
+    }
     return backToTop.trim().toLowerCase().substring(0, 1);
     }
 }

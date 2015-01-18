@@ -10,6 +10,9 @@ import static tiger.direct.TigerDirect.cart;
 import java.io.*;
 import java.lang.Double;
 import java.util.Scanner;
+import static tiger.direct.Employees.numItems;
+import static tiger.direct.TigerDirect.items;
+import static tiger.direct.TigerDirect.numItemsInCart;
 
 public class Checkout {
     
@@ -446,8 +449,28 @@ public class Checkout {
         */
     }
 
-    public static void removeStock(){
+    public static void removeStock() throws FileNotFoundException{
+        //Variable declaration
+        boolean itemInCart;
+        int x;
         
+        ReadFiles.readItems();
+        PrintWriter file = new PrintWriter(new File("items"));
+        file.println(numItems + ";;");
+        for(int i = 0; i < numItems; i++){
+            itemInCart = false;
+            for(x = 0; x < numItemsInCart; x++){
+                if(cart[x].ID == items[i].ID){
+                    itemInCart = true;
+                }
+            }
+            if(itemInCart){
+                file.println(items[i].name + ";;" + items[i].ID + ";;" + items[i].section + ";;" + items[i].subsection + ";;" + items[i].dollarPrice + ";;" + items[i].centPrice + ";;" + (items[i].stock - cart[x].quantity) + ";;");
+            } else {
+                file.println(items[i].name + ";;" + items[i].ID + ";;" + items[i].section + ";;" + items[i].subsection + ";;" + items[i].dollarPrice + ";;" + items[i].centPrice + ";;" + items[i].stock + ";;");
+            }
+        }
+        file.close();
     }
     
     public static void checkout(CartRecord[] cart, int numItems) throws IOException{
