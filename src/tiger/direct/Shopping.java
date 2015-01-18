@@ -97,8 +97,15 @@ public class Shopping {
             }
             if (buy.trim().toLowerCase().charAt(0) == 'y'){
                 itemBought = mymethods.Console.getInt("Please enter how many of this item you would like to purchase: ");
-                while (itemBought > inSubsection[listNum].stock){
-                    itemBought = mymethods.Console.getInt("There is not that many items of that type in stock, please enter a valid number: ");
+                while (itemBought > inSubsection[listNum].stock || itemBought == 0){
+                    if (itemBought > inSubsection[listNum].stock){
+                        itemBought = mymethods.Console.getInt("There is not that many items of that type in stock, please enter a valid number: ");
+                    }
+                    else if (itemBought == 0){
+                        itemBought = mymethods.Console.getInt("You cant purchase 0 items silly. \nPlease enter a valid number");
+                                
+                    }
+                        
                 }
                 counter2 ++;
                 inCart[counter2] = new CartRecord(inSubsection[listNum].name, inSubsection[listNum].ID,inSubsection[listNum].section, inSubsection[listNum].subsection,inSubsection[listNum].dollarPrice, inSubsection[listNum].centPrice, itemBought);
