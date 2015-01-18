@@ -110,11 +110,13 @@ public class Shopping {
                         
                 }
                 counter2 ++;
-                for (int i = 0; i < inCart.length; i++){
-                    if (inSubsection[listNum].ID == inCart[i].ID){
-                        inCart[i].quantity+=itemBought;
-                        counter2--;
-                        addTo = true;
+                if(numItemsInCart > 0){
+                    for (int i = 0; i < inCart.length; i++){
+                        if (inSubsection[listNum].ID == inCart[i].ID){
+                            inCart[i].quantity+=itemBought;
+                            counter2--;
+                            addTo = true;
+                        }
                     }
                 }
                 if (addTo == false){
