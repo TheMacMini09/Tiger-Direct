@@ -21,7 +21,7 @@ public class Shopping {
         int sectionNumber = 0;
         
         System.out.println("Welcome to Tiger Direct.  Please make a selection from our wide array of section to begin shopping");
-        for (int i=0; i < numSections; i++){
+        for (int i=0; i <= numSections; i++){
             System.out.println((i+1) + ". " + sections[i].name);
         }
         sectionNumber = mymethods.Console.getInt("Enter the corresponing number to the section you are visiting: ");
@@ -34,14 +34,14 @@ public class Shopping {
         sectionID--;
         
         System.out.println("You are currently browsing in " + sections[sectionID].name + ".");
-        for (int i=0; i < numSubsections; i++){
+        for (int i=0; i <= numSubsections; i++){
             if (subsections[i].sectionID == sectionID+1){
                 counter++;
                 System.out.println((i+1) + ". " + subsections[i].name);
                 inSection[counter] = subsections[i];
             }
         }
-        subsectionNumber = mymethods.Console.getInt("Enter the corresponing number to the section you are visiting: ");
+        subsectionNumber = mymethods.Console.getInt("Enter the corresponing number to the subsection you are visiting: ");
         return subsectionNumber;
     }
     
@@ -111,13 +111,11 @@ public class Shopping {
    
     System.out.print("Would you like to continue shopping in this section?");
     backToTop = user.nextLine();
-    user.nextLine();
         
-    while ((!(backToTop.trim().toLowerCase().substring(0, 1).equals("y")) || (!(backToTop.trim().toLowerCase().substring(0, 1).equals("n"))))){
+    while (stay.trim().toLowerCase().charAt(0) != 'y' && stay.trim().toLowerCase().charAt(0) != 'n'){
         System.out.println("Please enter either y or n.");
         System.out.print("Would you like to continue shopping in this section?");
         backToTop = user.nextLine();
-        user.nextLine();    
     }    
     
     numItemsInCart = counter2;
