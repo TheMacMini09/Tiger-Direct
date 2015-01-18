@@ -62,6 +62,7 @@ public class Shopping {
         String buy = "";
         int itemBought = 0;
         String backToTop = "";
+        boolean addTo = false;
         
         subsection--;
         
@@ -108,8 +109,18 @@ public class Shopping {
                         
                 }
                 counter2 ++;
-                inCart[counter2] = new CartRecord(inSubsection[listNum].name, inSubsection[listNum].ID,inSubsection[listNum].section, inSubsection[listNum].subsection,inSubsection[listNum].dollarPrice, inSubsection[listNum].centPrice, itemBought);
-                System.out.println("The item has been added to your cart.");
+                for (int i = 0; i < inCart.length; i++){
+                    if (inSubsection[listNum].ID == inCart[i].ID){
+                        inCart[i].quantity+=itemBought;
+                        counter2--;
+                        addTo = true;
+                    }
+                }
+                if (addTo == false){
+                    inCart[counter2] = new CartRecord(inSubsection[listNum].name, inSubsection[listNum].ID,inSubsection[listNum].section, inSubsection[listNum].subsection,inSubsection[listNum].dollarPrice, inSubsection[listNum].centPrice, itemBought);
+                    System.out.println("The item has been added to your cart.");
+                }
+            addTo = false;
             }
         System.out.print("Would you like to continue shopping in this subsection?");
         stay = user.nextLine().trim().toLowerCase();
