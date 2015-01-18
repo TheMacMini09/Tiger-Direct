@@ -102,7 +102,7 @@ public class Shopping {
                         itemBought = mymethods.Console.getInt("There is not that many items of that type in stock, please enter a valid number: ");
                     }
                     else if (itemBought == 0){
-                        itemBought = mymethods.Console.getInt("You cant purchase 0 items silly. \nPlease enter a valid number");
+                        itemBought = mymethods.Console.getInt("You cannot purchase 0 items.\nPlease enter a valid number: ");
                                 
                     }
                         
