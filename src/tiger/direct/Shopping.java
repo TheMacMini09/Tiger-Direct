@@ -107,7 +107,7 @@ public class Shopping {
             stay = user.nextLine();
         }    
         
-        }
+    }
    
     System.out.print("Would you like to continue shopping in this section?");
     backToTop = user.nextLine();
