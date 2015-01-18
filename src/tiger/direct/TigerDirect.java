@@ -23,6 +23,7 @@ public class TigerDirect {
     public static SubSections[] subsections = new SubSections[1000];
     public static Keywords[] keywords = new Keywords[1000];
     public static int numItemsInCart;
+    public static int counter2 = 0;
     
     public static void main(String[] args) throws IOException {
         //Variable declaration

@@ -17,8 +17,10 @@ import static tiger.direct.Employees.numSubsections;
 import static tiger.direct.TigerDirect.numItemsInCart;
 import static tiger.direct.TigerDirect.sections;
 import static tiger.direct.TigerDirect.subsections;
+import static tiger.direct.TigerDirect.counter2;
 
 public class Shopping {
+    
     public static int section (Sections sections[]){
         int sectionNumber = 0;
         int counter = 1;
@@ -55,13 +57,13 @@ public class Shopping {
         Items selectedItem;
         int listNum = 0;
         int counter = 0;
-        int counter2 = 0;
         Items currentItem;
         Items inSubsection[] = new Items[itemList.length];
         CartRecord[] inCart = new CartRecord[1000];
         String buy = "";
         int itemBought = 0;
         String backToTop = "";
+        boolean addTo = false;
         
         subsection--;
         
@@ -108,8 +110,18 @@ public class Shopping {
                         
                 }
                 counter2 ++;
-                inCart[counter2] = new CartRecord(inSubsection[listNum].name, inSubsection[listNum].ID,inSubsection[listNum].section, inSubsection[listNum].subsection,inSubsection[listNum].dollarPrice, inSubsection[listNum].centPrice, itemBought);
-                System.out.println("The item has been added to your cart.");
+                for (int i = 0; i < inCart.length; i++){
+                    if (inSubsection[listNum].ID == inCart[i].ID){
+                        inCart[i].quantity+=itemBought;
+                        counter2--;
+                        addTo = true;
+                    }
+                }
+                if (addTo == false){
+                    inCart[counter2] = new CartRecord(inSubsection[listNum].name, inSubsection[listNum].ID,inSubsection[listNum].section, inSubsection[listNum].subsection,inSubsection[listNum].dollarPrice, inSubsection[listNum].centPrice, itemBought);
+                    System.out.println("The item has been added to your cart.");
+                }
+            addTo = false;
             }
         System.out.print("Would you like to continue shopping in this subsection?");
         stay = user.nextLine().trim().toLowerCase();
