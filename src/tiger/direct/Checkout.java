@@ -402,20 +402,21 @@ public class Checkout {
         
         for (int i = 0; i < numItems; i++){
             order.println("Item: " + cart[i].name + "\tID: " + cart[i].ID + "\tPrice " + cart[i].dollarPrice + "." + cart[i].centPrice + "\tQuantity: " + cart[i].quantity);
+            System.out.println("Item: " + cart[i].name + "\tID: " + cart[i].ID + "\tPrice " + cart[i].dollarPrice + "." + cart[i].centPrice + "\tQuantity: " + cart[i].quantity);
         }
         
         order.println("Subtotal: " + subtotal + "\nShipping: " + shipping + "\nTax: " + tax + "\nTotal: " + total);
-        
+        System.out.println("Subtotal: " + subtotal + "\nShipping: " + shipping + "\nTax: " + tax + "\nTotal: " + total);
         order.println("---------------------------------------------------------");
-        
+        System.out.println("---------------------------------------------------------");
         order.println("Payment information:" + "\nCard company: " + cardType + "\nCard holder: " + cardHolder + "\nCard number: " + cardNumber + "\nCard expiry: " + cardExpiryMonth + "/" + cardExpiryYear + "\nCard security code: " + "***");
-        
+        System.out.println("Payment information:" + "\nCard company: " + cardType + "\nCard holder: " + cardHolder + "\nCard number: " + cardNumber + "\nCard expiry: " + cardExpiryMonth + "/" + cardExpiryYear + "\nCard security code: " + "***");
         order.println("---------------------------------------------------------");
-        
+        System.out.println("---------------------------------------------------------");
         order.println("Shipping information:" + "\n" + street + "\n" + city + ", " + province + "\n" + postalCode);
-        
+        System.out.println("Shipping information:" + "\n" + street + "\n" + city + ", " + province + "\n" + postalCode);
         order.println("\nThank you for shopping at Tiger Direct!\nHave a great day!");
-        
+        System.out.println("\nThank you for shopping at Tiger Direct!\nHave a great day!");
         
         
         
