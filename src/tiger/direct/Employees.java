@@ -111,12 +111,12 @@ public class Employees {
             correct = user.next().trim().toLowerCase().charAt(0);
             user.nextLine();
         }
-        toWrite += (numLogins + ";;");
+        toWrite += (numLogins + ";;" + "\n");
         for(int i = 0; i < numLogins; i++){
             if(i == position){
-                toWrite += ((i+1) + ";;" + logins[position].username + ";;" + password + ";;" + logins[position].level + ";;");
+                toWrite += ((i+1) + ";;" + logins[position].username + ";;" + password + ";;" + logins[position].level + ";;" + "\n");
             } else {
-                toWrite += (logins[i].ID + ";;" + logins[i].username + ";;" + logins[i].password + ";;" + logins[i].level + ";;");
+                toWrite += (logins[i].ID + ";;" + logins[i].username + ";;" + logins[i].password + ";;" + logins[i].level + ";;" + "\n");
             }
         }
         writeFile("authentication", toWrite);
@@ -193,11 +193,11 @@ public class Employees {
             System.out.print("Is " + level + " the level you desired? y/n: ");
             userEntry = user.next().trim().toLowerCase().charAt(0);
         }
-        toWrite += ((numLogins + 1) + ";;");
+        toWrite += ((numLogins + 1) + ";;" + "\n");
         for(int i = 0; i < numLogins; i++){
-            toWrite += (logins[i].ID + ";;" + logins[i].username + ";;" + logins[i].password + ";;" + logins[i].level + ";;");
+            toWrite += (logins[i].ID + ";;" + logins[i].username + ";;" + logins[i].password + ";;" + logins[i].level + ";;" + "\n");
         }
-        toWrite += (numLogins+1 + ";;" + username + ";;" + password + ";;" + level + ";;");
+        toWrite += (numLogins+1 + ";;" + username + ";;" + password + ";;" + level + ";;" + "\n");
         writeFile("authentication", toWrite);
         System.out.println("User created.");
     }
@@ -882,7 +882,7 @@ public class Employees {
                     }
                     if(menuSelection == 1) userSettings(userLevel, userID);
                     else if(menuSelection == 2) changeStock();
-                    else if(menuSelection == 3) exit = true;
+                    else if(menuSelection == 3) exit = true; restart = false;
                     break;
                 case 2:
                     System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMenu:");
@@ -901,7 +901,7 @@ public class Employees {
                     else if(menuSelection == 2) addItem();
                     else if(menuSelection == 3) addSection();
                     else if(menuSelection == 4) changeStock();
-                    else if(menuSelection == 5) exit = true;
+                    else if(menuSelection == 5) exit = true; restart = false;
                     break;
                 case 3: case 4: case 5: case 6:
                     System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMenu:");
@@ -922,7 +922,7 @@ public class Employees {
                     else if(menuSelection == 3) addSection();
                     else if(menuSelection == 4) removeItem();
                     else if(menuSelection == 5) changeStock();
-                    else if(menuSelection == 6) exit = true;
+                    else if(menuSelection == 6) exit = true; restart = false;
                     break;
             }
         }
@@ -945,8 +945,7 @@ public class Employees {
             user.nextLine();
 
             System.out.print("Please enter your password: ");
-            password = user.next();
-            user.nextLine();
+            password = user.nextLine();
 
             for(int i = 0; i < numLogins; i++){
                 if(logins[i].username.equals(username)){

@@ -60,6 +60,7 @@ public class ReadFiles {
                 for(int i = 0; i < numItems; i++){
                     file.println(items[i].name + ";;" + items[i].ID + ";;" + items[i].section + ";;" + items[i].subsection + ";;" + items[i].dollarPrice + ";;" + items[i].centPrice + ";;" + items[i].stock + ";;");
                 }
+                file.close();
                 
                 System.out.println("Main file restored. Creating new backup file...");
                 PrintWriter fileBackup = new PrintWriter(new File("items.bak"));
@@ -67,7 +68,7 @@ public class ReadFiles {
                 for(int i = 0; i < numItems; i++){
                     fileBackup.println(items[i].name + ";;" + items[i].ID + ";;" + items[i].section + ";;" + items[i].subsection + ";;" + items[i].dollarPrice + ";;" + items[i].centPrice + ";;" + items[i].stock + ";;");
                 }
-                file.close();
+                fileBackup.close();
                 System.out.println("Backup created. Data should now be correct.");
             } catch(Exception x) {
                 System.out.println("Unrecoverable data corruption. Please try fixing the files manually.");
@@ -111,6 +112,7 @@ public class ReadFiles {
                 for(int i = 0; i < numLogins; i++){
                     file.println(logins[i].ID + ";;" + logins[i].username + ";;" + logins[i].password + ";;" + logins[i].level + ";;");
                 }
+                file.close();
                 
                 System.out.println("Main file restored. Creating new backup file...");
                 PrintWriter fileBackup = new PrintWriter(new File("authentication.bak"));
@@ -161,6 +163,7 @@ public class ReadFiles {
                 for(int i = 0; i < numItems; i++){
                     file.println(descriptions[i].ID + ";;" + descriptions[i].description + ";;" + descriptions[i].shortDescription + ";;");
                 }
+                file.close();
                 
                 System.out.println("Main file restored. Creating new backup file...");
                 PrintWriter fileBackup = new PrintWriter(new File("descriptions.bak"));
@@ -228,6 +231,7 @@ public class ReadFiles {
                 for(int i = 0; i < numItems; i++){
                     file.println(keywords[i].ID + ";;" + keywords[i].numKeywords + ";;" + keywords[i].keywords + ";;");
                 }
+                file.close();
                 
                 System.out.println("Main file restored. Creating new backup file...");
                 PrintWriter fileBackup = new PrintWriter(new File("keywords.bak"));
@@ -278,6 +282,7 @@ public class ReadFiles {
                 for(int i = 0; i < numSections; i++){
                     file.println(sections[i].ID + ";;" + sections[i].name + ";;" + sections[i].description + ";;");
                 }
+                file.close();
                 
                 System.out.println("Main file restored. Creating new backup file...");
                 PrintWriter fileBackup = new PrintWriter(new File("sections.bak"));
@@ -328,6 +333,7 @@ public class ReadFiles {
                 for(int i = 0; i < numSubsections; i++){
                     file.println(subsections[i].ID + ";;" + subsections[i].name + ";;" + subsections[i].description + ";;" + ";;" + subsections[i].sectionID + ";;");
                 }
+                file.close();
                 
                 System.out.println("Main file restored. Creating new backup file...");
                 PrintWriter fileBackup = new PrintWriter(new File("subsections.bak"));
