@@ -100,15 +100,13 @@ public class Employees {
         
         System.out.println("Editing password for " + logins[position].username + ".");
         System.out.print("Please enter the new password: ");
-        password = user.next();
-        user.nextLine();
+        password = user.nextLine();
         System.out.print("Is " + password + " the password you want? Case matters! y/n ");
         correct = user.next().trim().toLowerCase().charAt(0);
         user.nextLine();
         while(correct != 'y'){
             System.out.print("Please enter the new password: ");
-            password = user.next();
-            user.nextLine();
+            password = user.nextLine();
             System.out.print("Is " + password + " the password you want? Case matters! y/n ");
             correct = user.next().trim().toLowerCase().charAt(0);
             user.nextLine();
