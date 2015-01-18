@@ -295,6 +295,7 @@ public class Employees {
                         break;
                     case 2:
                         changePassword(userID);
+                        restart = true;
                         break;
                     case 3:
                         break;
@@ -317,6 +318,7 @@ public class Employees {
                         break;
                     case 2:
                         changePassword(userID);
+                        restart = true;
                         break;
                     case 3:
                         addUser(userLevel);
@@ -343,6 +345,7 @@ public class Employees {
                         break;
                     case 2:
                         changePassword(userID);
+                        restart = true;
                         break;
                     case 3:
                         addUser(userLevel);
@@ -373,6 +376,7 @@ public class Employees {
                         break;
                     case 2:
                         changePassword(userID);
+                        restart = true;
                         break;
                     case 3:
                         addUser(userLevel);
@@ -847,6 +851,8 @@ public class Employees {
         int numUsers;
         File authentication;
         
+        exit = true;
+        
         while(!exit){
             ReadFiles.readDescriptions();
             ReadFiles.readItems();
@@ -882,7 +888,10 @@ public class Employees {
                     }
                     if(menuSelection == 1) userSettings(userLevel, userID);
                     else if(menuSelection == 2) changeStock();
-                    else if(menuSelection == 3) exit = true; restart = false;
+                    else if(menuSelection == 3){
+                        exit = true;
+                        restart = false;
+                    }
                     break;
                 case 2:
                     System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMenu:");
@@ -901,7 +910,10 @@ public class Employees {
                     else if(menuSelection == 2) addItem();
                     else if(menuSelection == 3) addSection();
                     else if(menuSelection == 4) changeStock();
-                    else if(menuSelection == 5) exit = true; restart = false;
+                    else if(menuSelection == 5){
+                        exit = true;
+                        restart = false;
+                    }
                     break;
                 case 3: case 4: case 5: case 6:
                     System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMenu:");
@@ -922,7 +934,10 @@ public class Employees {
                     else if(menuSelection == 3) addSection();
                     else if(menuSelection == 4) removeItem();
                     else if(menuSelection == 5) changeStock();
-                    else if(menuSelection == 6) exit = true; restart = false;
+                    else if(menuSelection == 6) {
+                        exit = true;
+                        restart = false;
+                    }
                     break;
             }
         }
@@ -939,7 +954,7 @@ public class Employees {
         
         while(restart){
             ReadFiles.readAuthentication();
-        
+            
             System.out.print("Please enter your username: ");
             username = user.next();
             user.nextLine();
@@ -953,14 +968,15 @@ public class Employees {
                     userID = logins[i].ID;
                     userLevel = logins[i].level;
                     if(!logins[i].password.equals(password)){
-                        System.out.println("Incorrect password, exiting.");
+                        System.err.println("Incorrect password, exiting.");
                         System.exit(0);
                     }
                 }
             }
-
+            
             if(!usernameFound){
-                System.out.println("Invalid username, exiting.");
+                System.err.println("Invalid username, exiting.");
+                System.exit(0);
             } else {
                 menu(userID, userLevel);
             }
