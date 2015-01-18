@@ -204,7 +204,11 @@ public class ReadFiles {
             PrintWriter file = new PrintWriter(new File("keywords.bak"));
             file.println(numItems + ";;");
             for(int i = 0; i < numItems; i++){
-                file.println(keywords[i].ID + ";;" + keywords[i].numKeywords + ";;" + keywords[i].keywords + ";;");
+                file.print(keywords[i].ID + ";;" + keywords[i].numKeywords + ";;");
+                for(int x = 0; x < keywords[i].keywords.length; x++){
+                    file.print(keywords[i].keywords[x] + ";;");
+                }
+                file.println();
             }
             file.close();
         } catch(Exception e) {
@@ -229,7 +233,11 @@ public class ReadFiles {
                 PrintWriter file = new PrintWriter(new File("keywords"));
                 file.println(numItems + ";;");
                 for(int i = 0; i < numItems; i++){
-                    file.println(keywords[i].ID + ";;" + keywords[i].numKeywords + ";;" + keywords[i].keywords + ";;");
+                    file.print(keywords[i].ID + ";;" + keywords[i].numKeywords + ";;");
+                    for(int x = 0; x < keywords[i].keywords.length; x++){
+                        file.print(keywords[i].keywords[x] + ";;");
+                    }
+                    file.println();
                 }
                 file.close();
                 
@@ -237,7 +245,11 @@ public class ReadFiles {
                 PrintWriter fileBackup = new PrintWriter(new File("keywords.bak"));
                 fileBackup.println(numItems + ";;");
                 for(int i = 0; i < numItems; i++){
-                    fileBackup.println(keywords[i].ID + ";;" + keywords[i].numKeywords + ";;" + keywords[i].keywords + ";;");
+                    fileBackup.print(keywords[i].ID + ";;" + keywords[i].numKeywords + ";;");
+                    for(int x = 0; x < keywords[i].keywords.length; x++){
+                        fileBackup.print(keywords[i].keywords[x] + ";;");
+                    }
+                    fileBackup.println();
                 }
                 fileBackup.close();
                 System.out.println("Backup created. Data should now be correct.");
