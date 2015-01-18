@@ -32,7 +32,6 @@ public class Checkout {
         cardChoice = Methods.checkNumber(1, 3);
         
         while (cardChoice == -1){
-            user.nextLine();
             System.out.print("That was an invalid answer. Please enter another number: ");
             cardChoice = Methods.checkNumber(1, 3);
         }
