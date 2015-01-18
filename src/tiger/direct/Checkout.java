@@ -6,6 +6,7 @@ package tiger.direct;
  * Date: 20 January 2015
  * Description: Checkout including payment info, shipping info, shipping cost, and receipt
  */
+
 import static tiger.direct.TigerDirect.cart;
 import java.io.*;
 import java.lang.Double;
