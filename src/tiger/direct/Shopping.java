@@ -21,12 +21,13 @@ import static tiger.direct.TigerDirect.subsections;
 public class Shopping {
     public static int section (Sections sections[]){
         int sectionNumber = 0;
-        
+        int counter = 1;
         System.out.println("Welcome to Tiger Direct.  Please make a selection from our wide array of section to begin shopping");
         for (int i=0; i < numSections; i++){
             System.out.println((i+1) + ". " + sections[i].name);
+            counter++;
         }
-        sectionNumber = mymethods.Console.getInt("Enter the corresponing number to the section you are visiting: ");
+        sectionNumber = mymethods.Console.getInt("Enter the corresponing number to the section you are visiting: " , 1, counter);
         return sectionNumber;
     }
     
