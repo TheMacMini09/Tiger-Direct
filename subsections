@@ -1,4 +1,4 @@
-23;;
+26;;
 1;;CPUs;;The main processing element in every computer.;;2;;
 2;;All-in-One Computers;;Prebuilt computers bundled into a screen.;;1;;
 3;;Chromebooks;;Barebones laptops designed for lightweight internet browsing.;;1;;
@@ -22,3 +22,7 @@
 21;;Home Audio;;Stereo systems of medium calibre, for home use.;;3;;
 22;;Security & Surveillance;;Devices to monitor your home or office while you're away.;;3;;
 23;;Video Games;;Video games.;;3;;
+24;;Cellphones;;Basic portable phones designed mainly for talking.;;4;;
+25;;Smartphones;;Cellphones with more features, such as apps and video chat.;;4;;
+26;;Landlines;;Landline phones.;;4;;
+27;;Smartwatches;;Watches with features like a smartphone.;;4;;
