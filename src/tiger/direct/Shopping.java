@@ -71,11 +71,11 @@ public class Shopping {
         
         subsection--;
         
-        
+        /// While loop for shopping in subsection ///
         while (stay.charAt(0) == 'y'){
             System.out.println("This is the list of items in the " + subsections[subsection].name + " subsection.");
             counter = 0;
-            for (int i=0; i < numItems; i++){
+            for (int i=0; i < numItems; i++){ ///Checks which items are in subsection and prints them
                 currentItem = itemList[i];
 
                 if (itemList[i].subsection == subsections[subsection].ID && itemList[i].stock > 0){
@@ -86,15 +86,18 @@ public class Shopping {
             }
             
             listNum = mymethods.Console.getInt("Enter the corresponing number to the item you are selecting: ", 1, counter);
+            /// Print out selected items information ///
             System.out.println(inSubsection[listNum].name);
             System.out.println("Item ID: " + inSubsection[listNum].ID);
             System.out.println("Price: " + inSubsection[listNum].dollarPrice + "." + inSubsection[listNum].centPrice);
+            System.out.println("In Stock: " + inSubsection[listNum].stock);
             for (int i = 0; i < numItems; i++){
                 if (descriptions[i].ID == inSubsection[listNum].ID){
                     System.out.println("Description: " + descriptions[i].description);
                 }
             }
             
+            /// Confirmation ///
             System.out.print("Are you sure you would like to purchase this product?: ");
             buy = user.nextLine();
             while (buy.trim().toLowerCase().charAt(0) != 'y' && buy.trim().toLowerCase().charAt(0) != 'n'){
@@ -103,7 +106,10 @@ public class Shopping {
                 buy = user.nextLine();
             }
             if (buy.trim().toLowerCase().charAt(0) == 'y'){
+                
+                /// amount purchased ///
                 itemBought = mymethods.Console.getInt("Please enter how many of this item you would like to purchase: ");
+                //making sure input is not zero and they are not buying more product than available ///
                 while (itemBought > inSubsection[listNum].stock || itemBought == 0){
                     if (itemBought > inSubsection[listNum].stock){
                         itemBought = mymethods.Console.getInt("There is not that many items of that type in stock, please enter a num no greater than " + inSubsection[listNum].stock + ": ");
@@ -114,6 +120,7 @@ public class Shopping {
                     }
                         
                 }
+                /// Makes it so multiple orders of items does not leave duplicates in the cart
                 if(numItemsInCart > 0){
                     for (int i = 0; i < cart.length; i++){
                         if (inSubsection[listNum].ID == cart[i].ID){
@@ -127,7 +134,7 @@ public class Shopping {
                     System.out.println("The item has been added to your cart.");
                 }
                 counter2 ++;
-            addTo = false;
+            addTo = false; /// reset boolean
             }
         numItemsInCart = counter2;
         System.out.print("Would you like to continue shopping in this subsection?: ");
