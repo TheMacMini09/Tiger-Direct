@@ -399,7 +399,7 @@ public class Checkout {
         Scanner fileReader = new Scanner(receipt);
         int receiptChoice = 0;
         
-        System.out.println("Thank you for shopping with us at Tiger Direct!\nWe hope you had a pleasant visit with us!");
+        System.out.println("Your Reciept:");
         
         
         for (int i = 0; i < numItemsInCart-1; i++){
