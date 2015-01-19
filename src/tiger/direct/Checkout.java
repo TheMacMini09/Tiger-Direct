@@ -330,7 +330,7 @@ public class Checkout {
         double totalPrice = 0.0;
         for (int i = 0; i < numItemsInCart-1; i++){
             subtotalPrice+= cart[i].dollarPrice;
-            subtotalPrice+= Double.valueOf("0." + cart[i].centPrice);
+            subtotalPrice+= Double.valueOf("." + cart[i].centPrice);
         }
         
         if (province.equals("British Columbia")){
