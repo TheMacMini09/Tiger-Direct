@@ -582,8 +582,7 @@ public class Employees {
         user.nextLine();
         while(userConf != 'y'){
             System.out.print("Please enter the name of the item: ");
-            name = user.next();
-            user.nextLine();
+            name = user.nextLine();
             System.out.print("Is " + name + " the name you intended? y/n: ");
             userConf = user.next().trim().toLowerCase().charAt(0);
             user.nextLine();
