@@ -389,10 +389,10 @@ public class Checkout {
         
         totalPrice = subtotalPrice + shippingPrice + tax;
         
-        invoice(totalPrice, subtotalPrice, shippingPrice, tax, numItems, street, city, province, postalCode, cardType, cardHolder, cardNumber, cardExpiryMonth, cardExpiryYear, cardSecurityCode);
+        invoice(totalPrice, subtotalPrice, shippingPrice, tax, street, city, province, postalCode, cardType, cardHolder, cardNumber, cardExpiryMonth, cardExpiryYear, cardSecurityCode);
     }
     
-    public static void invoice(double total, double subtotal, double shipping, double tax, int numItems, String street, String city, String province, String postalCode, String cardType, String cardHolder, String cardNumber, int cardExpiryMonth, int cardExpiryYear, int cardSecurityCode) throws IOException{
+    public static void invoice(double total, double subtotal, double shipping, double tax, String street, String city, String province, String postalCode, String cardType, String cardHolder, String cardNumber, int cardExpiryMonth, int cardExpiryYear, int cardSecurityCode) throws IOException{
         
         File receipt = new File("receipt.txt");
         PrintWriter order = new PrintWriter(receipt);
