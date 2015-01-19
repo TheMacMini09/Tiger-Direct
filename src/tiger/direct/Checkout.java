@@ -402,7 +402,7 @@ public class Checkout {
         System.out.println("Thank you for shopping with us at Tiger Direct!\nWe hope you had a pleasant visit with us!");
         
         
-        for (int i = 0; i < numItems; i++){
+        for (int i = 0; i < numItemsInCart-1; i++){
             order.println("Item: " + cart[i].name + "\tID: " + cart[i].ID + "\tPrice " + cart[i].dollarPrice + "." + cart[i].centPrice + "\tQuantity: " + cart[i].quantity);
             System.out.println("Item: " + cart[i].name + "\tID: " + cart[i].ID + "\tPrice " + cart[i].dollarPrice + "." + cart[i].centPrice + "\tQuantity: " + cart[i].quantity);
         }
