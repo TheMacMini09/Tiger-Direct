@@ -324,13 +324,69 @@ public class Checkout {
         
     }
     
+    public static void invoice(double total, double subtotal, double shipping, double tax, String street, String city, String province, String postalCode, String cardType, String cardHolder, String cardNumber, int cardExpiryMonth, int cardExpiryYear, int cardSecurityCode) throws IOException{
+        
+        File receipt = new File("receipt.txt");
+        PrintWriter order = new PrintWriter(receipt);
+        Scanner fileReader = new Scanner(receipt);
+        int receiptChoice = 0;
+        
+        System.out.println("Your Reciept:");
+        
+        
+        for (int i = 0; i < numItemsInCart; i++){
+            order.println("Item: " + cart[i].name + "\tID: " + cart[i].ID + "\tPrice " + cart[i].dollarPrice + "." + cart[i].centPrice + "\tQuantity: " + cart[i].quantity);
+            System.out.println("Item: " + cart[i].name + "\tID: " + cart[i].ID + "\tPrice " + cart[i].dollarPrice + "." + cart[i].centPrice + "\tQuantity: " + cart[i].quantity);
+        }
+        
+        order.println("Subtotal: " + subtotal + "\nShipping: " + shipping + "\nTax: " + tax + "\nTotal: " + total);
+        System.out.println("Subtotal: " + subtotal + "\nShipping: " + shipping + "\nTax: " + tax + "\nTotal: " + total);
+        order.println("---------------------------------------------------------");
+        System.out.println("---------------------------------------------------------");
+        order.println("Payment information:" + "\nCard company: " + cardType + "\nCard holder: " + cardHolder + "\nCard number: " + cardNumber + "\nCard expiry: " + cardExpiryMonth + "/" + cardExpiryYear + "\nCard security code: " + "***");
+        System.out.println("Payment information:" + "\nCard company: " + cardType + "\nCard holder: " + cardHolder + "\nCard number: " + cardNumber + "\nCard expiry: " + cardExpiryMonth + "/" + cardExpiryYear + "\nCard security code: " + "***");
+        order.println("---------------------------------------------------------");
+        System.out.println("---------------------------------------------------------");
+        order.println("Shipping information:" + "\n" + street + "\n" + city + ", " + province + "\n" + postalCode);
+        System.out.println("Shipping information:" + "\n" + street + "\n" + city + ", " + province + "\n" + postalCode);
+        order.println("\nThank you for shopping at Tiger Direct!\nHave a great day!");
+        System.out.println("\nThank you for shopping at Tiger Direct!\nHave a great day!");
+        order.close();
+        
+        
+        /*
+        System.out.print("Do you want to print the receipt (1) or email you the receipt (2): ");
+        
+        receiptChoice = Methods.checkNumber(1, 2);
+        
+        while(receiptChoice == -1){
+                System.out.println("That was an invalid entry. Please try again: ");
+                receiptChoice = Methods.checkNumber(1, 2);
+            }
+        
+        if (receiptChoice == 1){
+            while(fileReader.hasNext()){
+                System.out.println(fileReader.nextLine());
+            }
+        }
+        
+        else{
+            //email
+        }
+        
+        System.out.println("At Tiger Direct, we strive for excelence in our services, products, and overall user experience.");
+        System.out.println("If you have a chance, please complete our survey for a chance to win a $1,000 gift card!");
+        //survey();
+        */
+    }
+    
     public static void shippingCost(String street, String city, String province, String postalCode, String cardType, String cardHolder, String cardNumber, int cardExpiryMonth, int cardExpiryYear, int cardSecurityCode) throws IOException{
         
         double shippingPrice = 0.0;
         double tax = 0.0;
         double subtotalPrice = 0.0;
         double totalPrice = 0.0;
-        for (int i = 0; i < numItemsInCart-1; i++){
+        for (int i = 0; i < numItemsInCart; i++){
             subtotalPrice+= cart[i].dollarPrice;
             subtotalPrice+= Double.valueOf("0." + cart[i].centPrice);
         }
@@ -392,62 +448,6 @@ public class Checkout {
         totalPrice = subtotalPrice + shippingPrice + tax;
         
         invoice(totalPrice, subtotalPrice, shippingPrice, tax, street, city, province, postalCode, cardType, cardHolder, cardNumber, cardExpiryMonth, cardExpiryYear, cardSecurityCode);
-    }
-    
-    public static void invoice(double total, double subtotal, double shipping, double tax, String street, String city, String province, String postalCode, String cardType, String cardHolder, String cardNumber, int cardExpiryMonth, int cardExpiryYear, int cardSecurityCode) throws IOException{
-        
-        File receipt = new File("receipt.txt");
-        PrintWriter order = new PrintWriter(receipt);
-        Scanner fileReader = new Scanner(receipt);
-        int receiptChoice = 0;
-        
-        System.out.println("Your Reciept:");
-        
-        
-        for (int i = 0; i < numItemsInCart-1; i++){
-            order.println("Item: " + cart[i].name + "\tID: " + cart[i].ID + "\tPrice " + cart[i].dollarPrice + "." + cart[i].centPrice + "\tQuantity: " + cart[i].quantity);
-            System.out.println("Item: " + cart[i].name + "\tID: " + cart[i].ID + "\tPrice " + cart[i].dollarPrice + "." + cart[i].centPrice + "\tQuantity: " + cart[i].quantity);
-        }
-        
-        order.println("Subtotal: " + subtotal + "\nShipping: " + shipping + "\nTax: " + tax + "\nTotal: " + total);
-        System.out.println("Subtotal: " + subtotal + "\nShipping: " + shipping + "\nTax: " + tax + "\nTotal: " + total);
-        order.println("---------------------------------------------------------");
-        System.out.println("---------------------------------------------------------");
-        order.println("Payment information:" + "\nCard company: " + cardType + "\nCard holder: " + cardHolder + "\nCard number: " + cardNumber + "\nCard expiry: " + cardExpiryMonth + "/" + cardExpiryYear + "\nCard security code: " + "***");
-        System.out.println("Payment information:" + "\nCard company: " + cardType + "\nCard holder: " + cardHolder + "\nCard number: " + cardNumber + "\nCard expiry: " + cardExpiryMonth + "/" + cardExpiryYear + "\nCard security code: " + "***");
-        order.println("---------------------------------------------------------");
-        System.out.println("---------------------------------------------------------");
-        order.println("Shipping information:" + "\n" + street + "\n" + city + ", " + province + "\n" + postalCode);
-        System.out.println("Shipping information:" + "\n" + street + "\n" + city + ", " + province + "\n" + postalCode);
-        order.println("\nThank you for shopping at Tiger Direct!\nHave a great day!");
-        System.out.println("\nThank you for shopping at Tiger Direct!\nHave a great day!");
-        order.close();
-        
-        
-        /*
-        System.out.print("Do you want to print the receipt (1) or email you the receipt (2): ");
-        
-        receiptChoice = Methods.checkNumber(1, 2);
-        
-        while(receiptChoice == -1){
-                System.out.println("That was an invalid entry. Please try again: ");
-                receiptChoice = Methods.checkNumber(1, 2);
-            }
-        
-        if (receiptChoice == 1){
-            while(fileReader.hasNext()){
-                System.out.println(fileReader.nextLine());
-            }
-        }
-        
-        else{
-            //email
-        }
-        
-        System.out.println("At Tiger Direct, we strive for excelence in our services, products, and overall user experience.");
-        System.out.println("If you have a chance, please complete our survey for a chance to win a $1,000 gift card!");
-        //survey();
-        */
     }
 
     public static void removeStock() throws FileNotFoundException{

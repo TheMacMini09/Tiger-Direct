@@ -1,17 +1,18 @@
-Subtotal: 0.0
+Item: Intel Core i7-4970k	ID: 1	Price 379.97	Quantity: 15
+Subtotal: 379.97
 Shipping: 4.99
-Tax: 0.0
-Total: 4.99
+Tax: 49.396100000000004
+Total: 434.3561
 ---------------------------------------------------------
 Payment information:
 Card company: American Express
 Card holder: Michael Barker
-Card number: 4398756139845671
-Card expiry: 6/25
+Card number: 13974613497
+Card expiry: 7/18
 Card security code: ***
 ---------------------------------------------------------
 Shipping information:
-Division St
+Division
 Guelph, Ontario
 N1H1R6
 
