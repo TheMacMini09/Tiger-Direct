@@ -1,4 +1,9 @@
-3;;
+8;;
 1;;CPUs;;The main processing element in every computer.;;2;;
 2;;All-in-One Computers;;Prebuilt computers bundled into a screen.;;1;;
 3;;Chromebooks;;Barebones laptops designed for lightweight internet browsing.;;1;;
+4;;Desktops;;Prebuilt computers. Bring your own monitor/keyboard/mouse.;;1;;
+5;;Gaming PCs;;High-powered prebuilt desktops designed for gaming.;;1;;
+6;;Laptops;;Prebult laptops of varying intensity.;;1;;
+7;;Servers;;High-intensity prebuit server-class computers.;;1;;
+8;;Tablets & eReaders;;Portable tablet computers and eReaders.;;1;;
