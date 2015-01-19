@@ -12,6 +12,7 @@ import static tiger.direct.Employees.numItems;
 /*
  * File by: Michael Barker
  MICHAEL BE SURE TO MAKE IT SO THAT IF THEY REMOVE AN ITEM FROM THE CART, IT WILL ADD THE QUANTITY BACK TO THE STOCK
+ALSO MAKE SURE THAT THE CAN SELECT THE ITEM THEY WANT TO REMOVE
  */
 public class Cart {
     
@@ -70,7 +71,7 @@ public class Cart {
                         itemsRemoved = cart[itemNumber].quantity - newNumberOfItems; // removes the number of items chosen by the user
                         cart[itemNumber-1] = new CartRecord(cart[itemNumber-1].name, cart[itemNumber-1].ID, cart[itemNumber-1].section, cart[itemNumber-1].subsection, cart[itemNumber-1].dollarPrice, cart[itemNumber-1].centPrice, newNumberOfItems); // updates cart
                     } else if(removeChange == 'r'){ // while they want to remove an item
-                        itemsRemoved = cart[itemNumber].quantity; //
+                        itemsRemoved = cart[itemNumber].quantity; 
                         cart[itemNumber] = new CartRecord();
                         Arrays.sort(cart,0,numItems);
                         numItems--; // remove item
