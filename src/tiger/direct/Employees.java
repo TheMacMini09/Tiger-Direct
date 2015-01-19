@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * A joint project between Michael Barker, Max Farfaras, and Nigel Young.
+ * Start date: January 6th, 2015
+ * Completion date: January 20th, 2015
  */
 package tiger.direct;
 
@@ -11,11 +11,12 @@ import java.util.Arrays;
 import java.io.*;
 import static tiger.direct.TigerDirect.*;
 
-/**
- *
- * @author michael
+/*
+ * File by: Michael Barker
  */
 public class Employees {
+    
+    //Member variables (to be used throughout this class, or other classes [public])
     
     public static int numItems;
     public static int numLogins;
@@ -26,6 +27,7 @@ public class Employees {
     static EmployeeLogin[] logins;
     
     public static void writeFile(String name, String toWrite) throws FileNotFoundException{
+        //Method to write to the specified file (only used a few times)
         PrintWriter file = new PrintWriter(new File(name));
         
         file.print(toWrite);
@@ -33,6 +35,7 @@ public class Employees {
     }
     
     public static boolean checkUsername(String username) {
+        //Method returns true if the specified username is in the database
         for(int i = 0; i < numLogins; i++){
             if(logins[i].username.equals(username)){
                 return true;
@@ -45,14 +48,14 @@ public class Employees {
         //Variable declaration
         String username;
         String toWrite = "";
-        int position = ID-1;
-        char correct;
+        int position = ID-1;    //Position is the index of the array that contains ID,
+        char correct;           //and ID is the ID of the user who's username is to be changed.
         
         System.out.println("Editing username for " + logins[position].username + ".");
         System.out.print("Please enter the new username: ");
         username = user.next();
         user.nextLine();
-        while(checkUsername(username)){
+        while(checkUsername(username)){  //Check if the entered username has already been taken
             System.out.println("Username already exists! ");
             System.out.print("Please enter a new username: ");
             username = user.next();
@@ -61,7 +64,7 @@ public class Employees {
         System.out.print("Is " + username + " the username you want? Case matters! y/n ");
         correct = user.next().trim().toLowerCase().charAt(0);
         user.nextLine();
-        while(correct != 'y'){
+        while(correct != 'y'){ //Exact same as above
             System.out.print("Please enter the new username: ");
             username = user.next();
             user.nextLine();
@@ -76,19 +79,19 @@ public class Employees {
             user.nextLine();
         }
         
-        toWrite += (numLogins + ";;" + "\n");
+        toWrite += (numLogins + ";;" + "\n");   //Add the number of logins to the "file" string
         
-        for(int i = 0; i < numLogins; i++){
-            if(i == position){
+        for(int i = 0; i < numLogins; i++){     //Cycle through the logins
+            if(i == position){  //If the loop is at the position of the ID, add all of the data to the "file" string but change to the new username.
                 toWrite += ((i+1) + ";;" + username + ";;" + logins[position].password + ";;" + logins[position].level + ";;" + "\n");
-            } else {
+            } else {            //Otherwise, just add all of the existing data of the other users.
                 toWrite += (logins[i].ID + ";;" + logins[i].username + ";;" + logins[i].password + ";;" + logins[i].level + ";;" + "\n");
             }
         }
-        writeFile("authentication", toWrite);
+        writeFile("authentication", toWrite);   //Send the "file" string to the wrteFile() method.
         System.out.println("Username changed. Please log back in.");
-        exit = true;
-        restart = true;
+        exit = true;    //Exit the employee interface,
+        restart = true; //and restart it so that the user is forced to log back in.
     }
     
     public static void changePassword(int ID) throws FileNotFoundException {
@@ -445,13 +448,12 @@ public class Employees {
         String description;
         String shortDescription;
         String keywordsString;
-        int ID;
+        int ID = 0;
         int section;
         int subsection;
         int dollar;
         int cent;
         int stock;
-        int numItems;
         int numKeywords = 0;
         int numSubsectionsInSection = 0;
         char userConf;
@@ -637,13 +639,7 @@ public class Employees {
             Scanner itemScanner = new Scanner(itemsFile);
             itemScanner.useDelimiter(";;");
             
-            numItems = itemScanner.nextInt();
-            itemScanner.nextLine();
-            ID = numItems + 1;
-            for(int i = 0; i < numItems; i++){
-                items[i] = new Items(itemScanner.next(), itemScanner.nextInt(), itemScanner.nextInt(), itemScanner.nextInt(), itemScanner.nextInt(), itemScanner.nextInt(), itemScanner.nextInt());
-                itemScanner.nextLine();
-            }
+            ReadFiles.readItems();
             
             PrintWriter file = new PrintWriter(itemsFile);
             file.println((numItems + 1) + ";;");
@@ -674,7 +670,7 @@ public class Employees {
             descriptionsWriter.println((numItems + 1) + ";;" + description + ";;" + shortDescription + ";;");
             descriptionsWriter.close();
             
-            System.out.print("Please enter the keywords of the item, separated by two semicolons (;;): ");
+            System.out.print("Please enter the keywords of the item, separated by two semicolons (;;),\nincluding after the final keyword: ");
             keywordsString = user.nextLine();
             
             ReadFiles.readKeywords();
@@ -691,7 +687,11 @@ public class Employees {
             
             keywordsWriter.println((numItems + 1) + ";;");
             for(int i = 0; i < numItems; i++){
-                keywordsWriter.println(keywords[i].ID + ";;" + keywords[i].numKeywords + ";;" + keywords[i].keywords);
+                keywordsWriter.print(keywords[i].ID + ";;" + keywords[i].numKeywords + ";;");
+                    for(int x = 0; x < keywords[i].keywords.length; x++){
+                        keywordsWriter.print(keywords[i].keywords[x] + ";;");
+                    }
+                    keywordsWriter.println();
             }
             keywordsWriter.println((numItems + 1) + ";;" + numKeywords + ";;" + keywordsString);
             keywordsWriter.close();

@@ -13,3 +13,4 @@ dist/*
 *.bak
 private.xml
 **/**private.properties
+**/private.properties
