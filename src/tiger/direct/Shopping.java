@@ -58,7 +58,7 @@ public class Shopping {
     public static String itemFinder (Items itemList [], int subsection, Descriptions descriptions[]){
         Scanner user = new Scanner(System.in);
         String stay = "y";
-        Items selectedItem;
+        
         int listNum = 0;
         int counter = 0;
         Items currentItem;
@@ -129,6 +129,7 @@ public class Shopping {
                         }
                     }
                 }
+                /// Adds to cart if no duplicate
                 if (addTo == false){
                     cart[counter2] = new CartRecord(inSubsection[listNum].name, inSubsection[listNum].ID,inSubsection[listNum].section, inSubsection[listNum].subsection,inSubsection[listNum].dollarPrice, inSubsection[listNum].centPrice, itemBought);
                     System.out.println("The item has been added to your cart.");
@@ -137,6 +138,7 @@ public class Shopping {
             addTo = false; /// reset boolean
             }
         numItemsInCart = counter2;
+        ///loop in subsection
         System.out.print("Would you like to continue shopping in this subsection?: ");
         stay = user.nextLine().trim().toLowerCase();
         while (stay.charAt(0) != 'y' && stay.charAt(0) != 'n'){
@@ -145,7 +147,7 @@ public class Shopping {
             stay = user.nextLine().trim().toLowerCase();
         }
     }
-   
+    /// sets variable to send to main for repeated shopping ///
     System.out.print("Would you like to continue shopping?: ");
     backToTop = user.nextLine().trim().toLowerCase();
         
