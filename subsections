@@ -1,4 +1,4 @@
-18;;
+23;;
 1;;CPUs;;The main processing element in every computer.;;2;;
 2;;All-in-One Computers;;Prebuilt computers bundled into a screen.;;1;;
 3;;Chromebooks;;Barebones laptops designed for lightweight internet browsing.;;1;;
@@ -17,3 +17,8 @@
 16;;Power Supplies;;Supplies power to the different parts of the comptuer.;;2;;
 17;;Solid State Drives (SSDs);;Like hard drives, but much faster.;;2;;
 18;;Graphics Cards;;PCIe expansion cards for powering the latest games & programs.;;2;;
+19;;Headphones;;Headphones of varying quality level and fit.;;3;;
+20;;GPS;;Devices that hook into the GPS.;;3;;
+21;;Home Audio;;Stereo systems of medium calibre, for home use.;;3;;
+22;;Security & Surveillance;;Devices to monitor your home or office while you're away.;;3;;
+23;;Video Games;;Video games.;;3;;
