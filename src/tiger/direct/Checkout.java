@@ -219,7 +219,7 @@ public class Checkout {
         
         choice = Methods.checkNumber(1, 13);
 
-            while(choice == -1 || choice > 13 || choice < 1){
+            while(choice == -1 || choice > 13 || choice < 1){   //makes sure user enters a valid province
                 System.out.println("That was an invalid entry. Please try again: ");
                 choice = user.nextInt();
             }
@@ -271,7 +271,7 @@ public class Checkout {
     
     public static String shippingPostal(){
         
-        String code = "";
+        String code;
         
         System.out.print("Please enter your postal code: ");
         code = user.nextLine();

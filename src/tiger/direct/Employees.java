@@ -453,7 +453,115 @@ public class Employees {
         int stock;
         int numItems;
         int numKeywords = 0;
+        int numSubsectionsInSection = 0;
         char userConf;
+        
+        //Array declarations
+        SubSections[] subsectionsInSection = new SubSections[subsections.length];
+        int[] validSubsectionIDs = new int[subsections.length];
+        
+        System.out.print("Please enter the section of the item, or 0 to view sections: ");
+        section = Methods.checkNumber(0, numSections);
+
+        while(section == -1){
+            System.out.print("Invalid selection! Please enter a number between 0 and " + numSections + ": ");
+            section = Methods.checkNumber(0, numSections);
+        }
+
+        if(section == 0){
+            System.out.println();
+            for(int i = 0; i < numSections; i++){
+                System.out.println(sections[i].ID + ". " + sections[i].name + " - " + sections[i].description);
+            }
+            System.out.println();
+            System.out.print("Please enter the section of the item: ");
+            section = Methods.checkNumber(1, numSections);
+
+            while(section == -1){
+                System.out.print("Invalid selection! Please enter a number between 1 and " + numSections + ": ");
+                section = Methods.checkNumber(1, numSections);
+            }
+        }
+        
+        System.out.print("Is " + sections[section].name + " the section you intended? y/n: ");
+        userConf = user.next().trim().toLowerCase().charAt(0);
+        user.nextLine();
+        while(userConf != 'y'){
+            System.out.print("Please enter the section of the item: ");
+            section = Methods.checkNumber(1, numSections);
+
+            while(section == -1){
+                System.out.print("Invalid selection! Please enter a number between 1 and " + numSections + ": ");
+                section = Methods.checkNumber(1, numSections);
+            }
+            System.out.print("Is " + sections[section].name + " the section you intended? y/n: ");
+            userConf = user.next().trim().toLowerCase().charAt(0);
+            user.nextLine();
+        }
+        
+        for(int i = 0; i < numSubsections; i++){
+            if(subsections[i].sectionID == section){
+                subsectionsInSection[numSubsectionsInSection] = subsections[i];
+                validSubsectionIDs[i] = subsections[i].ID;
+                numSubsectionsInSection++;
+            }
+        }
+        
+        Arrays.sort(validSubsectionIDs);
+        
+        System.out.print("Please enter the subsection of the item, or 0 to view subsections: ");
+        subsection = Methods.checkNumber(0, validSubsectionIDs[validSubsectionIDs.length-1]);
+
+        while(section == -1){
+            System.out.print("Invalid selection! Please enter a number between " + validSubsectionIDs[0] + " and " + validSubsectionIDs[validSubsectionIDs.length-1] + ": ");
+            subsection = Methods.checkNumber(validSubsectionIDs[0], validSubsectionIDs[validSubsectionIDs.length-1]);
+        }
+
+        if(subsection == 0){
+            System.out.println();
+            for(int i = 0; i < numSubsectionsInSection; i++){
+                System.out.println(subsectionsInSection[i].ID + ". " + subsectionsInSection[i].name + " - " + subsectionsInSection[i].description);
+            }
+            System.out.println();
+            System.out.print("Please enter the subsection of the item: ");
+            subsection = Methods.checkNumber(validSubsectionIDs[0], validSubsectionIDs[validSubsectionIDs.length-1]);
+
+            while(section == -1 || Arrays.binarySearch(validSubsectionIDs, subsection) < 0){
+                System.out.print("Invalid selection! Please enter a number between " + validSubsectionIDs[0] + " and " + validSubsectionIDs[validSubsectionIDs.length-1] + ": ");
+                subsection = Methods.checkNumber(validSubsectionIDs[0], validSubsectionIDs[validSubsectionIDs.length-1]);
+            }
+        }
+        
+        System.out.print("Is " + subsections[subsection-1].name + " the subsection you intended? y/n: ");
+        userConf = user.next().trim().toLowerCase().charAt(0);
+        user.nextLine();
+        while(userConf != 'y'){
+            System.out.print("Please enter the subsection of the item, or 0 to view subsections: ");
+            subsection = Methods.checkNumber(0, validSubsectionIDs[validSubsectionIDs.length-1]);
+
+            while(section == -1){
+                System.out.print("Invalid selection! Please enter a number between " + validSubsectionIDs[0] + " and " + validSubsectionIDs[validSubsectionIDs.length-1] + ": ");
+                subsection = Methods.checkNumber(validSubsectionIDs[0], validSubsectionIDs[validSubsectionIDs.length-1]);
+            }
+
+            if(subsection == 0){
+                System.out.println();
+                for(int i = 0; i < numSubsectionsInSection; i++){
+                    System.out.println(subsectionsInSection[i].ID + ". " + subsectionsInSection[i].name + " - " + subsectionsInSection[i].description);
+                }
+                System.out.println();
+                System.out.print("Please enter the subsection of the item: ");
+                section = Methods.checkNumber(validSubsectionIDs[0], validSubsectionIDs[validSubsectionIDs.length-1]);
+
+                while(subsection == -1 || Arrays.binarySearch(validSubsectionIDs, subsection) < 0){
+                    System.out.print("Invalid selection! Please enter a number between " + validSubsectionIDs[0] + " and " + validSubsectionIDs[validSubsectionIDs.length-1] + ": ");
+                    subsection = Methods.checkNumber(validSubsectionIDs[0], validSubsectionIDs[validSubsectionIDs.length-1]);
+                }
+            }
+            System.out.print("Is " + subsections[subsection-1].name + " the subsection you intended? y/n: ");
+            userConf = user.next().trim().toLowerCase().charAt(0);
+            user.nextLine();
+        }
         
         System.out.print("Please enter the name of the item: ");
         name = user.nextLine();
@@ -465,36 +573,6 @@ public class Employees {
             name = user.next();
             user.nextLine();
             System.out.print("Is " + name + " the name you intended? y/n: ");
-            userConf = user.next().trim().toLowerCase().charAt(0);
-            user.nextLine();
-        }
-        
-        System.out.print("Please enter the section of the item: ");
-        section = user.nextInt();
-        user.nextLine();
-        System.out.print("Is " + section + " the section you intended? y/n: ");
-        userConf = user.next().trim().toLowerCase().charAt(0);
-        user.nextLine();
-        while(userConf != 'y'){
-            System.out.print("Please enter the section of the item: ");
-            section = user.nextInt();
-            user.nextLine();
-            System.out.print("Is " + section + " the section you intended? y/n: ");
-            userConf = user.next().trim().toLowerCase().charAt(0);
-            user.nextLine();
-        }
-        
-        System.out.print("Please enter the subsection of the item: ");
-        subsection = user.nextInt();
-        user.nextLine();
-        System.out.print("Is " + subsection + " the subsection you intended? y/n: ");
-        userConf = user.next().trim().toLowerCase().charAt(0);
-        user.nextLine();
-        while(userConf != 'y'){
-            System.out.print("Please enter the subsection of the item: ");
-            subsection = user.nextInt();
-            user.nextLine();
-            System.out.print("Is " + subsection + " the subsection you intended? y/n: ");
             userConf = user.next().trim().toLowerCase().charAt(0);
             user.nextLine();
         }
