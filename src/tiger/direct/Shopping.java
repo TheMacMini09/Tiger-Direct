@@ -24,7 +24,7 @@ public class Shopping {
     public static int section (Sections sections[]){
         int sectionNumber = 0;
         int counter = 0;
-        System.out.println("Welcome to Tiger Direct.  Please make a selection from our wide array of section to begin shopping");
+        System.out.println("Welcome to Tiger Direct.  Please make a selection from our wide array of section to begin shopping!");
         for (int i=0; i < numSections; i++){
             System.out.println((i+1) + ". " + sections[i].name);
             counter++;
@@ -90,11 +90,11 @@ public class Shopping {
                 }
             }
             
-            System.out.print("Are you sure you would like to purchase this product? ");
+            System.out.print("Are you sure you would like to purchase this product?: ");
             buy = user.nextLine();
             while (buy.trim().toLowerCase().charAt(0) != 'y' && buy.trim().toLowerCase().charAt(0) != 'n'){
                 System.out.println("Please enter either y or n.");
-                System.out.print("Are you sure you would like to purchase this product? ");
+                System.out.print("Are you sure you would like to purchase this product?: ");
                 buy = user.nextLine();
             }
             if (buy.trim().toLowerCase().charAt(0) == 'y'){
@@ -126,11 +126,11 @@ public class Shopping {
             addTo = false;
             }
         numItemsInCart = counter2;
-        System.out.print("Would you like to continue shopping in this subsection? ");
+        System.out.print("Would you like to continue shopping in this subsection?: ");
         stay = user.nextLine().trim().toLowerCase();
         while (stay.charAt(0) != 'y' && stay.charAt(0) != 'n'){
             System.out.println("Please enter either y or n.");
-            System.out.print("Would you like to continue shopping in this subsection? ");
+            System.out.print("Would you like to continue shopping in this subsection?: ");
             stay = user.nextLine().trim().toLowerCase();
         }
     }
@@ -140,7 +140,7 @@ public class Shopping {
         
     while (backToTop.charAt(0) != 'y' && backToTop.charAt(0) != 'n'){
         System.out.println("Please enter either y or n.");
-        System.out.print("Would you like to continue shopping: ");
+        System.out.print("Would you like to continue shopping?: ");
         backToTop = user.nextLine();
     }
     return backToTop.trim().toLowerCase().substring(0, 1);
