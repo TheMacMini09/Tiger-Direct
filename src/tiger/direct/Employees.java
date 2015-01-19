@@ -122,9 +122,9 @@ public class Employees {
                 toWrite += (logins[i].ID + ";;" + logins[i].username + ";;" + logins[i].password + ";;" + logins[i].level + ";;" + "\n");
             }
         }
-        writeFile("authentication", toWrite);
+        writeFile("authentication", toWrite);   //Write the authentication file
         System.out.println("Password changed. Please log back in.");
-        exit = true;
+        exit = true;    //Force the user to log back in.
         restart = true;
     }
     
