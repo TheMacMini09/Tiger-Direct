@@ -285,9 +285,9 @@ public class Checkout {
             System.out.println("Is there anything you would like to edit?");
 
             System.out.println("1. Street: " + street);
-            System.out.println("2. Cardholder: " + city);
-            System.out.println("3. Card number: " + province);
-            System.out.println("4. Card expiry date: " + postalCode);
+            System.out.println("2. City: " + city);
+            System.out.println("3. Province: " + province);
+            System.out.println("4. Postal Code: " + postalCode);
             System.out.println("0. Continue");
 
             System.out.println("If yes, enter the number beside the information you\n would like to edit, or 0 to continue: ");
@@ -488,9 +488,8 @@ public class Checkout {
         String postalCode;
         
         System.out.println("Welcome to the TigerDirect Checkout!");
-        System.out.println();
         
-        System.out.println("First we need your payment method and details.");
+        System.out.println("\nFirst we need your payment method and details.");
         
         cardType = company();
         
