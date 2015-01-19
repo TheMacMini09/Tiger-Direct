@@ -203,7 +203,7 @@ public class Employees {
         }
         //Adds the new user to the string, with all the new info.
         toWrite += (numLogins+1 + ";;" + username + ";;" + password + ";;" + level + ";;" + "\n");
-        writeFile("authentication", toWrite);
+        writeFile("authentication", toWrite);   //Write the file
         System.out.println("User created.");
     }
     
@@ -211,11 +211,12 @@ public class Employees {
         //Variable declaration
         int userID;
         int position;
+        String toWrite = "";
         
         System.out.print("Which user ID would you like to remove? # or 0 to display users: ");
-        userID = Methods.checkNumber(0, logins.length);
+        userID = Methods.checkNumber(0, logins.length);     //Make the user enter a valid user to remove
         if(userID == 0){
-            for(int i = 0; i < numLogins; i++){
+            for(int i = 0; i < numLogins; i++){     //Cycle through the list of users, and print them out for the user to chose from
                 System.out.println(logins[i].ID + ". " + logins[i].username);
             }
             System.out.print("Which user ID would you like to remove? ");
@@ -227,24 +228,25 @@ public class Employees {
         }
         
         position = userID;
-        PrintWriter file = new PrintWriter(new File("authentication"));  //Also overwrites file.
-        file.println(logins.length-1 + ";;");
-        for(int i = 0; i < logins.length; i++){
+
+        toWrite += (logins.length-1 + ";;" + "\n");
+        for(int i = 0; i < logins.length; i++){     //Cycle through the logins, and update the file.
             if(i > position-1){
-                file.println(logins[i].ID-1 + ";;" + logins[i].username + ";;" + logins[i].password + ";;" + logins[position].level + ";;");
+                toWrite += (logins[i].ID-1 + ";;" + logins[i].username + ";;" + logins[i].password + ";;" + logins[position].level + ";;" + "\n");  //If the current login is after the login to be removed, decrease the ID.
             } else if(i == position-1){
-                //Do nothing
+                //Do nothing, here to make sure that the else is not entered on the current position. Probably should be made more efficient at a later date. @todo
             } else {
-                file.println(logins[i].ID + ";;" + logins[i].username + ";;" + logins[i].password + ";;" + logins[i].level + ";;");
+                toWrite += (logins[i].ID + ";;" + logins[i].username + ";;" + logins[i].password + ";;" + logins[i].level + ";;" + "\n");           //Otherwise (for the users before the user to be removed) just print the existing data (no changes)
             }
         }
-        file.close();
+        writeFile("authentication", toWrite);   //Write the file using the method
+        
         System.out.print("User removed.");
         if(userID == ownID){
-            System.out.println(" Please log in as a new user.");
-            exit = true;
-            restart = true;
-        } else {
+            System.out.println(" Please log in as a new user.");    //If you remove yourself,
+            exit = true;                                           //exit the interface,
+            restart = true;                                       //but restart it, prompting
+        } else {                                                 //for a login.
             System.out.println();
             exit = false;
         }
