@@ -11,6 +11,7 @@ import static tiger.direct.TigerDirect.cart;
 import java.io.*;
 import java.lang.Double;
 import java.util.Scanner;
+import java.text.*;
 import static tiger.direct.Employees.numItems;
 import static tiger.direct.TigerDirect.items;
 import static tiger.direct.TigerDirect.numItemsInCart;
@@ -331,6 +332,8 @@ public class Checkout {
         Scanner fileReader = new Scanner(receipt);
         int receiptChoice = 0;
         
+        NumberFormat currency = NumberFormat.getCurrencyInstance();
+        
         System.out.println("Your Reciept:");
         
         
@@ -339,8 +342,8 @@ public class Checkout {
             System.out.println("Item: " + cart[i].name + "\tID: " + cart[i].ID + "\tPrice " + cart[i].dollarPrice + "." + cart[i].centPrice + "\tQuantity: " + cart[i].quantity);
         }
         
-        order.println("Subtotal: " + subtotal + "\nShipping: " + shipping + "\nTax: " + tax + "\nTotal: " + total);
-        System.out.println("Subtotal: " + subtotal + "\nShipping: " + shipping + "\nTax: " + tax + "\nTotal: " + total);
+        order.println("Subtotal: " + currency.format(subtotal) + "\nShipping: " + currency.format(shipping) + "\nTax: " + currency.format(tax) + "\nTotal: " + currency.format(total));
+        System.out.println("Subtotal: " + currency.format(subtotal) + "\nShipping: " + currency.format(shipping) + "\nTax: " + currency.format(tax) + "\nTotal: " + currency.format(total));
         order.println("---------------------------------------------------------");
         System.out.println("---------------------------------------------------------");
         order.println("Payment information:" + "\nCard company: " + cardType + "\nCard holder: " + cardHolder + "\nCard number: " + cardNumber + "\nCard expiry: " + cardExpiryMonth + "/" + cardExpiryYear + "\nCard security code: " + "***");
@@ -444,6 +447,8 @@ public class Checkout {
         }
         
         tax = subtotalPrice * 0.13;
+        
+        
         
         totalPrice = subtotalPrice + shippingPrice + tax;
         
