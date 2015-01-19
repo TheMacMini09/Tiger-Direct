@@ -12,7 +12,6 @@ import static tiger.direct.Employees.numItems;
 /*
  * File by: Michael Barker
  MICHAEL BE SURE TO MAKE IT SO THAT IF THEY REMOVE AN ITEM FROM THE CART, IT WILL ADD THE QUANTITY BACK TO THE STOCK
-ALSO MAKE SURE THAT THE CAN SELECT THE ITEM THEY WANT TO REMOVE
  */
 public class Cart {
     
