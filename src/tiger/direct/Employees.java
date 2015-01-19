@@ -814,16 +814,14 @@ public class Employees {
             System.out.println("Adding subsection to " + sections[sectionID-1].name + ".");
             
             System.out.print("Please enter the desired name for the new subsection: ");
-            subsection = user.next();
-            user.nextLine();
+            subsection = user.nextLine();
 
             System.out.print("Is " + subsection + " the intended subsection name? y/n: ");
             userEntry = user.next().trim().toLowerCase().charAt(0);
             user.nextLine();
             while(userEntry != 'y'){
                 System.out.print("Please enter the desired name for the new subsection: ");
-                subsection = user.next();
-                user.nextLine();
+                subsection = user.nextLine();
                 System.out.print("Is " + subsection + " the intended subsection name? y/n: ");
                 userEntry = user.next().trim().toLowerCase().charAt(0);
                 user.nextLine();
