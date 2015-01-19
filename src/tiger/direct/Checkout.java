@@ -328,8 +328,7 @@ public class Checkout {
         double tax = 0.0;
         double subtotalPrice = 0.0;
         double totalPrice = 0.0;
-        
-        for (int i = 0; i < numItemsInCart; i++){
+        for (int i = 0; i < numItemsInCart-1; i++){
             subtotalPrice+= cart[i].dollarPrice;
             subtotalPrice+= Double.valueOf("0." + cart[i].centPrice);
         }
