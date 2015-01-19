@@ -329,7 +329,7 @@ public class Checkout {
         double subtotalPrice = 0.0;
         double totalPrice = 0.0;
         
-        for (int i = 0; i < numItems; i++){
+        for (int i = 0; i < numItemsInCart; i++){
             subtotalPrice+= cart[i].dollarPrice;
             subtotalPrice+= Double.valueOf("0." + cart[i].centPrice);
         }
