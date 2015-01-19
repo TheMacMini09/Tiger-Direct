@@ -276,7 +276,7 @@ public class Checkout {
         return(code);
     }
     
-    public static void editShipping(String street, String city, String province, String postalCode, int numItems, String cardType, String cardHolder, String cardNumber, int cardExpiryMonth, int cardExpiryYear, int cardSecurityCode) throws IOException{
+    public static void editShipping(String street, String city, String province, String postalCode, String cardType, String cardHolder, String cardNumber, int cardExpiryMonth, int cardExpiryYear, int cardSecurityCode) throws IOException{
         
         int editChoice = 5;
         
@@ -318,11 +318,11 @@ public class Checkout {
             
         }
         
-        shippingCost(numItems, street, city, province, postalCode, cardType, cardHolder, cardNumber, cardExpiryMonth, cardExpiryYear, cardSecurityCode);
+        shippingCost(street, city, province, postalCode, cardType, cardHolder, cardNumber, cardExpiryMonth, cardExpiryYear, cardSecurityCode);
         
     }
     
-    public static void shippingCost(int numItems, String street, String city, String province, String postalCode, String cardType, String cardHolder, String cardNumber, int cardExpiryMonth, int cardExpiryYear, int cardSecurityCode) throws IOException{
+    public static void shippingCost(String street, String city, String province, String postalCode, String cardType, String cardHolder, String cardNumber, int cardExpiryMonth, int cardExpiryYear, int cardSecurityCode) throws IOException{
         
         double shippingPrice = 0.0;
         double tax = 0.0;
@@ -473,7 +473,7 @@ public class Checkout {
         file.close();
     }
     
-    public static void checkout(CartRecord[] cart, int numItems) throws IOException{
+    public static void checkout(CartRecord[] cart) throws IOException{
         
         // Variables
         String cardType;
@@ -514,7 +514,7 @@ public class Checkout {
         
         postalCode = shippingPostal();
         
-        editShipping(street, city, province, postalCode, numItems, cardType, cardHolder, cardNumber, cardExpiryMonth, cardExpiryYear, cardSecurityCode);
+        editShipping(street, city, province, postalCode, cardType, cardHolder, cardNumber, cardExpiryMonth, cardExpiryYear, cardSecurityCode);
         
         removeStock();
     }

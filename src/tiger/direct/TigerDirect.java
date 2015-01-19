@@ -49,7 +49,7 @@ public class TigerDirect {
                 contShopping = Shopping.itemFinder(items, subsection, descriptions);
             }
             if(numItemsInCart > 0){
-                Checkout.checkout(cart, numItemsInCart);
+                Checkout.checkout(cart);
             }
         }
     }
