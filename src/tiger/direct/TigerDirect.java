@@ -50,7 +50,6 @@ public class TigerDirect {
             }
             Cart.cart();
             if(numItemsInCart > 0){
-                System.out.println("Welcome to Tiger Direct! Please make a selection from our wide array of section to begin shopping!");
                 Checkout.checkout(cart);
             }
         }

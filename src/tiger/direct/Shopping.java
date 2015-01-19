@@ -9,7 +9,6 @@ package tiger.direct;
  * File by: Nigel
  */
 
-import java.util.Arrays;
 import java.util.Scanner;
 import static tiger.direct.Employees.numItems;
 import static tiger.direct.Employees.numSections;
@@ -22,18 +21,20 @@ import static tiger.direct.TigerDirect.counter2;
 
 public class Shopping {
     
+    /// Section Selector called by main///
     public static int section (Sections sections[]){
         int sectionNumber = 0;
         int counter = 0;
-        System.out.println("Welcome to Tiger Direct.  Please make a selection from our wide array of section to begin shopping!");
-        for (int i=0; i < numSections; i++){
+        System.out.println("Please make a selection from our wide array of sections to begin shopping!");
+        for (int i=0; i < numSections; i++){ ///Output for sections
             System.out.println((i+1) + ". " + sections[i].name);
             counter++;
         }
-        sectionNumber = mymethods.Console.getInt("Enter the corresponing number to the section you are visiting: " , 1, counter);
-        return sectionNumber;
+        sectionNumber = mymethods.Console.getInt("Enter the corresponing number to the section you are visiting: " , 1, counter); /// Input from user
+        return sectionNumber; /// return sectionNumber for subsection method
     }
     
+    /// Subsection Selector called by main ///
     public static int subsection (int sectionID){
         int subsectionNumber = 0;
         int counter = 0;
@@ -41,17 +42,19 @@ public class Shopping {
         sectionID--;
         
         System.out.println("You are currently browsing in " + sections[sectionID].name + ".");
-        for (int i=0; i < numSubsections; i++){
+        for (int i=0; i < numSubsections; i++){             ///Scanning for subsections in the section
             if (subsections[i].sectionID == sectionID+1){
                 counter++;
                 System.out.println((i+1) + ". " + subsections[i].name);
                 inSection[counter] = subsections[i];
             }
         }
-        subsectionNumber = mymethods.Console.getInt("Enter the corresponing number to the subsection you are visiting: ", 1,counter);
-        return subsectionNumber;
+        subsectionNumber = mymethods.Console.getInt("Enter the corresponing number to the subsection you are visiting: ", 1,counter); ///Input in certain range
+        return subsectionNumber; ///return subsectionNumber for ItemFinder
     }
     
+    
+    /// Item selector called by main ///
     public static String itemFinder (Items itemList [], int subsection, Descriptions descriptions[]){
         Scanner user = new Scanner(System.in);
         String stay = "y";
@@ -60,13 +63,14 @@ public class Shopping {
         int counter = 0;
         Items currentItem;
         Items inSubsection[] = new Items[itemList.length];
-//        CartRecord[] inCart = new CartRecord[1000];           What were you doing?
+
         String buy = "";
         int itemBought = 0;
         String backToTop = "";
         boolean addTo = false;
         
         subsection--;
+        
         
         while (stay.charAt(0) == 'y'){
             System.out.println("This is the list of items in the " + subsections[subsection].name + " subsection.");
