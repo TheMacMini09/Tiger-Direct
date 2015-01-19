@@ -210,9 +210,9 @@ public class Checkout {
         int choice;
         String province = "";
         
-        System.out.println("Please enter the number corresponding to the province\nin which you live:");
-        
         System.out.println("1. British Columbia\n2. Alberta\n3. Saskatchewan\n4. Manitoba\n5. Ontario\n6. Quebec\n7. New Brunswick\n8. Nova Scotia\n9. Prince Edward Island\n10. Newfoundland and Labrodor\n11. Yukon\n12. North-West Territories\n13. Nunavut");
+        
+        System.out.println("Please enter the number corresponding to the province in which you live:");
         
         choice = Methods.checkNumber(1, 13);
 
