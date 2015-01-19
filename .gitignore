@@ -13,3 +13,4 @@ dist/*
 private.xml
 **/**private.properties
 **/private.properties
+/myMethods/nbproject/private/
