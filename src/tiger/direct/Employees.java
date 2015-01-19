@@ -837,7 +837,7 @@ public class Employees {
             PrintWriter file = new PrintWriter(new File("subsections")); //Also overwrites file.
             file.println((numSubsections + 1) + ";;");
             for(int i = 0; i < numSubsections; i++){
-                file.println(subsections[i].ID + ";;" + subsections[i].name + ";;" + subsections[i].description + ";;" + subsections[i].sectionID);
+                file.println(subsections[i].ID + ";;" + subsections[i].name + ";;" + subsections[i].description + ";;" + subsections[i].sectionID + ";;");
             }
             file.println((numSubsections+1) + ";;" + subsection + ";;" + description + ";;" + sectionID + ";;");
             file.close();
