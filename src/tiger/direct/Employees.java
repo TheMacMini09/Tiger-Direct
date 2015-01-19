@@ -114,11 +114,11 @@ public class Employees {
             correct = user.next().trim().toLowerCase().charAt(0);
             user.nextLine();
         }
-        toWrite += (numLogins + ";;" + "\n");
-        for(int i = 0; i < numLogins; i++){
-            if(i == position){
+        toWrite += (numLogins + ";;" + "\n");   //Add the number of logins to the string to write
+        for(int i = 0; i < numLogins; i++){     //Cycle through the logins
+            if(i == position){  //If the current cycle is the position of the password to be changed, write the data the same as always, just with the changed password.
                 toWrite += ((i+1) + ";;" + logins[position].username + ";;" + password + ";;" + logins[position].level + ";;" + "\n");
-            } else {
+            } else {            //Otherwise, just write the data of the current login.
                 toWrite += (logins[i].ID + ";;" + logins[i].username + ";;" + logins[i].password + ";;" + logins[i].level + ";;" + "\n");
             }
         }
@@ -519,7 +519,7 @@ public class Employees {
             subsection = Methods.checkNumber(validSubsectionIDs[0], validSubsectionIDs[validSubsectionIDs.length-1]);
         }
 
-        if(subsection == 0){
+        if(subsection < validSubsectionIDs[validSubsectionIDs.length-1]){
             System.out.println();
             for(int i = 0; i < numSubsectionsInSection; i++){
                 System.out.println(subsectionsInSection[i].ID + ". " + subsectionsInSection[i].name + " - " + subsectionsInSection[i].description);
@@ -546,7 +546,7 @@ public class Employees {
                 subsection = Methods.checkNumber(validSubsectionIDs[0], validSubsectionIDs[validSubsectionIDs.length-1]);
             }
 
-            if(subsection == 0){
+            if(subsection < validSubsectionIDs[validSubsectionIDs.length-1]){
                 System.out.println();
                 for(int i = 0; i < numSubsectionsInSection; i++){
                     System.out.println(subsectionsInSection[i].ID + ". " + subsectionsInSection[i].name + " - " + subsectionsInSection[i].description);
