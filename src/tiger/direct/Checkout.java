@@ -148,7 +148,7 @@ public class Checkout {
             System.out.println("5. Security code: " + code);
             System.out.println("0. Continue");
 
-            System.out.println("If yes, enter the number beside the information you\nwould like to edit, or 0 to continue: ");
+            System.out.println("If yes, enter the number beside the information you would like to edit, or 0 to continue: ");
 
             editChoice = Methods.checkNumber(0, 5);
 
@@ -290,7 +290,7 @@ public class Checkout {
             System.out.println("4. Postal Code: " + postalCode);
             System.out.println("0. Continue");
 
-            System.out.println("If yes, enter the number beside the information you\n would like to edit, or 0 to continue: ");
+            System.out.println("If yes, enter the number beside the information you would like to edit, or 0 to continue: ");
 
             editChoice = Methods.checkNumber(0, 4);
 
