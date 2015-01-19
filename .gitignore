@@ -12,3 +12,4 @@ dist/*
 **/*.class
 *.bak
 private.xml
+**/**private.properties
