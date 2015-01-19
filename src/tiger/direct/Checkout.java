@@ -17,10 +17,12 @@ import static tiger.direct.TigerDirect.numItemsInCart;
 
 public class Checkout {
     
+    // global
     static Scanner user = new Scanner(System.in);
     
     public static String company(){
         
+        // variables
         String card;
         int cardChoice;
         String cardChoiceString;
@@ -29,9 +31,9 @@ public class Checkout {
         
         System.out.print("Please enter the number corresponding to the card you have: ");
         
-        cardChoice = Methods.checkNumber(1, 3);
+        cardChoice = Methods.checkNumber(1, 3); // Checks if valid entry
         
-        while (cardChoice == -1){
+        while (cardChoice == -1){ // Methods.checkNumber returns -1 if entry is invalid
             System.out.print("That was an invalid answer. Please enter another number: ");
             cardChoice = Methods.checkNumber(1, 3);
         }
@@ -70,7 +72,7 @@ public class Checkout {
         String num;
         System.out.print("Please enter your card number with no spaces: ");
         
-        while (!(user.hasNextBigInteger())){
+        while (!(user.hasNextBigInteger())){ // Checks to make sure its an int
             user.nextLine();
             System.out.print("Sorry, that was an invalid card number. Please try again: ");
         }
