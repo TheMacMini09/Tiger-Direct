@@ -14,6 +14,7 @@ import java.util.Scanner;
 import static tiger.direct.Employees.numItems;
 import static tiger.direct.Employees.numSections;
 import static tiger.direct.Employees.numSubsections;
+import static tiger.direct.TigerDirect.cart;
 import static tiger.direct.TigerDirect.numItemsInCart;
 import static tiger.direct.TigerDirect.sections;
 import static tiger.direct.TigerDirect.subsections;
@@ -59,7 +60,7 @@ public class Shopping {
         int counter = 0;
         Items currentItem;
         Items inSubsection[] = new Items[itemList.length];
-        CartRecord[] inCart = new CartRecord[1000];
+//        CartRecord[] inCart = new CartRecord[1000];           What were you doing?
         String buy = "";
         int itemBought = 0;
         String backToTop = "";
@@ -109,20 +110,19 @@ public class Shopping {
                     }
                         
                 }
-                counter2 ++;
                 if(numItemsInCart > 0){
-                    for (int i = 0; i < inCart.length; i++){
-                        if (inSubsection[listNum].ID == inCart[i].ID){
-                            inCart[i].quantity+=itemBought;
-                            counter2--;
+                    for (int i = 0; i < cart.length; i++){
+                        if (inSubsection[listNum].ID == cart[i].ID){
+                            cart[i].quantity+=itemBought;
                             addTo = true;
                         }
                     }
                 }
                 if (addTo == false){
-                    inCart[counter2] = new CartRecord(inSubsection[listNum].name, inSubsection[listNum].ID,inSubsection[listNum].section, inSubsection[listNum].subsection,inSubsection[listNum].dollarPrice, inSubsection[listNum].centPrice, itemBought);
+                    cart[counter2] = new CartRecord(inSubsection[listNum].name, inSubsection[listNum].ID,inSubsection[listNum].section, inSubsection[listNum].subsection,inSubsection[listNum].dollarPrice, inSubsection[listNum].centPrice, itemBought);
                     System.out.println("The item has been added to your cart.");
                 }
+                counter2 ++;
             addTo = false;
             }
         numItemsInCart = counter2;

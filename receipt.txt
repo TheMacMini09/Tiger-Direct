@@ -6,8 +6,8 @@ Total: 4.99
 Payment information:
 Card company: American Express
 Card holder: Michael Barker
-Card number: 38497613986
-Card expiry: 8/17
+Card number: 4398756139845671
+Card expiry: 6/25
 Card security code: ***
 ---------------------------------------------------------
 Shipping information:
