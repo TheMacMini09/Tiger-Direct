@@ -17,12 +17,11 @@ import static tiger.direct.TigerDirect.numItemsInCart;
 
 public class Checkout {
     
-    // global
+    // member input scanner
     static Scanner user = new Scanner(System.in);
     
     public static String company(){
         
-        // variables
         String card;
         int cardChoice;
         String cardChoiceString;
@@ -330,11 +329,11 @@ public class Checkout {
         double tax = 0.0;
         double subtotalPrice = 0.0;
         double totalPrice = 0.0;
-        for (int i = 0; i < numItemsInCart-1; i++){
-            subtotalPrice+= cart[i].dollarPrice;
-            subtotalPrice+= Double.valueOf("0." + cart[i].centPrice);
+        for (int i = 0; i < numItemsInCart-1; i++){ // for num items in cart
+            subtotalPrice+= cart[i].dollarPrice; // add dollar price to subtotal
+            subtotalPrice+= Double.valueOf("0." + cart[i].centPrice); // add cent price to subtotal
         }
-        
+        // "calculating" shipping price
         if (province.equals("British Columbia")){
             shippingPrice = 19.99;
         }
@@ -387,11 +386,11 @@ public class Checkout {
             shippingPrice = 24.99;
         }
         
-        tax = subtotalPrice * 0.13;
+        tax = subtotalPrice * 0.13; // tax
         
-        totalPrice = subtotalPrice + shippingPrice + tax;
+        totalPrice = subtotalPrice + shippingPrice + tax; // total
         
-        invoice(totalPrice, subtotalPrice, shippingPrice, tax, street, city, province, postalCode, cardType, cardHolder, cardNumber, cardExpiryMonth, cardExpiryYear, cardSecurityCode);
+        invoice(totalPrice, subtotalPrice, shippingPrice, tax, street, city, province, postalCode, cardType, cardHolder, cardNumber, cardExpiryMonth, cardExpiryYear, cardSecurityCode); // send everything to invoice
     }
     
     public static void invoice(double total, double subtotal, double shipping, double tax, String street, String city, String province, String postalCode, String cardType, String cardHolder, String cardNumber, int cardExpiryMonth, int cardExpiryYear, int cardSecurityCode) throws IOException{
@@ -403,12 +402,13 @@ public class Checkout {
         
         System.out.println("Your Reciept:");
         
-        
-        for (int i = 0; i < numItemsInCart-1; i++){
-            order.println("Item: " + cart[i].name + "\tID: " + cart[i].ID + "\tPrice " + cart[i].dollarPrice + "." + cart[i].centPrice + "\tQuantity: " + cart[i].quantity);
-            System.out.println("Item: " + cart[i].name + "\tID: " + cart[i].ID + "\tPrice " + cart[i].dollarPrice + "." + cart[i].centPrice + "\tQuantity: " + cart[i].quantity);
+        // printing item info to receipt.txt and screen
+        for (int i = 0; i < numItemsInCart-1; i++){ //for num items
+            order.println("Item: " + cart[i].name + "\tID: " + cart[i].ID + "\tPrice " + cart[i].dollarPrice + "." + cart[i].centPrice + "\tQuantity: " + cart[i].quantity); // item info
+            System.out.println("Item: " + cart[i].name + "\tID: " + cart[i].ID + "\tPrice " + cart[i].dollarPrice + "." + cart[i].centPrice + "\tQuantity: " + cart[i].quantity); // info
         }
         
+        // printing payment, shipping info to screen and .txt
         order.println("Subtotal: " + subtotal + "\nShipping: " + shipping + "\nTax: " + tax + "\nTotal: " + total);
         System.out.println("Subtotal: " + subtotal + "\nShipping: " + shipping + "\nTax: " + tax + "\nTotal: " + total);
         order.println("---------------------------------------------------------");
