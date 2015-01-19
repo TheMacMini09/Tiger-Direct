@@ -763,16 +763,14 @@ public class Employees {
         
         if(addChoice == 1){
             System.out.print("Please enter the desired name for the new section: ");
-            section = user.next();
-            user.nextLine();
+            section = user.nextLine();
 
             System.out.print("Is " + section + " the intended section name? y/n: ");
             userEntry = user.next().trim().toLowerCase().charAt(0);
             user.nextLine();
             while(userEntry != 'y'){
                 System.out.print("Please enter the desired name for the new section: ");
-                section = user.next();
-                user.nextLine();
+                section = user.nextLine();
                 System.out.print("Is " + section + " the intended section name? y/n: ");
                 userEntry = user.next().trim().toLowerCase().charAt(0);
                 user.nextLine();
@@ -851,7 +849,7 @@ public class Employees {
         int numUsers;
         File authentication;
         
-        exit = true;
+        exit = false;
         
         while(!exit){
             ReadFiles.readDescriptions();
