@@ -462,6 +462,12 @@ public class Employees {
         SubSections[] subsectionsInSection = new SubSections[subsections.length];
         int[] validSubsectionIDs = new int[subsections.length];
         
+        ReadFiles.readDescriptions();
+        ReadFiles.readItems();
+        ReadFiles.readKeywords();
+        ReadFiles.readSections();
+        ReadFiles.readSubsections();
+        
         System.out.print("Please enter the section of the item, or 0 to view sections: ");
         section = Methods.checkNumber(0, numSections);
 
