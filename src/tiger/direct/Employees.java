@@ -136,6 +136,7 @@ public class Employees {
         int level;
         char userEntry;
         
+        //Self-explanatory. Simple user entry/verification.
         System.out.print("Please enter the desired username for the new user: ");
         username = user.next();
         user.nextLine();
@@ -179,7 +180,7 @@ public class Employees {
         }
         
         System.out.print("Please enter the desired level for the user: (1-" + userLevel + "): ");
-        level = Methods.checkNumber(1, userLevel);
+        level = Methods.checkNumber(1, userLevel);  //Ensures that the user doesn't create another user with a higher level
         while(level == -1){
             System.out.print("Invalid! Please enter the desired level for the user: (1-" + userLevel + "): ");
             level = Methods.checkNumber(1, userLevel);
@@ -196,10 +197,11 @@ public class Employees {
             System.out.print("Is " + level + " the level you desired? y/n: ");
             userEntry = user.next().trim().toLowerCase().charAt(0);
         }
-        toWrite += ((numLogins + 1) + ";;" + "\n");
-        for(int i = 0; i < numLogins; i++){
+        toWrite += ((numLogins + 1) + ";;" + "\n");     //Adds the number of users + 1 to the string to write
+        for(int i = 0; i < numLogins; i++){     //Cycles through the existing users and adds them to the string
             toWrite += (logins[i].ID + ";;" + logins[i].username + ";;" + logins[i].password + ";;" + logins[i].level + ";;" + "\n");
         }
+        //Adds the new user to the string, with all the new info.
         toWrite += (numLogins+1 + ";;" + username + ";;" + password + ";;" + level + ";;" + "\n");
         writeFile("authentication", toWrite);
         System.out.println("User created.");
