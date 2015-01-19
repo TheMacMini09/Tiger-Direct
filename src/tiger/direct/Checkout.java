@@ -419,7 +419,7 @@ public class Checkout {
         System.out.println("Shipping information:" + "\n" + street + "\n" + city + ", " + province + "\n" + postalCode);
         order.println("\nThank you for shopping at Tiger Direct!\nHave a great day!");
         System.out.println("\nThank you for shopping at Tiger Direct!\nHave a great day!");
-        
+        order.close();
         
         
         /*
@@ -458,7 +458,7 @@ public class Checkout {
         file.println(numItems + ";;");
         for(int i = 0; i < numItems; i++){
             itemInCart = false;
-            for(x = 0; x < numItemsInCart; x++){
+            for(x = 0; x < numItemsInCart-1; x++){
                 if(cart[x].ID == items[i].ID){
                     itemInCart = true;
                 }
