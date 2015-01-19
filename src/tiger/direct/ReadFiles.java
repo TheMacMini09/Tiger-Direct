@@ -323,7 +323,7 @@ public class ReadFiles {
             PrintWriter file = new PrintWriter(new File("subsections.bak"));
             file.println(numSubsections + ";;");
             for(int i = 0; i < numSubsections; i++){
-                file.println(subsections[i].ID + ";;" + subsections[i].name + ";;" + subsections[i].description + ";;" + ";;" + subsections[i].sectionID + ";;");
+                file.println(subsections[i].ID + ";;" + subsections[i].name + ";;" + subsections[i].description + ";;" + subsections[i].sectionID + ";;");
             }
             file.close();
         } catch(Exception e) {
@@ -343,7 +343,7 @@ public class ReadFiles {
                 PrintWriter file = new PrintWriter(new File("subsections"));
                 file.println(numSubsections + ";;");
                 for(int i = 0; i < numSubsections; i++){
-                    file.println(subsections[i].ID + ";;" + subsections[i].name + ";;" + subsections[i].description + ";;" + ";;" + subsections[i].sectionID + ";;");
+                    file.println(subsections[i].ID + ";;" + subsections[i].name + ";;" + subsections[i].description + ";;" + subsections[i].sectionID + ";;");
                 }
                 file.close();
                 
@@ -351,7 +351,7 @@ public class ReadFiles {
                 PrintWriter fileBackup = new PrintWriter(new File("subsections.bak"));
                 fileBackup.println(numSubsections + ";;");
                 for(int i = 0; i < numSubsections; i++){
-                    fileBackup.println(subsections[i].ID + ";;" + subsections[i].name + ";;" + subsections[i].description + ";;" + ";;" + subsections[i].sectionID + ";;");
+                    fileBackup.println(subsections[i].ID + ";;" + subsections[i].name + ";;" + subsections[i].description + ";;" + subsections[i].sectionID + ";;");
                 }
                 fileBackup.close();
                 System.out.println("Backup created. Data should now be correct.");

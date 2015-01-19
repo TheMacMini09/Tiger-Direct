@@ -618,6 +618,9 @@ public class Employees {
             keywordsWriter.println((numItems + 1) + ";;" + numKeywords + ";;" + keywordsString);
             keywordsWriter.close();
         }
+        ReadFiles.readItems();
+        ReadFiles.readDescriptions();
+        ReadFiles.readKeywords();
     }
     
     public static void removeItem() throws IOException {
@@ -787,6 +790,7 @@ public class Employees {
             file.println((numSections+1) + ";;" + section + ";;" + description + ";;");
             file.close();
             System.out.println("Section created.");
+            ReadFiles.readSections();
         } else {
             System.out.print("Please enter the ID of the parent section (0 to view sections): ");
             sectionID = Methods.checkNumber(0, numSections);
@@ -833,11 +837,12 @@ public class Employees {
             PrintWriter file = new PrintWriter(new File("subsections")); //Also overwrites file.
             file.println((numSubsections + 1) + ";;");
             for(int i = 0; i < numSubsections; i++){
-                file.println(subsections[i].ID + ";;" + subsections[i].name + ";;" + subsections[i].description + ";;");
+                file.println(subsections[i].ID + ";;" + subsections[i].name + ";;" + subsections[i].description + ";;" + subsections[i].sectionID);
             }
             file.println((numSubsections+1) + ";;" + subsection + ";;" + description + ";;" + sectionID + ";;");
             file.close();
             System.out.println("Subsection created.");
+            ReadFiles.readSubsections();
         }
     }
     
