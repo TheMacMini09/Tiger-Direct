@@ -486,7 +486,9 @@ public class Checkout {
         String province;
         String postalCode;
         
-        System.out.println("Welcome to the TigerDirect Checkout!");
+        System.out.println("\n\n-------------------------------------------------------------------");
+        
+        System.out.println("\n\nWelcome to the TigerDirect Checkout!");
         
         System.out.println("\nFirst we need your payment method and details.");
         
