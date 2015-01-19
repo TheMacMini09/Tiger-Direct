@@ -101,7 +101,7 @@ public class Shopping {
                 itemBought = mymethods.Console.getInt("Please enter how many of this item you would like to purchase: ");
                 while (itemBought > inSubsection[listNum].stock || itemBought == 0){
                     if (itemBought > inSubsection[listNum].stock){
-                        itemBought = mymethods.Console.getInt("There is not that many items of that type in stock, please enter a valid number: ");
+                        itemBought = mymethods.Console.getInt("There is not that many items of that type in stock, please enter a num no greater than " + inSubsection[listNum].stock + ": ");
                     }
                     else if (itemBought == 0){
                         itemBought = mymethods.Console.getInt("You cannot purchase 0 items.\nPlease enter a valid number: ");

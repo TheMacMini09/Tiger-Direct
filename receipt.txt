@@ -1,0 +1,19 @@
+Subtotal: 0.0
+Shipping: 4.99
+Tax: 0.0
+Total: 4.99
+---------------------------------------------------------
+Payment information:
+Card company: American Express
+Card holder: Michael Barker
+Card number: 38497613986
+Card expiry: 8/17
+Card security code: ***
+---------------------------------------------------------
+Shipping information:
+Division St
+Guelph, Ontario
+N1H1R6
+
+Thank you for shopping at Tiger Direct!
+Have a great day!
