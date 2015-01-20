@@ -1,4 +1,4 @@
-40;;
+44;;
 Intel Core i7-4970k;;1;;2;;1;;379;;97;;20;;
 HP Slate 21-k100 All-In-One PC ;;2;;1;;2;;349;;99;;100;;
 HP Pavilion 10-2114 All-In-One PC ;;3;;1;;2;;365;;99;;100;;
@@ -39,3 +39,7 @@ Samsung 700G7C NP700G7C-T01CA;;37;;1;;6;;1519;;99;;101;;
 ASUS G771JM ROG;;38;;1;;6;;1199;;99;;100;;
 CybertronPC Tesseract TNB2124A;;39;;1;;6;;1427;;99;;100;;
 Aorus X7V2-CF2;;40;;1;;6;;2561;;99;;100;;
+Lenovo ThinkServer TS440 70AQ;;41;;1;;7;;915;;49;;100;;
+Lenovo ThinkServer TD340 70B5;;42;;1;;7;;1049;;99;;100;;
+Lenovo ThinkServer RD340 70AB;;43;;1;;7;;1273;;49;;100;;
+Lenovo ThinkServer RD440;;44;;1;;7;;1699;;99;;100;;
