@@ -72,14 +72,16 @@ public class Cart {
                             newNumberOfItems = Methods.checkNumber(1, (items[cart[itemNumber-1].ID].stock-cart[itemNumber-1].quantity)); // check if valid
                         }
                         
-                        itemsRemoved = cart[itemNumber].quantity - newNumberOfItems; // removes the number of items chosen by the user
+                        itemsRemoved = newNumberOfItems - cart[itemNumber-1].quantity; // removes the number of items chosen by the user
                         cart[itemNumber-1] = new CartRecord(cart[itemNumber-1].name, cart[itemNumber-1].ID, cart[itemNumber-1].section, cart[itemNumber-1].subsection, cart[itemNumber-1].dollarPrice, cart[itemNumber-1].centPrice, newNumberOfItems); // updates cart
+                        
+                        ReadFiles.readItems();
                         
                         toWrite += (numItems + ";;" + "\n");
                         
                         for(int i = 0; i < numItems; i++){      //Remove stock from items file
-                            if(i == cart[itemNumber].ID - 1){
-                                toWrite += (items[i].name + ";;" + items[i].ID + ";;" + items[i].section + ";;" + items[i].subsection + ";;" + items[i].dollarPrice + ";;" + items[i].centPrice + ";;" + (items[i].stock-cart[itemNumber].quantity) + ";;" + "\n");
+                            if(i == cart[itemNumber-1].ID - 1){
+                                toWrite += (items[i].name + ";;" + items[i].ID + ";;" + items[i].section + ";;" + items[i].subsection + ";;" + items[i].dollarPrice + ";;" + items[i].centPrice + ";;" + (items[i].stock-itemsRemoved) + ";;" + "\n");
                             } else {
                                 toWrite += (items[i].name + ";;" + items[i].ID + ";;" + items[i].section + ";;" + items[i].subsection + ";;" + items[i].dollarPrice + ";;" + items[i].centPrice + ";;" + items[i].stock + ";;" + "\n");
                             }
