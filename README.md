@@ -10,3 +10,6 @@ To setup this repository, either clone it using `git clone https://github.com/Th
 
 ##Install
 If you want, you can compile the .class files into a .jar (more convenient to run). Go to the directory the repository was saved, and run `java cf TigerDirect.jar build/classes/*`. This will create TigerDirect.java in the root of the project, which can be run with `java -jar TigerDirect.jar`.
+
+##Contributions
+To determine the contributions made by the different team members, look at the header of each file, or look at the [GitHub commits](https://github.com/TheMacMini09/Tiger-Direct/commits/master). You can see who made what commits (changes to the code), and what the commits actually were. Clicking on the title of the commit will show how many files were changed and how many lines were added/removed. TheMacMini09: Michael Barker, MaximusTheGreat: Max Farfaras, ThisDaySucks: Nigel Young. For example, if you go to the commit where [I changed the README](https://github.com/TheMacMini09/Tiger-Direct/commit/e9328731011e25e4f497fb8387233fd01922fc74) you can see that I changed one file, added 16 lines, and removed 14 lines.
