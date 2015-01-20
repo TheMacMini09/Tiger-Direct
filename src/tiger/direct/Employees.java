@@ -609,6 +609,7 @@ public class Employees {
         userConf = user.next().trim().toLowerCase().charAt(0);
         user.nextLine();
         while(userConf != 'y'){
+            System.out.print("Please enter the cent price of the item: ");
             cent = Methods.checkNumber(0, 99);
             while(cent < 0){
                 System.out.print("Invalid selection! Please enter a number between 0 and 99: ");
