@@ -1,4 +1,4 @@
-13;;
+19;;
 1;;11;;4790;;4790k;;boost;;core;;cpu;;i7;;intel;;quad;;quad-core;;turbo;;turboboost;;
 2;;2;;HP;;Slate;;
 3;;2;;HP;;Pavilion;;
@@ -12,3 +12,9 @@
 11;;2;;A540;;Lenovo;;
 12;;2;;C470;;Lenovo;;
 13;;2;;Asus;;ET2031IUK;;
+14;;2;;B750;;Lenovo;;
+15;;2;;AZ3-600-ER31;;Acer;;
+16;;2;;ENVY;;HP;;
+17;;2;;Beats;;HP;;
+18;;2;;C260;;Lenovo;;
+19;;2;;Asus;;ET2031IUK-01 AIO;;
