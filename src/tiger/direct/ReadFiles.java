@@ -25,52 +25,56 @@ import static tiger.direct.TigerDirect.subsections;
  */
 public class ReadFiles {
     
+    //Most of these are exactly the same. The first one will be commented, and then any subsequent major changes will also be documented.
+    
     public static void readItems() throws FileNotFoundException{
-        try{
-            Scanner itemScanner = new Scanner(new File("items"));
-            itemScanner.useDelimiter(";;");
-            numItems = itemScanner.nextInt();
-            itemScanner.nextLine();
-            for(int i = 0; i < numItems; i++){
+        try{    //Try reading the data...
+            Scanner itemScanner = new Scanner(new File("items"));   //Setup the `items` scanner so that
+            itemScanner.useDelimiter(";;");                        //it uses `;;` as the delimeter
+            numItems = itemScanner.nextInt();   //Read the very first element (number of items) into the feild variable `numItems`
+            itemScanner.nextLine();     //Move on to the next line (to start reading data)
+            for(int i = 0; i < numItems; i++){  //Cycle through the `items` file and add the data to the array of item objects.
                 items[i] = new Items(itemScanner.next(), itemScanner.nextInt(), itemScanner.nextInt(), itemScanner.nextInt(), itemScanner.nextInt(), itemScanner.nextInt(), itemScanner.nextInt());
                 itemScanner.nextLine();
             }
-            PrintWriter file = new PrintWriter(new File("items.bak"));
-            file.println(numItems + ";;");
-            for(int i = 0; i < numItems; i++){
+            PrintWriter file = new PrintWriter(new File("items.bak"));  //Initialize the backup file
+            file.println(numItems + ";;");      //Print the # of items to the backup file
+            for(int i = 0; i < numItems; i++){      //Cycle through the items and write them to the backup file
                 file.println(items[i].name + ";;" + items[i].ID + ";;" + items[i].section + ";;" + items[i].subsection + ";;" + items[i].dollarPrice + ";;" + items[i].centPrice + ";;" + items[i].stock + ";;");
             }
-            file.close();
-        } catch(Exception e) {
-            try{
+            file.close();   //Write the file
+        } catch(Exception e) {  //Catches corruption of any sort (missing data/not enough/too many lines)
+            try{    //Trying to restore from the backup...
                 System.out.println("File corruption! Restoring backup.");
-                Scanner itemScanner = new Scanner(new File("items.bak"));
-                itemScanner.useDelimiter(";;");
+                Scanner itemScanner = new Scanner(new File("items.bak"));   //Init the `items.back` scanner, and make sure
+                itemScanner.useDelimiter(";;");                            //that it uses the `;;` delimeter
 
-                numItems = itemScanner.nextInt();
+                numItems = itemScanner.nextInt();   //Read the # of items into the variable
                 itemScanner.nextLine();
-                for(int i = 0; i < numItems; i++){
+                for(int i = 0; i < numItems; i++){  //Read through the items in the backup file, write them into the items array
                     items[i] = new Items(itemScanner.next(), itemScanner.nextInt(), itemScanner.nextInt(), itemScanner.nextInt(), itemScanner.nextInt(), itemScanner.nextInt(), itemScanner.nextInt());
                     itemScanner.nextLine();
                 }
                 System.out.println("Backup file OK. Overwriting main file.");
                 
+                //Write the backup data to the main file (same as above)
                 PrintWriter file = new PrintWriter(new File("items"));
                 file.println(numItems + ";;");
                 for(int i = 0; i < numItems; i++){
                     file.println(items[i].name + ";;" + items[i].ID + ";;" + items[i].section + ";;" + items[i].subsection + ";;" + items[i].dollarPrice + ";;" + items[i].centPrice + ";;" + items[i].stock + ";;");
                 }
-                file.close();
+                file.close();   //Write the file
                 
+                //Write the new file, using the backup data. (same as above)
                 System.out.println("Main file restored. Creating new backup file...");
                 PrintWriter fileBackup = new PrintWriter(new File("items.bak"));
                 fileBackup.println(numItems + ";;");
                 for(int i = 0; i < numItems; i++){
                     fileBackup.println(items[i].name + ";;" + items[i].ID + ";;" + items[i].section + ";;" + items[i].subsection + ";;" + items[i].dollarPrice + ";;" + items[i].centPrice + ";;" + items[i].stock + ";;");
                 }
-                fileBackup.close();
+                fileBackup.close(); //Write the file
                 System.out.println("Backup created. Data should now be correct.");
-            } catch(Exception x) {
+            } catch(Exception x) {  //Catch backup corruption
                 System.out.println("Unrecoverable data corruption. Please try fixing the files manually.");
             }
         }
@@ -192,20 +196,20 @@ public class ReadFiles {
             numItems = itemScanner.nextInt();
             itemScanner.nextLine();
             for(int i = 0; i < numItems; i++){
-                ID = itemScanner.nextInt();
-                numKeywords = itemScanner.nextInt();
-                keywordsArray = new String[numKeywords];
+                ID = itemScanner.nextInt();             //Grab data into
+                numKeywords = itemScanner.nextInt();    //temp variables.
+                keywordsArray = new String[numKeywords];    //Create an array exactly as long as the number of keywords
                 for(int x = 0; x < numKeywords; x++){
-                    keywordsArray[x] = itemScanner.next();
+                    keywordsArray[x] = itemScanner.next();  //Read the keywords array from the file into a temp array
                 }
-                keywords[i] = new Keywords(ID, numKeywords, keywordsArray);
+                keywords[i] = new Keywords(ID, numKeywords, keywordsArray);     //Add temp variables into the keywords array
                 itemScanner.nextLine();
             }
             PrintWriter file = new PrintWriter(new File("keywords.bak"));
             file.println(numItems + ";;");
             for(int i = 0; i < numItems; i++){
                 file.print(keywords[i].ID + ";;" + keywords[i].numKeywords + ";;");
-                for(int x = 0; x < keywords[i].keywords.length; x++){
+                for(int x = 0; x < keywords[i].keywords.length; x++){   //Write keywords to the file
                     file.print(keywords[i].keywords[x] + ";;");
                 }
                 file.println();
@@ -213,6 +217,7 @@ public class ReadFiles {
             file.close();
         } catch(Exception e) {
             try{
+                //Same as above.
                 System.out.println("File corruption! Restoring backup.");
                 Scanner itemScanner = new Scanner(new File("keywords.bak"));
                 itemScanner.useDelimiter(";;");
