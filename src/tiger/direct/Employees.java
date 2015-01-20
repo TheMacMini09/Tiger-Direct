@@ -255,6 +255,7 @@ public class Employees {
     public static void changeLevel(int userID) throws FileNotFoundException {
         //Variable declaration
         int level;
+        String toWrite = "";
         
         System.out.print("To what level would you like to change " + logins[userID-1].username + " to?\nTheir current level is " + logins[userID-1].level + ": ");
         level = Methods.checkNumber(1, 6);
@@ -262,19 +263,19 @@ public class Employees {
             System.out.print("Invalid selection! Please choose a new level for " + logins[userID-1].username + ": ");
             level = Methods.checkNumber(1, 6);
         }
-        PrintWriter file = new PrintWriter(new File("authentication"));
-        file.println((logins.length + 1) + ";;");
-        for(int i = 0; i < logins.length; i++){
-            if(logins[i].ID == userID){
-                file.println(logins[i].ID + ";;" + logins[i].username + ";;" + logins[i].password + ";;" + level + ";;");
-            } else {
-                file.println(logins[i].ID + ";;" + logins[i].username + ";;" + logins[i].password + ";;" + logins[i].level + ";;");
+
+        toWrite += (numLogins + ";;" + "\n");   //Add the new number of users to the string
+        for(int i = 0; i < numLogins; i++){     //Cycle through the logins
+            if(logins[i].ID == userID){         //If the current login is the user who's level was changed, add all of the same data except for the changed level.
+                toWrite += (logins[i].ID + ";;" + logins[i].username + ";;" + logins[i].password + ";;" + level + ";;" + "\n");
+            } else {                            //Otherwise, just add all of the data from the other users.
+                toWrite += (logins[i].ID + ";;" + logins[i].username + ";;" + logins[i].password + ";;" + logins[i].level + ";;" + "\n");
             }
         }
-        file.close();
+        writeFile("authentication", toWrite);
         System.out.println("Level changed. Please log back in.");
-        exit = true;
-        restart = true;
+        exit = true;        //Forces the user to log back in,
+        restart = true;     //independent of whose ID they're changing.
     }
     
     public static void userSettings(int userLevel, int userID) throws IOException {
@@ -466,33 +467,25 @@ public class Employees {
         SubSections[] subsectionsInSection = new SubSections[subsections.length];
         int[] validSubsectionIDs = new int[subsections.length];
         
+        //Refresh files (in case they weren't updated before...)
         ReadFiles.readDescriptions();
         ReadFiles.readItems();
         ReadFiles.readKeywords();
         ReadFiles.readSections();
         ReadFiles.readSubsections();
-        
-        System.out.print("Please enter the section of the item, or 0 to view sections: ");
-        section = Methods.checkNumber(0, numSections);
+
+        System.out.println("Here are the sections to choose from:");
+        System.out.println();
+        for(int i = 0; i < numSections; i++){
+            System.out.println(sections[i].ID + ". " + sections[i].name + " - " + sections[i].description);
+        }
+        System.out.println();
+        System.out.print("Please enter the section of the item: ");
+        section = Methods.checkNumber(1, numSections);
 
         while(section == -1){
-            System.out.print("Invalid selection! Please enter a number between 0 and " + numSections + ": ");
-            section = Methods.checkNumber(0, numSections);
-        }
-
-        if(section == 0){
-            System.out.println();
-            for(int i = 0; i < numSections; i++){
-                System.out.println(sections[i].ID + ". " + sections[i].name + " - " + sections[i].description);
-            }
-            System.out.println();
-            System.out.print("Please enter the section of the item: ");
+            System.out.print("Invalid selection! Please enter a number between 1 and " + numSections + ": ");
             section = Methods.checkNumber(1, numSections);
-
-            while(section == -1){
-                System.out.print("Invalid selection! Please enter a number between 1 and " + numSections + ": ");
-                section = Methods.checkNumber(1, numSections);
-            }
         }
         
         System.out.print("Is " + sections[section].name + " the section you intended? y/n: ");
@@ -520,28 +513,20 @@ public class Employees {
         }
         
         Arrays.sort(validSubsectionIDs);
-        
-        System.out.print("Please enter the subsection of the item, or 0 to view subsections: ");
-        subsection = Methods.checkNumber(0, validSubsectionIDs[validSubsectionIDs.length-1]);
 
-        while(section == -1){
+        System.out.println("Here are the subsections to choose from:");
+        
+        System.out.println();
+        for(int i = 0; i < numSubsectionsInSection; i++){
+            System.out.println(subsectionsInSection[i].ID + ". " + subsectionsInSection[i].name + " - " + subsectionsInSection[i].description);
+        }
+        System.out.println();
+        System.out.print("Please enter the subsection of the item: ");
+        subsection = Methods.checkNumber(validSubsectionIDs[0], validSubsectionIDs[validSubsectionIDs.length-1]);
+
+        while(section == -1 || Arrays.binarySearch(validSubsectionIDs, subsection) < 0){
             System.out.print("Invalid selection! Please enter a number between " + validSubsectionIDs[0] + " and " + validSubsectionIDs[validSubsectionIDs.length-1] + ": ");
             subsection = Methods.checkNumber(validSubsectionIDs[0], validSubsectionIDs[validSubsectionIDs.length-1]);
-        }
-
-        if(subsection < validSubsectionIDs[validSubsectionIDs.length-1]){
-            System.out.println();
-            for(int i = 0; i < numSubsectionsInSection; i++){
-                System.out.println(subsectionsInSection[i].ID + ". " + subsectionsInSection[i].name + " - " + subsectionsInSection[i].description);
-            }
-            System.out.println();
-            System.out.print("Please enter the subsection of the item: ");
-            subsection = Methods.checkNumber(validSubsectionIDs[0], validSubsectionIDs[validSubsectionIDs.length-1]);
-
-            while(section == -1 || Arrays.binarySearch(validSubsectionIDs, subsection) < 0){
-                System.out.print("Invalid selection! Please enter a number between " + validSubsectionIDs[0] + " and " + validSubsectionIDs[validSubsectionIDs.length-1] + ": ");
-                subsection = Methods.checkNumber(validSubsectionIDs[0], validSubsectionIDs[validSubsectionIDs.length-1]);
-            }
         }
         
         System.out.print("Is " + subsections[subsection-1].name + " the subsection you intended? y/n: ");
@@ -655,7 +640,7 @@ public class Employees {
             for(int i = 0; i < numItems; i++){
                 file.println(items[i].name + ";;" + items[i].ID + ";;" + items[i].section + ";;" + items[i].subsection + ";;" + items[i].dollarPrice + ";;" + items[i].centPrice + ";;" + items[i].stock + ";;");
             }
-            file.println(name + ";;" + ID + ";;" + section + ";;" + subsection + ";;" + dollar + ";;" + cent + ";;" + stock + ";;");
+            file.println(name + ";;" + (numItems+1) + ";;" + section + ";;" + subsection + ";;" + dollar + ";;" + cent + ";;" + stock + ";;");
             file.close();
             
             System.out.print("Please enter the description of the item, on one line: ");

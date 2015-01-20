@@ -82,6 +82,7 @@ public class Shopping {
                     counter ++;
                     System.out.println(counter + ". " + itemList[i].name);
                     inSubsection[counter] = itemList[i];
+                    System.out.println();
                 }
             }
             

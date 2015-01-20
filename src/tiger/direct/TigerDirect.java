@@ -39,6 +39,7 @@ public class TigerDirect {
             Employees.Employees();
         } else {
             //When calling the shopping section, while it returns "y", continue
+            counter2 = 0;
             while(contShopping.equals("y")){
                 ReadFiles.readSections();
                 ReadFiles.readSubsections();
