@@ -455,29 +455,30 @@ public class Checkout {
         invoice(totalPrice, subtotalPrice, shippingPrice, tax, street, city, province, postalCode, cardType, cardHolder, cardNumber, cardExpiryMonth, cardExpiryYear, cardSecurityCode);
     }
 
-    public static void removeStock() throws FileNotFoundException{
-        //Variable declaration
-        boolean itemInCart;
-        int x;
-        
-        ReadFiles.readItems();
-        PrintWriter file = new PrintWriter(new File("items"));
-        file.println(numItems + ";;");
-        itemInCart = false;
-        for(int i = 0; i < numItems; i++){
-            for(x = 0; x < numItemsInCart; x++){
-                if(cart[x].ID == items[i].ID){
-                    itemInCart = true;
-                }
-            }
-            if(itemInCart){
-                file.println(items[i].name + ";;" + items[i].ID + ";;" + items[i].section + ";;" + items[i].subsection + ";;" + items[i].dollarPrice + ";;" + items[i].centPrice + ";;" + (items[i].stock - cart[x-1].quantity) + ";;");
-            } else {
-                file.println(items[i].name + ";;" + items[i].ID + ";;" + items[i].section + ";;" + items[i].subsection + ";;" + items[i].dollarPrice + ";;" + items[i].centPrice + ";;" + items[i].stock + ";;");
-            }
-        }
-        file.close();
-    }
+//    public static void removeStock() throws FileNotFoundException{
+//        //Variable declaration
+//        boolean itemInCart;
+//        int x;
+//        
+//        ReadFiles.readItems();
+//        PrintWriter file = new PrintWriter(new File("items"));
+//        file.println(numItems + ";;");
+//        itemInCart = false;
+//        for(int i = 0; i < numItems; i++){
+//            for(x = 0; x < numItemsInCart; x++){
+//                if(cart[x].ID == items[i].ID){
+//                    itemInCart = true;
+//                }
+//            }
+//            if(itemInCart){
+//                file.println(items[i].name + ";;" + items[i].ID + ";;" + items[i].section + ";;" + items[i].subsection + ";;" + items[i].dollarPrice + ";;" + items[i].centPrice + ";;" + (items[i].stock - cart[x-1].quantity) + ";;");
+//            } else {
+//                file.println(items[i].name + ";;" + items[i].ID + ";;" + items[i].section + ";;" + items[i].subsection + ";;" + items[i].dollarPrice + ";;" + items[i].centPrice + ";;" + items[i].stock + ";;");
+//            }
+//        }
+//        file.close();
+//    }
+//  This wasn't supposed to be here.
     
     public static void checkout(CartRecord[] cart) throws IOException{
         
@@ -522,7 +523,5 @@ public class Checkout {
         postalCode = shippingPostal();
         
         editShipping(street, city, province, postalCode, cardType, cardHolder, cardNumber, cardExpiryMonth, cardExpiryYear, cardSecurityCode);
-        
-        removeStock();
     }
 }

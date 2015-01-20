@@ -69,8 +69,6 @@ public class Shopping {
         
         int listNum = 0;
         int counter = 0;
-        int smallestID = 0;
-        int largestID = 0;
         Items currentItem;
         Items inSubsection[] = new Items[itemList.length];
 
@@ -89,19 +87,13 @@ public class Shopping {
                 currentItem = itemList[i];
                 
                 if (itemList[i].subsection == subsections[subsection+1].ID && itemList[i].stock > 0){
-                    if(counter == 0){
-                        smallestID = itemList[i].ID;
-                        largestID = smallestID;
-                    } else {
-                        largestID++;
-                    }
                     counter ++;
                     System.out.println(counter + ". " + itemList[i].name);
                     inSubsection[counter] = itemList[i];
                 }
             }
             
-            listNum = mymethods.Console.getInt("Enter the corresponing number to the item you are selecting: ", smallestID, largestID);
+            listNum = mymethods.Console.getInt("Enter the corresponing number to the item you are selecting: ", 1, counter);
             /// Print out selected items information ///
             System.out.println(inSubsection[listNum].name);
             System.out.println("Item ID: " + inSubsection[listNum].ID);
@@ -138,7 +130,7 @@ public class Shopping {
                 }
                 /// Makes it so multiple orders of items does not leave duplicates in the cart
                 if(numItemsInCart > 0){
-                    for (int i = 0; i < cart.length; i++){
+                    for (int i = 0; i < numItemsInCart; i++){
                         if (inSubsection[listNum].ID == cart[i].ID){
                             cart[i].quantity+=itemBought;
                             addTo = true;
@@ -149,6 +141,9 @@ public class Shopping {
                 if (addTo == false){
                     cart[counter2] = new CartRecord(inSubsection[listNum].name, inSubsection[listNum].ID,inSubsection[listNum].section, inSubsection[listNum].subsection,inSubsection[listNum].dollarPrice, inSubsection[listNum].centPrice, itemBought);
                     System.out.println("The item has been added to your cart.");
+                    
+                    
+                    
                 }
                 counter2 ++;
             addTo = false; /// reset boolean

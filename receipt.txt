@@ -1,18 +1,19 @@
-Item: Intel Core i7-4970k	ID: 1	Price 379.97	Quantity: 15
-Subtotal: 379.97
-Shipping: 4.99
-Tax: 49.396100000000004
-Total: 434.3561
+Item: ASUS ET2031IUK-01 AIO 	ID: 19	Price 398.99	Quantity: 1
+Item: Kindle E-Reader	ID: 48	Price 79.96	Quantity: 1
+Subtotal: $478.95
+Shipping: $4.99
+Tax: $62.26
+Total: $546.20
 ---------------------------------------------------------
 Payment information:
 Card company: American Express
-Card holder: Michael Barker
-Card number: 13974613497
-Card expiry: 7/18
+Card holder: Michael
+Card number: 0423762043876
+Card expiry: 7/19
 Card security code: ***
 ---------------------------------------------------------
 Shipping information:
-Division
+Division St
 Guelph, Ontario
 N1H1R6
 
