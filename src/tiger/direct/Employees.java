@@ -522,23 +522,23 @@ public class Employees {
         }
         System.out.println();
         System.out.print("Please enter the subsection of the item: ");
-        subsection = Methods.checkNumber(validSubsectionIDs[0], validSubsectionIDs[0]+numSubsectionsInSection-1);
-
-        while(section == -1 || Arrays.binarySearch(validSubsectionIDs, subsection) < 0){
+        subsection = Methods.checkNumber(validSubsectionIDs[0], validSubsectionIDs[numSubsectionsInSection-1]);   //Check to make sure that the user entered a subsection in the proper range
+        
+        while(subsection == -1){ //If section is invalid
             System.out.print("Invalid selection! Please enter a number between " + validSubsectionIDs[0] + " and " + (validSubsectionIDs[0]+numSubsectionsInSection-1) + ": ");
-            subsection = Methods.checkNumber(validSubsectionIDs[0], validSubsectionIDs[0]+numSubsectionsInSection-1);
+            subsection = Methods.checkNumber(validSubsectionIDs[0], validSubsectionIDs[numSubsectionsInSection]);  //Check to make sure that the user entered a subsection in the proper range
         }
         
         System.out.print("Is " + subsections[subsection-1].name + " the subsection you intended? y/n: ");
         userConf = user.next().trim().toLowerCase().charAt(0);
         user.nextLine();
-        while(userConf != 'y'){
+        while(userConf != 'y'){     //Re-run the above if the user made a mistake (stupid little user)
             System.out.print("Please enter the subsection of the item: ");
-            subsection = Methods.checkNumber(validSubsectionIDs[0], validSubsectionIDs[0]+numSubsectionsInSection-1);
+            subsection = Methods.checkNumber(validSubsectionIDs[0], validSubsectionIDs[numSubsectionsInSection]);
 
-            while(section == -1 || Arrays.binarySearch(validSubsectionIDs, subsection) < 0){
+            while(subsection == -1){
                 System.out.print("Invalid selection! Please enter a number between " + validSubsectionIDs[0] + " and " + (validSubsectionIDs[0]+numSubsectionsInSection-1) + ": ");
-                subsection = Methods.checkNumber(validSubsectionIDs[0], validSubsectionIDs[0]+numSubsectionsInSection-1);
+                subsection = Methods.checkNumber(validSubsectionIDs[0], validSubsectionIDs[numSubsectionsInSection]);
             }
 
             if(subsection < validSubsectionIDs[validSubsectionIDs.length-1]){
@@ -548,11 +548,11 @@ public class Employees {
                 }
                 System.out.println();
                 System.out.print("Please enter the subsection of the item: ");
-                section = Methods.checkNumber(validSubsectionIDs[0], validSubsectionIDs[validSubsectionIDs.length-1]);
+                subsection = Methods.checkNumber(validSubsectionIDs[0], validSubsectionIDs[numSubsectionsInSection]);
 
-                while(subsection == -1 || Arrays.binarySearch(validSubsectionIDs, subsection) < 0){
+                while(subsection == -1){
                     System.out.print("Invalid selection! Please enter a number between " + validSubsectionIDs[0] + " and " + validSubsectionIDs[validSubsectionIDs.length-1] + ": ");
-                    subsection = Methods.checkNumber(validSubsectionIDs[0], validSubsectionIDs[validSubsectionIDs.length-1]);
+                    subsection = Methods.checkNumber(validSubsectionIDs[0], validSubsectionIDs[numSubsectionsInSection]);
                 }
             }
             System.out.print("Is " + subsections[subsection-1].name + " the subsection you intended? y/n: ");
@@ -578,8 +578,8 @@ public class Employees {
         }
         
         System.out.print("Please enter the dollar price of the item: ");
-        dollar = Methods.checkNumber(0, 2147483647);
-        while(dollar < 0){
+        dollar = Methods.checkNumber(0, 2147483647);    //Max price is the max int value
+        while(dollar < 0){      //See Methods.checkNumber (if you hold control (command on Mac) and click on checkNumber it will take you there)
             System.out.print("Invalid selection! Please enter a number between 0 and 2147483647: ");
             dollar = Methods.checkNumber(0, 2147483647);
         }

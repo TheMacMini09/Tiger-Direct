@@ -12,7 +12,7 @@ public class Methods {
     public static Scanner user = new Scanner(System.in);
     
     public static int checkNumber(int low, int high){
-        //Returns true if user.nextInt() is valid, returns false if user.nextInt() is invalid
+        //Returns the entered number if user.nextInt() is valid, returns -1 if user.nextInt() is invalid
         if(!user.hasNextInt()){
             user.nextLine();
             return -1;
