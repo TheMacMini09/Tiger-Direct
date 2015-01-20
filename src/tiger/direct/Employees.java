@@ -563,7 +563,7 @@ public class Employees {
         
         System.out.print("Please enter the name of the item: ");
         name = user.nextLine();
-        while(name.trim().equals("")){
+        while(name.trim().equals("")){  //Check to make sure the user didn't enter a blank name
             System.out.print("You entered a blank name! Please enter the name of the item: ");
             name = user.nextLine();
         }
@@ -651,19 +651,22 @@ public class Employees {
         user.nextLine();
         
         if(userConf == 'y'){
+            String toWriteItems = "";           //No use declaring the
+            String toWriteDescriptions = "";    //variable above if it's
+            String toWriteKeywords = "";        //never going to be used.
+            
             File itemsFile = new File("items");
             Scanner itemScanner = new Scanner(itemsFile);
             itemScanner.useDelimiter(";;");
             
-            ReadFiles.readItems();
+            ReadFiles.readItems();      //Update from the file (array of items, number of items, etc.)
             
-            PrintWriter file = new PrintWriter(itemsFile);
-            file.println((numItems + 1) + ";;");
+            //Most of this is exactly the same as above, jsut with different variables. See changeUsername()/changePassword()/changeLevel() for info.
+            toWriteItems += ((numItems + 1) + ";;" + "\n");
             for(int i = 0; i < numItems; i++){
-                file.println(items[i].name + ";;" + items[i].ID + ";;" + items[i].section + ";;" + items[i].subsection + ";;" + items[i].dollarPrice + ";;" + items[i].centPrice + ";;" + items[i].stock + ";;");
+                toWriteItems += (items[i].name + ";;" + items[i].ID + ";;" + items[i].section + ";;" + items[i].subsection + ";;" + items[i].dollarPrice + ";;" + items[i].centPrice + ";;" + items[i].stock + ";;" + "\n");
             }
-            file.println(name + ";;" + (numItems+1) + ";;" + section + ";;" + subsection + ";;" + dollar + ";;" + cent + ";;" + stock + ";;");
-            file.close();
+            toWriteItems += (name + ";;" + (numItems+1) + ";;" + section + ";;" + subsection + ";;" + dollar + ";;" + cent + ";;" + stock + ";;" + "\n");
             
             System.out.print("Please enter the description of the item, on one line: ");
             description = user.nextLine();
@@ -675,43 +678,36 @@ public class Employees {
             }
             
             ReadFiles.readDescriptions();
-            File descriptionsFile = new File("descriptions");
-            Scanner descriptionScanner = new Scanner(descriptionsFile);
-            PrintWriter descriptionsWriter = new PrintWriter(descriptionsFile);
             
-            descriptionsWriter.println((numItems + 1) + ";;");
+            toWriteDescriptions += ((numItems + 1) + ";;" + "\n");
             for(int i = 0; i < numItems; i++){
-                descriptionsWriter.println(descriptions[i].ID + ";;" + descriptions[i].description + ";;" + descriptions[i].shortDescription + ";;");
+                toWriteDescriptions += (descriptions[i].ID + ";;" + descriptions[i].description + ";;" + descriptions[i].shortDescription + ";;" + "\n");
             }
-            descriptionsWriter.println((numItems + 1) + ";;" + description + ";;" + shortDescription + ";;");
-            descriptionsWriter.close();
+            toWriteDescriptions += ((numItems + 1) + ";;" + description + ";;" + shortDescription + ";;" + "\n");
             
             System.out.print("Please enter the keywords of the item, separated by two semicolons (;;),\nincluding after the final keyword: ");
             keywordsString = user.nextLine();
             
             ReadFiles.readKeywords();
-            File keywordsFile = new File("keywords");
-            Scanner keywordScanner = new Scanner(keywordsFile);
-            Scanner userKeywordScanner = new Scanner(keywordsString);
-            PrintWriter keywordsWriter = new PrintWriter(keywordsFile);
             
-            userKeywordScanner.useDelimiter(";;");
-            while(userKeywordScanner.hasNext()){
-                numKeywords++;
-                userKeywordScanner.next();
-            }
-            
-            keywordsWriter.println((numItems + 1) + ";;");
+            toWriteKeywords += ((numItems + 1) + ";;" + "\n");
             for(int i = 0; i < numItems; i++){
-                keywordsWriter.print(keywords[i].ID + ";;" + keywords[i].numKeywords + ";;");
+                toWriteKeywords += (keywords[i].ID + ";;" + keywords[i].numKeywords + ";;");
                     for(int x = 0; x < keywords[i].keywords.length; x++){
-                        keywordsWriter.print(keywords[i].keywords[x] + ";;");
+                        toWriteKeywords += (keywords[i].keywords[x] + ";;");
                     }
-                    keywordsWriter.println();
+                    toWriteKeywords += "\n";
             }
-            keywordsWriter.println((numItems + 1) + ";;" + numKeywords + ";;" + keywordsString);
-            keywordsWriter.close();
+            toWriteKeywords += ((numItems + 1) + ";;" + numKeywords + ";;" + keywordsString + "\n");
+            
+            writeFile("items", toWriteItems);
+            writeFile("descriptions", toWriteDescriptions);
+            writeFile("keywords", toWriteKeywords);
+        } else {
+            System.out.println("Abort.");
         }
+        
+        //Update the files again. (I really can't do this enough)
         ReadFiles.readItems();
         ReadFiles.readDescriptions();
         ReadFiles.readKeywords();
@@ -720,27 +716,19 @@ public class Employees {
     public static void removeItem() throws IOException {
         //Variable declaration
         int userChoice;
-        int numItems;
-
-        File itemsFile = new File("items");
-        Scanner itemScanner = new Scanner(itemsFile);
-        itemScanner.useDelimiter(";;");
-
-        numItems = itemScanner.nextInt();
-        itemScanner.nextLine();
-        for(int i = 0; i < numItems; i++){
-            items[i] = new Items(itemScanner.next(), itemScanner.nextInt(), itemScanner.nextInt(), itemScanner.nextInt(), itemScanner.nextInt(), itemScanner.nextInt(), itemScanner.nextInt());
-            itemScanner.nextLine();
-        }
+        String toWrite = "";
         
+        ReadFiles.readItems();  //Update from the file
+        
+        //Get the item to remove from the user
         System.out.print("Which item would you like to remove? 0 to display items: ");
-        userChoice = Methods.checkNumber(00, numItems);
+        userChoice = Methods.checkNumber(0, numItems);
         while(userChoice == -1){
             System.out.print("Invalid selection! Please enter a number between 0 and " + numItems + ": ");
             userChoice = Methods.checkNumber(0, numItems);
         }
         if(userChoice == 0){
-            for(int i = 0; i < numItems; i++){
+            for(int i = 0; i < numItems; i++){  //Cycle through and print out the items
                 System.out.println(items[i].ID + ". " + items[i].name);
             }
             System.out.print("Which item would you like to remove? ");
@@ -751,37 +739,29 @@ public class Employees {
             userChoice = Methods.checkNumber(1, numItems);
         }
         
-        PrintWriter file = new PrintWriter(itemsFile);
-        file.println(numItems + ";;");
+        toWrite += (numItems + ";;" + "\n");
         for(int i = 0; i < numItems; i++){
             if(i == userChoice -1){
-                file.println(items[i].name + ";;" + items[i].ID + ";;" + items[i].section + ";;" + items[i].subsection + ";;" + items[i].dollarPrice + ";;" + items[i].centPrice + ";;" + "-1" + ";;");
+                toWrite += (items[i].name + ";;" + items[i].ID + ";;" + items[i].section + ";;" + items[i].subsection + ";;" + items[i].dollarPrice + ";;" + items[i].centPrice + ";;" + "-1" + ";;" + "\n");
             } else {
-                file.println(items[i].name + ";;" + items[i].ID + ";;" + items[i].section + ";;" + items[i].subsection + ";;" + items[i].dollarPrice + ";;" + items[i].centPrice + ";;" + items[i].stock + ";;");
+                toWrite += (items[i].name + ";;" + items[i].ID + ";;" + items[i].section + ";;" + items[i].subsection + ";;" + items[i].dollarPrice + ";;" + items[i].centPrice + ";;" + items[i].stock + ";;" + "\n");
             }
         }
-        file.close();
+        writeFile("items", toWrite);
         System.out.println("Item removed.");
     }
     
     public static void changeStock() throws IOException {
         //Variable declaration
         int userChoice = 0;
-        int numItems;
         int stock;
         int ID;
+        String toWrite = "";
 
-        File itemsFile = new File("items");
-        Scanner itemScanner = new Scanner(itemsFile);
-        itemScanner.useDelimiter(";;");
-
-        numItems = itemScanner.nextInt();
-        itemScanner.nextLine();
-        for(int i = 0; i < numItems; i++){
-            items[i] = new Items(itemScanner.next(), itemScanner.nextInt(), itemScanner.nextInt(), itemScanner.nextInt(), itemScanner.nextInt(), itemScanner.nextInt(), itemScanner.nextInt());
-            itemScanner.nextLine();
-        }
+        //Update items from file
+        ReadFiles.readItems();
         
+        //Get the item who's stock is going to change from the user
         System.out.print("Which item would you like to change the stock of? 0 to display items: ");
         userChoice = Methods.checkNumber(0, numItems);
         while(userChoice == -1){
@@ -789,7 +769,7 @@ public class Employees {
             userChoice = Methods.checkNumber(0, numItems);
         }
         if(userChoice == 0){
-            for(int i = 0; i < numItems; i++){
+            for(int i = 0; i < numItems; i++){  //Cycle through and print out the items
                 if(items[i].stock != -1)System.out.println(items[i].ID + ". " + items[i].name);
             }
             System.out.print("Which item would you like to change the stock of? ");
@@ -802,7 +782,7 @@ public class Employees {
             
         ID = userChoice - 1;
         
-        while(items[ID].stock == -1){
+        while(items[ID].stock == -1){   //Repeat above.
             System.out.println("That item has been removed!");
             System.out.print("Which item would you like to change the stock of? 0 to display items: ");
             userChoice = Methods.checkNumber(0, numItems);
@@ -822,6 +802,7 @@ public class Employees {
                 userChoice = Methods.checkNumber(1, numItems);
             }
         }
+        //Get the new stock (must be greater than the current stock)
         System.out.print("To what would you like to change the stock to? Current stock is " + items[ID].stock + ": ");
         stock = Methods.checkNumber(items[ID].stock, 2147483647);
         while(stock == -1){
@@ -829,16 +810,17 @@ public class Employees {
             stock = Methods.checkNumber(items[ID].stock, 2147483647);
         }
 
-        PrintWriter file = new PrintWriter(itemsFile);
-        file.println(numItems + ";;");
+        toWrite += (numItems + ";;" + "\n");
         for(int i = 0; i < numItems; i++){
             if(i == userChoice - 1){
-                file.println(items[i].name + ";;" + items[i].ID + ";;" + items[i].section + ";;" + items[i].subsection + ";;" + items[i].dollarPrice + ";;" + items[i].centPrice + ";;" + stock + ";;");
+                toWrite += (items[i].name + ";;" + items[i].ID + ";;" + items[i].section + ";;" + items[i].subsection + ";;" + items[i].dollarPrice + ";;" + items[i].centPrice + ";;" + stock + ";;" + "\n");
             } else {
-                file.println(items[i].name + ";;" + items[i].ID + ";;" + items[i].section + ";;" + items[i].subsection + ";;" + items[i].dollarPrice + ";;" + items[i].centPrice + ";;" + items[i].stock + ";;");
+                toWrite += (items[i].name + ";;" + items[i].ID + ";;" + items[i].section + ";;" + items[i].subsection + ";;" + items[i].dollarPrice + ";;" + items[i].centPrice + ";;" + items[i].stock + ";;" + "\n");
             }
         }
-        file.close();
+        
+        writeFile("items", toWrite);
+        
         System.out.println("Item stock changed.");
         
     }
@@ -848,14 +830,17 @@ public class Employees {
         String section;
         String subsection;
         String description;
+        String toWrite = "";
         int addChoice;
         int sectionID;      //Parent of the subsection
         char userEntry;
         
+        //Determine whether the user wants a new section or subsection
         System.out.print("Would you like to add a section (1) or a subsection (2)? ");
         addChoice = Methods.checkNumber(1, 2);
         while(addChoice == -1){
-            System.out.print("Invalid selection! Please enter 1 or 2: ");
+            System.out.print("Invalid selection! Please enter either 1 or 2: ");
+            addChoice = Methods.checkNumber(1, 2);
         }
         
         if(addChoice == 1){
@@ -876,15 +861,16 @@ public class Employees {
             System.out.println("Please enter the description for " + section + ": ");
             description = user.nextLine();
             
-            PrintWriter file = new PrintWriter(new File("sections")); //Also overwrites file.
-            file.println((numSections + 1) + ";;");
+            toWrite += ((numSections + 1) + ";;" + "\n");
             for(int i = 0; i < numSections; i++){
-                file.println(sections[i].ID + ";;" + sections[i].name + ";;" + sections[i].description + ";;");
+                toWrite += (sections[i].ID + ";;" + sections[i].name + ";;" + sections[i].description + ";;" + "\n");
             }
-            file.println((numSections+1) + ";;" + section + ";;" + description + ";;");
-            file.close();
+            toWrite += ((numSections+1) + ";;" + section + ";;" + description + ";;" + "\n");
+            
+            writeFile("sections", toWrite);
+            
             System.out.println("Section created.");
-            ReadFiles.readSections();
+            ReadFiles.readSections();   //Update sections from file (required after making a new section)
         } else {
             System.out.print("Please enter the ID of the parent section (0 to view sections): ");
             sectionID = Methods.checkNumber(0, numSections);
@@ -896,7 +882,7 @@ public class Employees {
             
             if(sectionID == 0){
                 System.out.println();
-                for(int i = 0; i < numSections; i++){
+                for(int i = 0; i < numSections; i++){   //Output the sections
                     System.out.println(sections[i].ID + ". " + sections[i].name + " - " + sections[i].description);
                 }
                 System.out.println();
@@ -928,15 +914,16 @@ public class Employees {
             System.out.print("Please enter the description for " + subsection + ": ");
             description = user.nextLine();
             
-            PrintWriter file = new PrintWriter(new File("subsections")); //Also overwrites file.
-            file.println((numSubsections + 1) + ";;");
+            toWrite += ((numSubsections + 1) + ";;" + "\n");
             for(int i = 0; i < numSubsections; i++){
-                file.println(subsections[i].ID + ";;" + subsections[i].name + ";;" + subsections[i].description + ";;" + subsections[i].sectionID + ";;");
+                toWrite += (subsections[i].ID + ";;" + subsections[i].name + ";;" + subsections[i].description + ";;" + subsections[i].sectionID + ";;" + "\n");
             }
-            file.println((numSubsections+1) + ";;" + subsection + ";;" + description + ";;" + sectionID + ";;");
-            file.close();
+            toWrite += ((numSubsections+1) + ";;" + subsection + ";;" + description + ";;" + sectionID + ";;" + "\n");
+            
+            writeFile("subsections", toWrite);
+            
             System.out.println("Subsection created.");
-            ReadFiles.readSubsections();
+            ReadFiles.readSubsections();    //Update subsections from file (required after making a new subsection)
         }
     }
     
@@ -945,16 +932,17 @@ public class Employees {
         int menuSelection = 0;
         int numUsers;
         File authentication;
-        
         exit = false;
         
         while(!exit){
+            //Update all of the files
             ReadFiles.readDescriptions();
             ReadFiles.readItems();
             ReadFiles.readKeywords();
             ReadFiles.readSections();
             ReadFiles.readSubsections();
             
+            //Scan the authentication file      (maybe should be switched to ReadFiles() at some point)
             authentication = new File("authentication");
             Scanner auth = new Scanner(authentication);
             auth.useDelimiter(";;");
@@ -969,7 +957,7 @@ public class Employees {
                 numUsers++;
             }
             
-            switch(userLevel){
+            switch(userLevel){      //Find out what the user wants to do, based on their level
                 case 1:
                     System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMenu:");
                     System.out.println(" 1. User settings");
@@ -1048,6 +1036,7 @@ public class Employees {
         boolean usernameFound = false;
         
         while(restart){
+            //Update authentication data
             ReadFiles.readAuthentication();
             
             System.out.print("Please enter your username: ");
@@ -1056,7 +1045,8 @@ public class Employees {
 
             System.out.print("Please enter your password: ");
             password = user.nextLine();
-
+            
+            //Search through login data for username/password
             for(int i = 0; i < numLogins; i++){
                 if(logins[i].username.equals(username)){
                     usernameFound = true;
