@@ -667,7 +667,7 @@ public class Employees {
             for(int i = 0; i < numItems; i++){
                 toWriteItems += (items[i].name + ";;" + items[i].ID + ";;" + items[i].section + ";;" + items[i].subsection + ";;" + items[i].dollarPrice + ";;" + items[i].centPrice + ";;" + items[i].stock + ";;" + "\n");
             }
-            toWriteItems += (name + ";;" + (numItems+1) + ";;" + section + ";;" + subsection + ";;" + dollar + ";;" + cent + ";;" + stock + ";;" + "\n");
+            toWriteItems += (name + ";;" + (numItems+1) + ";;" + section + ";;" + (subsection+1) + ";;" + dollar + ";;" + cent + ";;" + stock + ";;" + "\n");
             
             System.out.print("Please enter the description of the item, on one line: ");
             description = user.nextLine();

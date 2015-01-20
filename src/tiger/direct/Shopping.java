@@ -77,7 +77,7 @@ public class Shopping {
             counter = 0;
             for (int i=0; i < numItems; i++){ ///Checks which items are in subsection and prints them
                 currentItem = itemList[i];
-
+                
                 if (itemList[i].subsection == subsections[subsection+1].ID && itemList[i].stock > 0){
                     counter ++;
                     System.out.println(counter + ". " + itemList[i].name);
