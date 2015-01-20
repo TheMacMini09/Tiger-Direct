@@ -507,12 +507,12 @@ public class Employees {
         for(int i = 0; i < numSubsections; i++){        //Cycle through all of the subsections, and add the ones in the current section to a new array.
             if(subsections[i].sectionID == section){
                 subsectionsInSection[numSubsectionsInSection] = subsections[i];
-                validSubsectionIDs[i] = subsections[i].ID;
+                validSubsectionIDs[numSubsectionsInSection] = subsections[i].ID;
                 numSubsectionsInSection++;
             }
         }
         
-        Arrays.sort(validSubsectionIDs);    //Sort the IDs (shouldn't be necessary, just a precaution incase the files get messed up and ReadFiles doesn't catch it
+        Arrays.sort(validSubsectionIDs, 0, numSubsectionsInSection);    //Sort the IDs (shouldn't be necessary, just a precaution incase the files get messed up and ReadFiles doesn't catch it
 
         System.out.println("Here are the subsections to choose from:");
         
@@ -525,7 +525,7 @@ public class Employees {
         subsection = Methods.checkNumber(validSubsectionIDs[0], validSubsectionIDs[validSubsectionIDs.length-1]);
 
         while(section == -1 || Arrays.binarySearch(validSubsectionIDs, subsection) < 0){
-            System.out.print("Invalid selection! Please enter a number between " + validSubsectionIDs[0] + " and " + validSubsectionIDs[validSubsectionIDs.length-1] + ": ");
+            System.out.print("Invalid selection! Please enter a number between " + validSubsectionIDs[0] + " and " + (numSubsectionsInSection+1) + ": ");
             subsection = Methods.checkNumber(validSubsectionIDs[0], validSubsectionIDs[validSubsectionIDs.length-1]);
         }
         
@@ -536,8 +536,8 @@ public class Employees {
             System.out.print("Please enter the subsection of the item: ");
             subsection = Methods.checkNumber(validSubsectionIDs[0], validSubsectionIDs[validSubsectionIDs.length-1]);
 
-            while(section == -1){
-                System.out.print("Invalid selection! Please enter a number between " + validSubsectionIDs[0] + " and " + validSubsectionIDs[validSubsectionIDs.length-1] + ": ");
+            while(section == -1 || Arrays.binarySearch(validSubsectionIDs, subsection) < 0){
+                System.out.print("Invalid selection! Please enter a number between " + validSubsectionIDs[0] + " and " + (numSubsectionsInSection+1) + ": ");
                 subsection = Methods.checkNumber(validSubsectionIDs[0], validSubsectionIDs[validSubsectionIDs.length-1]);
             }
 
