@@ -9,6 +9,7 @@ package tiger.direct;
  * File by: Nigel
  */
 
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 import static tiger.direct.Employees.numItems;
 import static tiger.direct.Employees.numSections;
@@ -18,6 +19,7 @@ import static tiger.direct.TigerDirect.numItemsInCart;
 import static tiger.direct.TigerDirect.sections;
 import static tiger.direct.TigerDirect.subsections;
 import static tiger.direct.TigerDirect.counter2;
+import static tiger.direct.TigerDirect.items;
 
 public class Shopping {
     
@@ -63,7 +65,7 @@ public class Shopping {
     
     
     /// Item selector called by main ///
-    public static String itemFinder (Items itemList [], int subsection, Descriptions descriptions[]){
+    public static String itemFinder (Items itemList [], int subsection, Descriptions descriptions[]) throws FileNotFoundException{
         Scanner user = new Scanner(System.in);
         String stay = "y";
         
@@ -142,10 +144,23 @@ public class Shopping {
                     cart[counter2] = new CartRecord(inSubsection[listNum].name, inSubsection[listNum].ID,inSubsection[listNum].section, inSubsection[listNum].subsection,inSubsection[listNum].dollarPrice, inSubsection[listNum].centPrice, itemBought);
                     System.out.println("The item has been added to your cart.");
                     
+                    //Variable declaration
+                    int x;
+                    String toWrite = "";
+
+                    ReadFiles.readItems();
                     
-                    
+                    toWrite += (numItems + ";;" + "\n");
+                    for(int i = 0; i < numItems; i++){
+                        if(i+1 == inSubsection[listNum].ID){
+                            toWrite += (items[i].name + ";;" + items[i].ID + ";;" + items[i].section + ";;" + items[i].subsection + ";;" + items[i].dollarPrice + ";;" + items[i].centPrice + ";;" + (items[i].stock - itemBought) + ";;" + "\n");
+                        } else {
+                            toWrite += (items[i].name + ";;" + items[i].ID + ";;" + items[i].section + ";;" + items[i].subsection + ";;" + items[i].dollarPrice + ";;" + items[i].centPrice + ";;" + items[i].stock + ";;" + "\n");
+                        }
+                    }
+                    Employees.writeFile("items", toWrite);
                 }
-                counter2 ++;
+            counter2 ++;
             addTo = false; /// reset boolean
             }
         numItemsInCart = counter2;

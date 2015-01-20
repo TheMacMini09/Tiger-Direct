@@ -72,7 +72,11 @@ public class Cart {
                             newNumberOfItems = Methods.checkNumber(1, (items[cart[itemNumber-1].ID].stock-cart[itemNumber-1].quantity)); // check if valid
                         }
                         
+                        itemsRemoved = cart[itemNumber].quantity - newNumberOfItems; // removes the number of items chosen by the user
+                        cart[itemNumber-1] = new CartRecord(cart[itemNumber-1].name, cart[itemNumber-1].ID, cart[itemNumber-1].section, cart[itemNumber-1].subsection, cart[itemNumber-1].dollarPrice, cart[itemNumber-1].centPrice, newNumberOfItems); // updates cart
+                        
                         toWrite += (numItems + ";;" + "\n");
+                        
                         for(int i = 0; i < numItems; i++){      //Remove stock from items file
                             if(i == cart[itemNumber].ID - 1){
                                 toWrite += (items[i].name + ";;" + items[i].ID + ";;" + items[i].section + ";;" + items[i].subsection + ";;" + items[i].dollarPrice + ";;" + items[i].centPrice + ";;" + (items[i].stock-cart[itemNumber].quantity) + ";;" + "\n");
@@ -82,9 +86,6 @@ public class Cart {
                         }
 
                         writeFile("items", toWrite);
-                        
-                        itemsRemoved = cart[itemNumber].quantity - newNumberOfItems; // removes the number of items chosen by the user
-                        cart[itemNumber-1] = new CartRecord(cart[itemNumber-1].name, cart[itemNumber-1].ID, cart[itemNumber-1].section, cart[itemNumber-1].subsection, cart[itemNumber-1].dollarPrice, cart[itemNumber-1].centPrice, newNumberOfItems); // updates cart
                     } else if(removeChange == 'r'){ // while they want to remove an item
                         itemsRemoved = cart[itemNumber].quantity; 
                         cart[itemNumber] = new CartRecord();
