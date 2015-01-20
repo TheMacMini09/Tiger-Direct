@@ -522,11 +522,11 @@ public class Employees {
         }
         System.out.println();
         System.out.print("Please enter the subsection of the item: ");
-        subsection = Methods.checkNumber(validSubsectionIDs[0], validSubsectionIDs[validSubsectionIDs.length-1]);
+        subsection = Methods.checkNumber(validSubsectionIDs[0], validSubsectionIDs[0]+numSubsectionsInSection-1);
 
         while(section == -1 || Arrays.binarySearch(validSubsectionIDs, subsection) < 0){
-            System.out.print("Invalid selection! Please enter a number between " + validSubsectionIDs[0] + " and " + (numSubsectionsInSection+1) + ": ");
-            subsection = Methods.checkNumber(validSubsectionIDs[0], validSubsectionIDs[validSubsectionIDs.length-1]);
+            System.out.print("Invalid selection! Please enter a number between " + validSubsectionIDs[0] + " and " + (validSubsectionIDs[0]+numSubsectionsInSection-1) + ": ");
+            subsection = Methods.checkNumber(validSubsectionIDs[0], validSubsectionIDs[0]+numSubsectionsInSection-1);
         }
         
         System.out.print("Is " + subsections[subsection-1].name + " the subsection you intended? y/n: ");
@@ -534,11 +534,11 @@ public class Employees {
         user.nextLine();
         while(userConf != 'y'){
             System.out.print("Please enter the subsection of the item: ");
-            subsection = Methods.checkNumber(validSubsectionIDs[0], validSubsectionIDs[validSubsectionIDs.length-1]);
+            subsection = Methods.checkNumber(validSubsectionIDs[0], validSubsectionIDs[0]+numSubsectionsInSection-1);
 
             while(section == -1 || Arrays.binarySearch(validSubsectionIDs, subsection) < 0){
-                System.out.print("Invalid selection! Please enter a number between " + validSubsectionIDs[0] + " and " + (numSubsectionsInSection+1) + ": ");
-                subsection = Methods.checkNumber(validSubsectionIDs[0], validSubsectionIDs[validSubsectionIDs.length-1]);
+                System.out.print("Invalid selection! Please enter a number between " + validSubsectionIDs[0] + " and " + (validSubsectionIDs[0]+numSubsectionsInSection-1) + ": ");
+                subsection = Methods.checkNumber(validSubsectionIDs[0], validSubsectionIDs[0]+numSubsectionsInSection-1);
             }
 
             if(subsection < validSubsectionIDs[validSubsectionIDs.length-1]){
