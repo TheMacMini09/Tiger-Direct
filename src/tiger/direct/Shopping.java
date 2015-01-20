@@ -38,18 +38,26 @@ public class Shopping {
     public static int subsection (int sectionID){
         int subsectionNumber = 0;
         int counter = 0;
+        int smallestID = 0;
+        int largestID = 0;
         SubSections[] inSection = new SubSections[subsections.length];
         sectionID--;
         
         System.out.println("You are currently browsing in " + sections[sectionID].name + ".");
         for (int i=0; i < numSubsections; i++){             ///Scanning for subsections in the section;
             if (subsections[i].sectionID == sectionID+1){
+                if(counter == 0){
+                    smallestID = subsections[i].ID;
+                    largestID = smallestID;
+                } else {
+                    largestID++;
+                }
                 counter++;
                 System.out.println((i+1) + ". " + subsections[i].name);
                 inSection[counter] = subsections[i];
             }
         }
-        subsectionNumber = mymethods.Console.getInt("Enter the corresponing number to the subsection you are visiting: ", 1,counter); ///Input in certain range
+        subsectionNumber = mymethods.Console.getInt("Enter the corresponing number to the subsection you are visiting: ", smallestID, largestID); ///Input in certain range
         return subsectionNumber; ///return subsectionNumber for ItemFinder
     }
     
@@ -61,6 +69,8 @@ public class Shopping {
         
         int listNum = 0;
         int counter = 0;
+        int smallestID = 0;
+        int largestID = 0;
         Items currentItem;
         Items inSubsection[] = new Items[itemList.length];
 
@@ -79,13 +89,19 @@ public class Shopping {
                 currentItem = itemList[i];
                 
                 if (itemList[i].subsection == subsections[subsection+1].ID && itemList[i].stock > 0){
+                    if(counter == 0){
+                        smallestID = itemList[i].ID;
+                        largestID = smallestID;
+                    } else {
+                        largestID++;
+                    }
                     counter ++;
                     System.out.println(counter + ". " + itemList[i].name);
                     inSubsection[counter] = itemList[i];
                 }
             }
             
-            listNum = mymethods.Console.getInt("Enter the corresponing number to the item you are selecting: ", 1, counter);
+            listNum = mymethods.Console.getInt("Enter the corresponing number to the item you are selecting: ", smallestID, largestID);
             /// Print out selected items information ///
             System.out.println(inSubsection[listNum].name);
             System.out.println("Item ID: " + inSubsection[listNum].ID);
