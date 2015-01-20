@@ -488,7 +488,7 @@ public class Employees {
             section = Methods.checkNumber(1, numSections);
         }
         
-        System.out.print("Is " + sections[section].name + " the section you intended? y/n: ");
+        System.out.print("Is " + sections[section-1].name + " the section you intended? y/n: ");
         userConf = user.next().trim().toLowerCase().charAt(0);
         user.nextLine();
         while(userConf != 'y'){
@@ -533,8 +533,8 @@ public class Employees {
         userConf = user.next().trim().toLowerCase().charAt(0);
         user.nextLine();
         while(userConf != 'y'){
-            System.out.print("Please enter the subsection of the item, or 0 to view subsections: ");
-            subsection = Methods.checkNumber(0, validSubsectionIDs[validSubsectionIDs.length-1]);
+            System.out.print("Please enter the subsection of the item: ");
+            subsection = Methods.checkNumber(validSubsectionIDs[0], validSubsectionIDs[validSubsectionIDs.length-1]);
 
             while(section == -1){
                 System.out.print("Invalid selection! Please enter a number between " + validSubsectionIDs[0] + " and " + validSubsectionIDs[validSubsectionIDs.length-1] + ": ");
