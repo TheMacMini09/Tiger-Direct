@@ -499,7 +499,8 @@ public class Employees {
                 System.out.print("Invalid selection! Please enter a number between 1 and " + numSections + ": ");
                 section = Methods.checkNumber(1, numSections);
             }
-            System.out.print("Is " + sections[section].name + " the section you intended? y/n: ");
+
+            System.out.print("Is " + sections[section-1].name + " the section you intended? y/n: ");
             userConf = user.next().trim().toLowerCase().charAt(0);
             user.nextLine();
         }
