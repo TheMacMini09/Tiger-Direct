@@ -476,7 +476,7 @@ public class Employees {
 
         System.out.println("Here are the sections to choose from:");
         System.out.println();
-        for(int i = 0; i < numSections; i++){
+        for(int i = 0; i < numSections; i++){   //Cycle through and print out all of the sections
             System.out.println(sections[i].ID + ". " + sections[i].name + " - " + sections[i].description);
         }
         System.out.println();
@@ -504,7 +504,7 @@ public class Employees {
             user.nextLine();
         }
         
-        for(int i = 0; i < numSubsections; i++){
+        for(int i = 0; i < numSubsections; i++){        //Cycle through all of the subsections, and add the ones in the current section to a new array.
             if(subsections[i].sectionID == section){
                 subsectionsInSection[numSubsectionsInSection] = subsections[i];
                 validSubsectionIDs[i] = subsections[i].ID;
@@ -512,12 +512,12 @@ public class Employees {
             }
         }
         
-        Arrays.sort(validSubsectionIDs);
+        Arrays.sort(validSubsectionIDs);    //Sort the IDs (shouldn't be necessary, just a precaution incase the files get messed up and ReadFiles doesn't catch it
 
         System.out.println("Here are the subsections to choose from:");
         
         System.out.println();
-        for(int i = 0; i < numSubsectionsInSection; i++){
+        for(int i = 0; i < numSubsectionsInSection; i++){   //Cycle through the valid subsections and print them out.
             System.out.println(subsectionsInSection[i].ID + ". " + subsectionsInSection[i].name + " - " + subsectionsInSection[i].description);
         }
         System.out.println();
@@ -562,7 +562,11 @@ public class Employees {
         
         System.out.print("Please enter the name of the item: ");
         name = user.nextLine();
-        System.out.print("Is " + name + " the name you intended? y/n: ");
+        while(name.trim().equals("")){
+            System.out.print("You entered a blank name! Please enter the name of the item: ");
+            name = user.nextLine();
+        }
+        System.out.print("Is '" + name + "' the name you intended? y/n: ");
         userConf = user.next().trim().toLowerCase().charAt(0);
         user.nextLine();
         while(userConf != 'y'){
@@ -574,45 +578,62 @@ public class Employees {
         }
         
         System.out.print("Please enter the dollar price of the item: ");
-        dollar = user.nextInt();
-        user.nextLine();
+        dollar = Methods.checkNumber(0, 2147483647);
+        while(dollar < 0){
+            System.out.print("Invalid selection! Please enter a number between 0 and 2147483647: ");
+            dollar = Methods.checkNumber(0, 2147483647);
+        }
         System.out.print("Is " + dollar + " the dollar price you intended? y/n: ");
         userConf = user.next().trim().toLowerCase().charAt(0);
         user.nextLine();
         while(userConf != 'y'){
             System.out.print("Please enter the dollar price of the item: ");
-            dollar = user.nextInt();
-            user.nextLine();
+            dollar = Methods.checkNumber(0, 2147483647);
+            while(dollar < 0){
+                System.out.print("Invalid selection! Please enter a number between 0 and 2147483647: ");
+                dollar = Methods.checkNumber(0, 2147483647);
+            }
             System.out.print("Is " + dollar + " the dollar price you intended? y/n: ");
             userConf = user.next().trim().toLowerCase().charAt(0);
             user.nextLine();
         }
         
         System.out.print("Please enter the cent price of the item: ");
-        cent = user.nextInt();
-        user.nextLine();
+        cent = Methods.checkNumber(0, 99);
+        while(cent < 0){
+            System.out.print("Invalid selection! Please enter a number between 0 and 99: ");
+            cent = Methods.checkNumber(0, 99);
+        }
         System.out.print("Is " + cent + " the cent price you intended? y/n: ");
         userConf = user.next().trim().toLowerCase().charAt(0);
         user.nextLine();
         while(userConf != 'y'){
-            System.out.print("Please enter the cent price of the item: ");
-            cent = user.nextInt();
-            user.nextLine();
+            cent = Methods.checkNumber(0, 99);
+            while(cent < 0){
+                System.out.print("Invalid selection! Please enter a number between 0 and 99: ");
+                cent = Methods.checkNumber(0, 99);
+            }
             System.out.print("Is " + cent + " the cent price you intended? y/n: ");
             userConf = user.next().trim().toLowerCase().charAt(0);
             user.nextLine();
         }
         
         System.out.print("Please enter the current stock of the item: ");
-        stock = user.nextInt();
-        user.nextLine();
+        stock = Methods.checkNumber(0, 2147483647);
+        while(stock < 0){
+            System.out.print("Invalid selection! Please enter a number between 0 and 2147483647: ");
+            stock = Methods.checkNumber(0, 2147483647);
+        }
         System.out.print("Is " + stock + " the stock you intended? y/n: ");
         userConf = user.next().trim().toLowerCase().charAt(0);
         user.nextLine();
         while(userConf != 'y'){
             System.out.print("Please enter the current stock of the item: ");
-            stock = user.nextInt();
-            user.nextLine();
+            stock = Methods.checkNumber(0, 2147483647);
+            while(stock < 0){
+                System.out.print("Invalid selection! Please enter a number between 0 and 2147483647: ");
+                stock = Methods.checkNumber(0, 2147483647);
+            }
             System.out.print("Is " + stock + " the stock you intended? y/n: ");
             userConf = user.next().trim().toLowerCase().charAt(0);
             user.nextLine();
