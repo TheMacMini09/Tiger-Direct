@@ -9,6 +9,9 @@ import tiger.direct.TigerDirect;
 import java.util.Scanner;
 import java.util.Arrays;
 import static tiger.direct.Employees.numItems;
+import static tiger.direct.Employees.writeFile;
+import static tiger.direct.TigerDirect.items;
+import static tiger.direct.TigerDirect.numItemsInCart;
 /*
  * File by: Michael Barker
  MICHAEL BE SURE TO MAKE IT SO THAT IF THEY REMOVE AN ITEM FROM THE CART, IT WILL ADD THE QUANTITY BACK TO THE STOCK
@@ -29,16 +32,17 @@ public class Cart {
         int itemNumber;
         int newNumberOfItems;
         int itemsRemoved = 0;
+        String toWrite = "";
         
         System.out.println("Welcome to the Tiger Direct shopping cart!");
         ReadFiles.readDescriptions(); //reads descriptions from items
         while(changeCart == 'y'){ //while the user wants to change the cart
-            if(numItems <= 0){ // if the cart is empty
+            if(numItemsInCart <= 0){ // if the cart is empty
                 System.out.println("Empty cart. Exiting cart.");
                 changeCart = 'n'; // close cart
             } else { // otherwise
                 System.out.println("Here are your items:\n");
-                for(int i = 0; i < numItems; i++){ // for all the items in the array,
+                for(int i = 0; i < numItemsInCart; i++){ // for all the items in the array,
                     System.out.println("\t" + (i+1) + ". " + "$" + cart[i].dollarPrice + "." + cart[i].centPrice + " " + cart[i].name + " - " + descriptions[cart[i].ID-1].shortDescription + " Qty: " + cart[i].quantity); // print item info
                 }
                 System.out.print("\nWould you like to change your cart? y/n: ");
@@ -47,10 +51,10 @@ public class Cart {
 
                 if(changeCart == 'y'){ // if they do
                     System.out.print("Which item would you like to change/remove? Enter the number: ");
-                    itemNumber = Methods.checkNumber(1, numItems);
+                    itemNumber = Methods.checkNumber(1, numItemsInCart);
                     while(itemNumber == -1){ // while entry is invalid (Methods.checkNumber returns -1)
-                        System.out.print("Invalid selection! Please enter a number between 1 and " + numItems + ": ");
-                        itemNumber = Methods.checkNumber(1, numItems);
+                        System.out.print("Invalid selection! Please enter a number between 1 and " + numItemsInCart + ": ");
+                        itemNumber = Methods.checkNumber(1, numItemsInCart);
                     }
                     System.out.print("Would you like to change the quantity of items,\nor remove it entirely? 'c' for change, 'r' to remove, 'q' to quit: ");
                     removeChange = user.next().trim().toLowerCase().charAt(0);
@@ -67,13 +71,26 @@ public class Cart {
                             System.out.print("Invalid selection! Please enter a number between 1 and " + (items[cart[itemNumber-1].ID].stock-cart[itemNumber-1].quantity) + ": ");
                             newNumberOfItems = Methods.checkNumber(1, (items[cart[itemNumber-1].ID].stock-cart[itemNumber-1].quantity)); // check if valid
                         }
+                        
+                        toWrite += (numItems + ";;" + "\n");
+                        for(int i = 0; i < numItems; i++){      //Remove stock from items file
+                            if(i == cart[itemNumber].ID - 1){
+                                toWrite += (items[i].name + ";;" + items[i].ID + ";;" + items[i].section + ";;" + items[i].subsection + ";;" + items[i].dollarPrice + ";;" + items[i].centPrice + ";;" + (items[i].stock-cart[itemNumber].quantity) + ";;" + "\n");
+                            } else {
+                                toWrite += (items[i].name + ";;" + items[i].ID + ";;" + items[i].section + ";;" + items[i].subsection + ";;" + items[i].dollarPrice + ";;" + items[i].centPrice + ";;" + items[i].stock + ";;" + "\n");
+                            }
+                        }
+
+                        writeFile("items", toWrite);
+                        
                         itemsRemoved = cart[itemNumber].quantity - newNumberOfItems; // removes the number of items chosen by the user
                         cart[itemNumber-1] = new CartRecord(cart[itemNumber-1].name, cart[itemNumber-1].ID, cart[itemNumber-1].section, cart[itemNumber-1].subsection, cart[itemNumber-1].dollarPrice, cart[itemNumber-1].centPrice, newNumberOfItems); // updates cart
                     } else if(removeChange == 'r'){ // while they want to remove an item
                         itemsRemoved = cart[itemNumber].quantity; 
                         cart[itemNumber] = new CartRecord();
-                        Arrays.sort(cart,0,numItems);
-                        numItems--; // remove item
+                        Arrays.sort(cart,0,numItemsInCart);
+                        
+                        numItemsInCart--; // remove item
                     }
                     items[itemNumber] = new Items(items[itemNumber].name, items[itemNumber].ID, items[itemNumber].section, items[itemNumber].subsection, items[itemNumber].dollarPrice, items[itemNumber].centPrice, items[itemNumber].stock + itemsRemoved); // updates
                 } else {

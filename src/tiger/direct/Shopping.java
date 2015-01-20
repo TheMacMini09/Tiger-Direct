@@ -42,7 +42,7 @@ public class Shopping {
         sectionID--;
         
         System.out.println("You are currently browsing in " + sections[sectionID].name + ".");
-        for (int i=0; i < numSubsections; i++){             ///Scanning for subsections in the section
+        for (int i=0; i < numSubsections; i++){             ///Scanning for subsections in the section;
             if (subsections[i].sectionID == sectionID+1){
                 counter++;
                 System.out.println((i+1) + ". " + subsections[i].name);
@@ -78,11 +78,10 @@ public class Shopping {
             for (int i=0; i < numItems; i++){ ///Checks which items are in subsection and prints them
                 currentItem = itemList[i];
 
-                if (itemList[i].subsection == subsections[subsection].ID && itemList[i].stock > 0){
+                if (itemList[i].subsection == subsections[subsection+1].ID && itemList[i].stock > 0){
                     counter ++;
                     System.out.println(counter + ". " + itemList[i].name);
                     inSubsection[counter] = itemList[i];
-                    System.out.println();
                 }
             }
             
