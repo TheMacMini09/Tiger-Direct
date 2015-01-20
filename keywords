@@ -1,4 +1,4 @@
-10;;
+13;;
 1;;11;;4790;;4790k;;boost;;core;;cpu;;i7;;intel;;quad;;quad-core;;turbo;;turboboost;;
 2;;2;;HP;;Slate;;
 3;;2;;HP;;Pavilion;;
@@ -8,4 +8,7 @@
 7;;2;;AP200;;MSI;;
 8;;2;;AG220;;MSI;;
 9;;2;;VSD231;;ViewSonic;;
-10;;2;;Lenovo;;Horizon;;
+10;;2;;Horizon;;Lenovo;;
+11;;2;;A540;;Lenovo;;
+12;;2;;C470;;Lenovo;;
+13;;2;;Asus;;ET2031IUK;;
